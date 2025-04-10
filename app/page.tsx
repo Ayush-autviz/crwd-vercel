@@ -1,103 +1,621 @@
-import Image from "next/image";
+// app/page.js (Home Screen)
+"use client"
+
+import { useState } from "react"
+import Image from "next/image"
+import {
+  ArrowLeft,
+  Share,
+  Bookmark,
+  MoreHorizontal,
+  Heart,
+  MessageSquare,
+  Share2,
+  Plus,
+  Users,
+  Search,
+  Box,
+  User,
+  Home as HomeI,
+  Bell,
+  Menu
+} from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
+import { Badge } from "@/components/ui/badge"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { cn } from "@/lib/utils"
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [activeTab, setActiveTab] = useState("home")
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  // Sample members data (based on the uploaded image)
+  const members = [
+    { name: "Chad F.", username: "chad", connected: true },
+    { name: "Mia Cares", username: "miacares1", connected: false },
+    { name: "Conrad M.", username: "conradm1", connected: false },
+    { name: "Morgan Wallace", username: "moremorgan", connected: false },
+    { name: "Ashton Thomas", username: "ash_t2001", connected: false },
+    { name: "Marc Paul", username: "makinmymarc", connected: false },
+    { name: "Cara Cara", username: "carebear", connected: false },
+    { name: "Raquel Wells", username: "rawells", connected: false },
+    { name: "Bethany Burke", username: "bburke", connected: false },
+    { name: "Max Fields", username: "maxf", connected: false },
+  ]
+
+  return (
+    <main className="pb-16 md:pb-0">
+      {/* Mobile Content */}
+      <div className="md:hidden mx-auto bg-background min-h-screen">
+          {/* Header */}
+          <header className="flex items-center justify-between p-4 bg-card border-b sticky top-0 z-10">
+            <div className="flex items-center">
+              <Button variant="ghost" size="icon" className="mr-2">
+                <ArrowLeft className="h-5 w-5" />
+              </Button>
+              <span className="font-bold text-lg">CRWD</span>
+            </div>
+            <div className="flex items-center">
+              <div className="w-8 h-8 flex items-center justify-center relative">
+                <div className="w-3 h-3 rounded-full bg-destructive absolute top-1 right-1"></div>
+                <Bell className="h-5 w-5" />
+              </div>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </div>
+          </header>
+
+          {/* Main Content */}
+          <main className="pb-16">
+            {/* Logo and Action Buttons */}
+            <div className="flex justify-between items-center p-4">
+              <div className="flex items-center">
+                <Avatar className="h-14 w-14 mr-3">
+                  <AvatarImage src="/placeholder.svg?height=60&width=60" alt="CRWD Logo" />
+                  <AvatarFallback>FH</AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col">
+                  <h1 className="text-2xl font-bold">Feed the hungry</h1>
+                  <span className="text-muted-foreground">supports</span>
+                </div>
+              </div>
+              <div className="flex space-x-2">
+                <Button variant="outline" size="icon" className="rounded-full">
+                  <Share className="h-4 w-4" />
+                </Button>
+                <Button variant="outline" size="icon" className="rounded-full">
+                  <Bookmark className="h-4 w-4" />
+                </Button>
+                <Button variant="outline">Join</Button>
+              </div>
+            </div>
+
+            {/* Description */}
+            <div className="px-4 py-2">
+              <p className="text-xl leading-relaxed">
+                families experiencing food insecurity in the greater Atlanta area. Join us in the cause to solve world
+                hunger.
+              </p>
+            </div>
+
+            {/* Founder */}
+            <div className="px-4 py-2 flex items-center">
+              <Avatar className="h-8 w-8 mr-2">
+                <AvatarImage src="/placeholder.svg?height=40&width=40" alt="Founder" />
+                <AvatarFallback>CF</AvatarFallback>
+              </Avatar>
+              <span className="text-muted-foreground">
+                Founded by <span className="text-foreground font-medium">@ChadFofana1</span>
+              </span>
+            </div>
+
+            {/* Stats */}
+            <div className="flex justify-between px-4 py-4 text-center border-t border-b my-2">
+              <div className="flex-1 border-r">
+                <div className="font-bold">10</div>
+                <div className="text-sm text-muted-foreground">Causes Supporting</div>
+              </div>
+              <div className="flex-1 border-r">
+                <div className="font-bold">58</div>
+                <div className="text-sm text-muted-foreground">Members</div>
+              </div>
+              <div className="flex-1">
+                <div className="font-bold">34</div>
+                <div className="text-sm text-muted-foreground">Collective Donations</div>
+              </div>
+            </div>
+
+            {/* Tags */}
+            <div className="flex px-4 py-2 space-x-2 overflow-x-auto">
+              <Badge variant="secondary">Animal Welfare</Badge>
+              <Badge variant="secondary">Environment</Badge>
+              <Badge variant="secondary">Food Insecurity</Badge>
+            </div>
+
+            {/* Partner Logos */}
+            <div className="px-4 py-2">
+              <ScrollArea className="w-full whitespace-nowrap">
+                <div className="flex space-x-2 border p-2 rounded-lg">
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+                    <Avatar key={i} className="h-10 w-10">
+                      <AvatarImage src={`/placeholder.svg?height=40&width=40`} alt={`Partner ${i}`} />
+                      <AvatarFallback>{i}</AvatarFallback>
+                    </Avatar>
+                  ))}
+                </div>
+              </ScrollArea>
+            </div>
+
+            {/* Non-Profits */}
+            <div className="px-4 py-2 text-muted-foreground">
+              <p>
+                Featuring the Non Profits: Grocery Spot, Food for Thought, Meals on Wheels, American Red Cross, & Pizza
+                Hut...
+                <Button variant="link" className="p-0 h-auto text-primary">
+                  See More
+                </Button>
+              </p>
+            </div>
+
+            {/* Donate Button */}
+            <div className="px-4 py-4">
+              <Button className="w-full py-6 text-lg" size="lg">
+                Donate
+              </Button>
+            </div>
+
+            {/* Updates Section */}
+            <div className="border-t">
+              <div className="px-4 py-4 flex justify-between items-center">
+                <h2 className="text-2xl font-medium">4 Updates</h2>
+                <Button size="icon" className="rounded-full">
+                  <Plus className="h-5 w-5" />
+                </Button>
+              </div>
+            </div>
+
+            {/* Posts */}
+            <Card className="border-t border-b rounded-none">
+              <CardHeader className="p-4 pb-0">
+                <div className="flex justify-between">
+                  <div className="flex items-center">
+                    <Avatar className="h-8 w-8 mr-2">
+                      <AvatarImage src="/placeholder.svg?height=40&width=40" alt="Chad" />
+                      <AvatarFallback>CF</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <span className="font-medium">@Chad</span>
+                      <span className="text-muted-foreground ml-2">· 17h</span>
+                    </div>
+                  </div>
+                  <Button variant="ghost" size="icon">
+                    <MoreHorizontal className="h-5 w-5" />
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent className="p-4 pt-2">
+                <p className="text-muted-foreground">Thick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex!</p>
+              </CardContent>
+              <CardFooter className="p-4 pt-0">
+                <div className="flex items-center w-full">
+                  <Button variant="ghost" size="sm" className="mr-2">
+                    <Heart className="h-4 w-4 mr-1" />
+                    <span>2</span>
+                  </Button>
+                  <Button variant="ghost" size="sm" className="mr-2">
+                    <MessageSquare className="h-4 w-4 mr-1" />
+                    <span>0</span>
+                  </Button>
+                  <div className="flex-grow"></div>
+                  <Button variant="ghost" size="sm">
+                    <Share2 className="h-4 w-4 mr-1" />
+                    <span>3</span>
+                  </Button>
+                </div>
+              </CardFooter>
+            </Card>
+
+            {/* Second Post with Image */}
+            <Card className="border-t border-b rounded-none">
+              <CardHeader className="p-4 pb-0">
+                <div className="flex justify-between">
+                  <div className="flex items-center">
+                    <Avatar className="h-8 w-8 mr-2">
+                      <AvatarImage src="/placeholder.svg?height=40&width=40" alt="Chad" />
+                      <AvatarFallback>CF</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <span className="font-medium">@Chad</span>
+                      <span className="text-muted-foreground ml-2">· 17h</span>
+                    </div>
+                  </div>
+                  <Button variant="ghost" size="icon">
+                    <MoreHorizontal className="h-5 w-5" />
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent className="p-4 pt-2">
+                <p className="text-muted-foreground mb-3">
+                  The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk
+                </p>
+                <div className="rounded-lg overflow-hidden">
+                  <Image
+                    src="/placeholder.svg?height=500&width=300"
+                    alt="Food donation"
+                    width={500}
+                    height={300}
+                    className="w-full"
+                  />
+                </div>
+              </CardContent>
+              <CardFooter className="p-4 pt-2">
+                <div className="flex items-center w-full">
+                  <Button variant="ghost" size="sm" className="mr-2">
+                    <Heart className="h-4 w-4 mr-1" />
+                    <span>Like</span>
+                  </Button>
+                  <Button variant="ghost" size="sm" className="mr-2">
+                    <MessageSquare className="h-4 w-4 mr-1" />
+                    <span>Comment</span>
+                  </Button>
+                  <div className="flex-grow"></div>
+                  <Button variant="ghost" size="sm">
+                    <Share2 className="h-4 w-4 mr-1" />
+                    <span>Share</span>
+                  </Button>
+                </div>
+              </CardFooter>
+            </Card>
+          </main>
+
+          {/* Bottom Navigation */}
+          <nav className="fixed bottom-0 left-0 right-0 bg-card border-t flex justify-around py-3 mx-auto z-10">
+            <Button
+              variant="ghost"
+              className={cn(
+                "flex flex-col items-center h-auto py-2 px-0 flex-1",
+                activeTab === "home" ? "text-primary" : "text-muted-foreground",
+              )}
+              onClick={() => setActiveTab("home")}
+            >
+              <HomeI className="h-5 w-5" />
+              <span className="text-xs mt-1">Home</span>
+            </Button>
+            <Button
+              variant="ghost"
+              className={cn(
+                "flex flex-col items-center h-auto py-2 px-0 flex-1",
+                activeTab === "discover" ? "text-primary" : "text-muted-foreground",
+              )}
+              onClick={() => setActiveTab("discover")}
+            >
+              <Search className="h-5 w-5" />
+              <span className="text-xs mt-1">Discover</span>
+            </Button>
+            <Button
+              variant="ghost"
+              className={cn(
+                "flex flex-col items-center h-auto py-2 px-0 flex-1",
+                activeTab === "donation" ? "text-primary" : "text-muted-foreground",
+              )}
+              onClick={() => setActiveTab("donation")}
+            >
+              <Box className="h-5 w-5" />
+              <span className="text-xs mt-1">Donation Box</span>
+            </Button>
+            <Button
+              variant="ghost"
+              className={cn(
+                "flex flex-col items-center h-auto py-2 px-0 flex-1",
+                activeTab === "profile" ? "text-primary" : "text-muted-foreground",
+              )}
+              onClick={() => setActiveTab("profile")}
+            >
+              <User className="h-5 w-5" />
+              <span className="text-xs mt-1">Profile</span>
+            </Button>
+          </nav>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+
+      {/* Desktop Content */}
+      <div className="hidden md:block">
+          {/* Desktop Header */}
+
+          {/* Desktop Main Content */}
+          <div className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Left Column - Cause Details */}
+            <div className="lg:col-span-2 space-y-6">
+              <Card>
+                {/* Hero Section */}
+                <div className="relative h-48 md:h-64 bg-gradient-to-r from-primary to-purple-600 rounded-t-lg">
+                  <div className="absolute bottom-0 left-0 p-6 text-white">
+                    <h1 className="text-3xl font-bold mb-2">Feed the hungry</h1>
+                    <p className="text-lg opacity-90">
+                      Supporting families experiencing food insecurity in the greater Atlanta area
+                    </p>
+                  </div>
+                </div>
+
+                {/* Main Content */}
+                <CardContent className="p-6">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 gap-4">
+                    <div className="flex items-center">
+                      <Avatar className="h-12 w-12 mr-3">
+                        <AvatarImage src="/placeholder.svg?height=48&width=48" alt="Founder" />
+                        <AvatarFallback>CF</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="font-medium">Founded by</p>
+                        <p className="text-primary">@ChadFofana1</p>
+                      </div>
+                    </div>
+                    <div className="flex space-x-2">
+                      <Button variant="outline" size="sm" className="flex items-center gap-2">
+                        <Share className="h-4 w-4" />
+                        <span>Share</span>
+                      </Button>
+                      <Button variant="outline" size="sm" className="flex items-center gap-2">
+                        <Bookmark className="h-4 w-4" />
+                        <span>Save</span>
+                      </Button>
+                      <Button size="sm">Join</Button>
+                    </div>
+                  </div>
+
+                  <p className="text-lg mb-6">
+                    Join us in the cause to solve world hunger. We're working to provide nutritious meals and
+                    sustainable food solutions to families experiencing food insecurity in the greater Atlanta area.
+                  </p>
+
+                  {/* Stats */}
+                  <div className="grid grid-cols-3 gap-4 mb-6">
+                    <Card className="bg-muted/50">
+                      <CardContent className="p-4 text-center">
+                        <div className="text-2xl font-bold">10</div>
+                        <div className="text-muted-foreground">Causes Supporting</div>
+                      </CardContent>
+                    </Card>
+                    <Card className="bg-muted/50">
+                      <CardContent className="p-4 text-center">
+                        <div className="text-2xl font-bold">58</div>
+                        <div className="text-muted-foreground">Members</div>
+                      </CardContent>
+                    </Card>
+                    <Card className="bg-muted/50">
+                      <CardContent className="p-4 text-center">
+                        <div className="text-2xl font-bold">34</div>
+                        <div className="text-muted-foreground">Collective Donations</div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    <Badge variant="secondary">Animal Welfare</Badge>
+                    <Badge variant="secondary">Environment</Badge>
+                    <Badge variant="secondary">Food Insecurity</Badge>
+                  </div>
+
+                  {/* Partner Logos */}
+                  <div className="mb-6">
+                    <h3 className="font-medium mb-3">Supporting Organizations</h3>
+                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
+                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+                        <div key={i} className="aspect-square rounded-lg bg-muted flex items-center justify-center">
+                          <Avatar className="h-12 w-12">
+                            <AvatarImage src={`/placeholder.svg?height=60&width=60`} alt={`Partner ${i}`} />
+                            <AvatarFallback>{i}</AvatarFallback>
+                          </Avatar>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Non-Profits */}
+                  <div className="mb-6">
+                    <h3 className="font-medium mb-2">Featuring the Non Profits:</h3>
+                    <p className="text-muted-foreground">
+                      Grocery Spot, Food for Thought, Meals on Wheels, American Red Cross, & Pizza Hut...
+                      <Button variant="link" className="p-0 h-auto">
+                        See More
+                      </Button>
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Updates Section */}
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <h2 className="text-xl font-medium">Updates</h2>
+                  <Button size="icon" className="rounded-full">
+                    <Plus className="h-5 w-5" />
+                  </Button>
+                </CardHeader>
+
+                {/* Posts */}
+                <Separator />
+                <CardContent className="p-0">
+                  <div className="divide-y">
+                    <div className="p-6">
+                      <div className="flex justify-between mb-3">
+                        <div className="flex items-center">
+                          <Avatar className="h-10 w-10 mr-3">
+                            <AvatarImage src="/placeholder.svg?height=48&width=48" alt="Chad" />
+                            <AvatarFallback>CF</AvatarFallback>
+                          </Avatar>
+                          <div>
+                            <div className="font-medium">@Chad</div>
+                            <div className="text-muted-foreground text-sm">17 hours ago</div>
+                          </div>
+                        </div>
+                        <Button variant="ghost" size="icon">
+                          <MoreHorizontal className="h-5 w-5" />
+                        </Button>
+                      </div>
+                      <div className="mb-3">
+                        <p className="text-muted-foreground">
+                          Thick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex!
+                        </p>
+                      </div>
+                      <div className="flex items-center">
+                        <Button variant="ghost" size="sm" className="mr-6">
+                          <Heart className="h-4 w-4 mr-2" />
+                          <span>2 likes</span>
+                        </Button>
+                        <Button variant="ghost" size="sm" className="mr-6">
+                          <MessageSquare className="h-4 w-4 mr-2" />
+                          <span>0 comments</span>
+                        </Button>
+                        <Button variant="ghost" size="sm">
+                          <Share2 className="h-4 w-4 mr-2" />
+                          <span>3 shares</span>
+                        </Button>
+                      </div>
+                    </div>
+
+                    <div className="p-6">
+                      <div className="flex justify-between mb-3">
+                        <div className="flex items-center">
+                          <Avatar className="h-10 w-10 mr-3">
+                            <AvatarImage src="/placeholder.svg?height=48&width=48" alt="Chad" />
+                            <AvatarFallback>CF</AvatarFallback>
+                          </Avatar>
+                          <div>
+                            <div className="font-medium">@Chad</div>
+                            <div className="text-muted-foreground text-sm">17 hours ago</div>
+                          </div>
+                        </div>
+                        <Button variant="ghost" size="icon">
+                          <MoreHorizontal className="h-5 w-5" />
+                        </Button>
+                      </div>
+                      <div className="mb-4">
+                        <p className="text-muted-foreground mb-4">
+                          The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk
+                        </p>
+                        <div className="rounded-lg overflow-hidden">
+                          <Image
+                            src="/placeholder.svg?height=800&width=400"
+                            alt="Food donation"
+                            width={800}
+                            height={400}
+                            className="w-full"
+                          />
+                        </div>
+                      </div>
+                      <div className="flex items-center">
+                        <Button variant="ghost" size="sm" className="mr-6">
+                          <Heart className="h-4 w-4 mr-2" />
+                          <span>Like</span>
+                        </Button>
+                        <Button variant="ghost" size="sm" className="mr-6">
+                          <MessageSquare className="h-4 w-4 mr-2" />
+                          <span>Comment</span>
+                        </Button>
+                        <Button variant="ghost" size="sm">
+                          <Share2 className="h-4 w-4 mr-2" />
+                          <span>Share</span>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Right Column - Donation and Related */}
+            <div className="lg:col-span-1 space-y-6">
+              {/* Donation Card */}
+              <Card>
+                <CardContent className="p-6">
+                  <h2 className="text-xl font-bold mb-4">Support this cause</h2>
+                  <p className="text-muted-foreground mb-6">
+                    Your donation helps provide meals to families in need throughout the greater Atlanta area.
+                  </p>
+                  <Button className="w-full py-6 text-lg" size="lg">
+                    Donate
+                  </Button>
+                  <div className="text-center text-sm text-muted-foreground mt-4">
+                    100% of donations go directly to providing meals
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Related Causes */}
+              <Card>
+                <CardContent className="p-6">
+                  <h2 className="text-xl font-bold mb-4">Related Causes</h2>
+                  <div className="space-y-4">
+                    {[1, 2, 3].map((i) => (
+                      <div key={i} className="flex items-center gap-3">
+                        <Avatar className="h-12 w-12">
+                          <AvatarImage src={`/placeholder.svg?height=60&width=60`} alt={`Cause ${i}`} />
+                          <AvatarFallback>C{i}</AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <h3 className="font-medium">Community Garden Project</h3>
+                          <p className="text-sm text-muted-foreground">42 members</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Recent Activity */}
+              <Card>
+                <CardContent className="p-6">
+                  <h2 className="text-xl font-bold mb-4">Recent Activity</h2>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <Avatar className="h-8 w-8">
+                        <AvatarImage src="/placeholder.svg?height=40&width=40" alt="User" />
+                        <AvatarFallback>SJ</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="text-sm">
+                          <span className="font-medium">Sarah J.</span> donated <span className="font-medium">$50</span>
+                        </p>
+                        <p className="text-xs text-muted-foreground">2 hours ago</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Avatar className="h-8 w-8">
+                        <AvatarImage src="/placeholder.svg?height=40&width=40" alt="User" />
+                        <AvatarFallback>MT</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="text-sm">
+                          <span className="font-medium">Michael T.</span> joined the cause
+                        </p>
+                        <p className="text-xs text-muted-foreground">5 hours ago</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Avatar className="h-8 w-8">
+                        <AvatarImage src="/placeholder.svg?height=40&width=40" alt="User" />
+                        <AvatarFallback>LR</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="text-sm">
+                          <span className="font-medium">Lisa R.</span> donated <span className="font-medium">$25</span>
+                        </p>
+                        <p className="text-xs text-muted-foreground">Yesterday</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+
+    </main>
+  )
 }
+
