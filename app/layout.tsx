@@ -179,7 +179,7 @@ export default function RootLayout({
         </Button>
         <Button variant="ghost" className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground">
           <User className="h-5 w-5" />
-          <span className="text-xs mt-1">Profile 2</span>
+          <span className="text-xs mt-1">Profile 4</span>
         </Button>
       </nav>
     </div>
