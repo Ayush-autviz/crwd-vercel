@@ -60,7 +60,7 @@ export default function Home() {
               </Button> */}
             </div>
             <Image
-      src="/logo.svg"
+      src="/logo3.png"
       width={100}
       height={100}
       alt="Picture of the author"
@@ -76,8 +76,8 @@ export default function Home() {
           {/* Main Content */}
           <main className="pb-16">
             {/* Logo and Action Buttons */}
-            <div className="flex justify-between items-center p-4">
-              <div className="flex items-center">
+            <div className="flex justify-between  flex-wrap items-center p-4">
+              <div className="flex items-center mt-4">
                 <Avatar className="h-14 w-14 mr-3">
                   <AvatarImage src="/placeholder.svg?height=60&width=60" alt="CRWD Logo" />
                   <AvatarFallback>FH</AvatarFallback>
@@ -87,7 +87,7 @@ export default function Home() {
                   <span className="text-muted-foreground">supports</span>
                 </div>
               </div>
-              <div className="flex space-x-2">
+              <div className="flex space-x-2 mt-4">
                 <Button variant="outline" size="icon" className="rounded-full">
                   <Share className="h-4 w-4" />
                 </Button>

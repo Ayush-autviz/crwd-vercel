@@ -52,7 +52,7 @@ export default function RootLayout({
       <div className="hidden md:flex md:fixed md:inset-y-0 md:left-0 md:z-50 md:w-72 md:flex-col md:border-r md:bg-card">
         <div className="flex h-16 items-center justify-center px-6 border-b">
         <Image
-      src="/logo.svg"
+      src="/logo3.png"
       width={100}
       height={100}
       alt="Picture of the author"
