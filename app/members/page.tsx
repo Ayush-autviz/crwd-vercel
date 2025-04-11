@@ -44,7 +44,10 @@ export default function MembersScreen() {
             <h1 className="text-xl font-bold">Feed the hungry</h1>
           </div>
           <div className="flex items-center">
-            <Menu className="h-5 w-5" />
+          <Button variant="ghost" size="icon" className="">
+          <Menu className="h-5 w-5" />
+          </Button>
+           
           </div>
         </header>
 
@@ -111,7 +114,7 @@ export default function MembersScreen() {
                     </div>
                     <Button
                       variant="outline"
-                      className={`border-0 text-sm ${
+                      className={`border-0 text-sm mr-2 ${
                         member.connected ? "bg-[#4367FF] text-white" : "bg-[#F0F2FB] text-[#4367FF]"
                       }`}
                       size="sm"
@@ -240,7 +243,7 @@ export default function MembersScreen() {
                           </div>
                           <Button
                       variant="outline"
-                      className={`border-0 text-sm ${
+                      className={`border-0 text-sm mr-2 ${
                         member.connected ? "bg-[#4367FF] text-white" : "bg-[#F0F2FB] text-[#4367FF]"
                       }`}
                       size="sm"
