@@ -372,7 +372,7 @@ export default function Home() {
             <div className="lg:col-span-2 space-y-6">
               <Card className="py-0">
                 {/* Hero Section */}
-                <div className="relative h-48  md:h-64 bg-gradient-to-r to-[#99badd] from-[#1e90ff] rounded-t-lg">
+                <div className="relative h-52 md:h-52 bg-gradient-to-r to-[#99badd] from-[#1e90ff] rounded-t-lg">
                   <div className="absolute bottom-0 left-0 p-6 text-white">
                     <h1 className="text-3xl font-bold mb-2">Feed the hungry</h1>
                     <p className="text-lg opacity-90">
@@ -473,7 +473,7 @@ export default function Home() {
       'astronmartin.jpg',
       'mclaren.jpg',
     ].map((logo, index) => (
-      <div key={index} className="aspect-square rounded-lg  flex items-center justify-center">
+      <div key={index} className="aspect-square rounded-lg bg-muted  flex items-center justify-center">
         <Avatar className="h-14 w-14">
           <AvatarImage src={logo} alt={`Partner ${index + 1}`} />
           <AvatarFallback>{index + 1}</AvatarFallback>
@@ -507,7 +507,7 @@ export default function Home() {
 
                 {/* Posts */}
                 <Separator />
-                <CardContent className="p-0">
+                <CardContent className="p-0 mt-[-25px]">
                   <div className="divide-y">
                     <div className="p-6">
                       <div className="flex justify-between mb-3">
