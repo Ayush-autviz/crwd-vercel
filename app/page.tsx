@@ -28,6 +28,7 @@ import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("home")
@@ -48,24 +49,27 @@ export default function Home() {
 
   return (
     <main className="pb-16 md:pb-0">
+
       {/* Mobile Content */}
       <div className="md:hidden mx-auto bg-background min-h-screen">
           {/* Header */}
           <header className="flex items-center justify-between p-4 bg-card border-b sticky top-0 z-10">
-            <div className="flex items-center">
-              <Button variant="ghost" size="icon" className="mr-2">
+            <div className="flex h-5 w-5 items-center">
+              {/* <Button variant="ghost" size="icon" className="mr-2">
                 <ArrowLeft className="h-5 w-5" />
-              </Button>
-              <span className="font-bold text-lg">CRWD</span>
+              </Button> */}
             </div>
+            <Image
+      src="/logo.svg"
+      width={100}
+      height={100}
+      alt="Picture of the author"
+    />
             <div className="flex items-center">
               <div className="w-8 h-8 flex items-center justify-center relative">
                 <div className="w-3 h-3 rounded-full bg-destructive absolute top-1 right-1"></div>
                 <Bell className="h-5 w-5" />
               </div>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-5 w-5" />
-              </Button>
             </div>
           </header>
 
@@ -90,7 +94,7 @@ export default function Home() {
                 <Button variant="outline" size="icon" className="rounded-full">
                   <Bookmark className="h-4 w-4" />
                 </Button>
-                <Button variant="outline">Join</Button>
+                <Button variant="outline" className="">Join</Button>
               </div>
             </div>
 
@@ -117,38 +121,50 @@ export default function Home() {
             <div className="flex justify-between px-4 py-4 text-center border-t border-b my-2">
               <div className="flex-1 border-r">
                 <div className="font-bold">10</div>
-                <div className="text-sm text-muted-foreground">Causes Supporting</div>
+                <div className="text-sm text-muted-foreground">Supporting</div>
               </div>
-              <div className="flex-1 border-r">
+              <Link className="flex-1 border-r" href="/members">
+              <div className="">
                 <div className="font-bold">58</div>
                 <div className="text-sm text-muted-foreground">Members</div>
               </div>
+              </Link>
               <div className="flex-1">
                 <div className="font-bold">34</div>
-                <div className="text-sm text-muted-foreground">Collective Donations</div>
+                <div className="text-sm text-muted-foreground">Collective</div>
               </div>
             </div>
 
             {/* Tags */}
             <div className="flex px-4 py-2 space-x-2 overflow-x-auto">
-              <Badge variant="secondary">Animal Welfare</Badge>
-              <Badge variant="secondary">Environment</Badge>
-              <Badge variant="secondary">Food Insecurity</Badge>
+              <Badge variant="secondary" className="bg-[#F0F2FA] rounded-full px-3 py-1">Animal Welfare</Badge>
+              <Badge variant="secondary" className="bg-[#F0F2FA] rounded-full px-3 py-1">Environment</Badge>
+              <Badge variant="secondary" className="bg-[#F0F2FA] rounded-full px-3 py-1">Food Insecurity</Badge>
             </div>
 
             {/* Partner Logos */}
             <div className="px-4 py-2">
-              <ScrollArea className="w-full whitespace-nowrap">
-                <div className="flex space-x-2 border p-2 rounded-lg">
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
-                    <Avatar key={i} className="h-10 w-10">
-                      <AvatarImage src={`/placeholder.svg?height=40&width=40`} alt={`Partner ${i}`} />
-                      <AvatarFallback>{i}</AvatarFallback>
-                    </Avatar>
-                  ))}
-                </div>
-              </ScrollArea>
-            </div>
+  <div className="w-full overflow-x-auto whitespace-nowrap">
+    <div className="flex space-x-2  p-2 rounded-lg min-w-max">
+      {[
+      'adidas.jpg',
+      'benz.jpg',
+      'maz.jpg',
+      'starbucks.jpg',
+      'hy.jpg',
+      'por.jpg',
+      'tesla.jpg',
+      'astronmartin.jpg',
+      'mclaren.jpg',
+    ].map((logo,i) => (
+        <Avatar key={i} className="h-10 w-10">
+          <AvatarImage src={logo} alt={`Partner ${i + 1}`} />
+          <AvatarFallback>{i + 1}</AvatarFallback>
+        </Avatar>
+      ))}
+    </div>
+  </div>
+</div>
 
             {/* Non-Profits */}
             <div className="px-4 py-2 text-muted-foreground">
@@ -163,7 +179,7 @@ export default function Home() {
 
             {/* Donate Button */}
             <div className="px-4 py-4">
-              <Button className="w-full py-6 text-lg" size="lg">
+              <Button className="w-full py-6 text-lg bg-[#4367FF] hover:bg-[#4367FF] hover:opacity-85" size="lg">
                 Donate
               </Button>
             </div>
@@ -172,7 +188,7 @@ export default function Home() {
             <div className="border-t">
               <div className="px-4 py-4 flex justify-between items-center">
                 <h2 className="text-2xl font-medium">4 Updates</h2>
-                <Button size="icon" className="rounded-full">
+                <Button size="icon" className="rounded-xl bg-[#4367FF] hover:bg-[#4367FF] hover:opacity-85">
                   <Plus className="h-5 w-5" />
                 </Button>
               </div>
@@ -198,7 +214,16 @@ export default function Home() {
                 </div>
               </CardHeader>
               <CardContent className="p-4 pt-2">
-                <p className="text-muted-foreground">Thick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex!</p>
+                <p className="text-muted-foreground mb-3">Thick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex!</p>
+                <div className="rounded-lg overflow-hidden">
+                  <Image
+                    src="/post.jpg"
+                    alt="Food donation"
+                    width={500}
+                    height={300}
+                    className="w-full"
+                  />
+                </div>
               </CardContent>
               <CardFooter className="p-4 pt-0">
                 <div className="flex items-center w-full">
@@ -244,7 +269,7 @@ export default function Home() {
                 </p>
                 <div className="rounded-lg overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=500&width=300"
+                    src="/post2.jpg"
                     alt="Food donation"
                     width={500}
                     height={300}
@@ -273,7 +298,7 @@ export default function Home() {
           </main>
 
           {/* Bottom Navigation */}
-          <nav className="fixed bottom-0 left-0 right-0 bg-card border-t flex justify-around py-3 mx-auto z-10">
+          {/* <nav className="fixed bottom-0 left-0 right-0 bg-card border-t flex justify-around py-3 mx-auto z-10">
             <Button
               variant="ghost"
               className={cn(
@@ -318,20 +343,36 @@ export default function Home() {
               <User className="h-5 w-5" />
               <span className="text-xs mt-1">Profile</span>
             </Button>
-          </nav>
+          </nav> */}
         </div>
 
       {/* Desktop Content */}
       <div className="hidden md:block">
           {/* Desktop Header */}
+          <header className="bg-card border-b p-[13.5px] flex items-center justify-between sticky top-0 z-10">
+            <h1 className="text-xl font-bold">Feed the hungry</h1>
+            <div className="flex items-center space-x-4">
+              <Button variant="outline" className="flex items-center gap-2">
+                <Bell className="h-4 w-4" />
+                <span>Notifications</span>
+              </Button>
+              <div className="relative">
+                <div className="absolute z-10 top-[-2] right-0 w-3 h-3 bg-destructive rounded-full"></div>
+                <Avatar>
+                  <AvatarImage src="/placeholder.svg?height=40&width=40" alt="User" />
+                  <AvatarFallback>JD</AvatarFallback>
+                </Avatar>
+              </div>
+            </div>
+          </header>
 
           {/* Desktop Main Content */}
           <div className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Left Column - Cause Details */}
             <div className="lg:col-span-2 space-y-6">
-              <Card>
+              <Card className="py-0">
                 {/* Hero Section */}
-                <div className="relative h-48 md:h-64 bg-gradient-to-r from-primary to-purple-600 rounded-t-lg">
+                <div className="relative h-48  md:h-64 bg-gradient-to-r to-[#99badd] from-[#1e90ff] rounded-t-lg">
                   <div className="absolute bottom-0 left-0 p-6 text-white">
                     <h1 className="text-3xl font-bold mb-2">Feed the hungry</h1>
                     <p className="text-lg opacity-90">
@@ -341,8 +382,8 @@ export default function Home() {
                 </div>
 
                 {/* Main Content */}
-                <CardContent className="p-6">
-                  <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 gap-4">
+                <CardContent className="">
+                  <div className="flex flex-col md:flex-row md:flex-wrap md:justify-between md:items-center mb-6 gap-4">
                     <div className="flex items-center">
                       <Avatar className="h-12 w-12 mr-3">
                         <AvatarImage src="/placeholder.svg?height=48&width=48" alt="Founder" />
@@ -362,58 +403,85 @@ export default function Home() {
                         <Bookmark className="h-4 w-4" />
                         <span>Save</span>
                       </Button>
-                      <Button size="sm">Join</Button>
+                      <Button className="bg-[#4367FF] hover:bg-[#4367FF] hover:opacity-85" size="sm">Join</Button>
                     </div>
                   </div>
 
-                  <p className="text-lg mb-6">
+                  <p className="text-lg ">
                     Join us in the cause to solve world hunger. We're working to provide nutritious meals and
                     sustainable food solutions to families experiencing food insecurity in the greater Atlanta area.
                   </p>
 
                   {/* Stats */}
-                  <div className="grid grid-cols-3 gap-4 mb-6">
-                    <Card className="bg-muted/50">
-                      <CardContent className="p-4 text-center">
+                  <div className="grid grid-cols-3 gap-4 my-6">
+                    <div className="">
+                      <div className="p-4 text-center">
                         <div className="text-2xl font-bold">10</div>
                         <div className="text-muted-foreground">Causes Supporting</div>
-                      </CardContent>
-                    </Card>
-                    <Card className="bg-muted/50">
-                      <CardContent className="p-4 text-center">
+                      </div>
+                    </div>
+                    <Link href="/members">
+                    <div className="border-l border-r">
+                      <div className="p-4 text-center">
                         <div className="text-2xl font-bold">58</div>
                         <div className="text-muted-foreground">Members</div>
-                      </CardContent>
-                    </Card>
-                    <Card className="bg-muted/50">
-                      <CardContent className="p-4 text-center">
+                      </div>
+                    </div>
+                    </Link>
+                    <div className="">
+                      <div className="p-4 text-center">
                         <div className="text-2xl font-bold">34</div>
                         <div className="text-muted-foreground">Collective Donations</div>
-                      </CardContent>
-                    </Card>
+                      </div>
+                    </div>
                   </div>
+
+                  {/* <div className="flex justify-between  py-4 text-center  my-5">
+              <div className="flex-1 border-r">
+                <div className=" text-2xl font-bold">10</div>
+                <div className=" text-sm text-muted-foreground">Causes Supporting</div>
+              </div>
+              <div className="flex-1 border-r">
+                <div className=" text-2xl font-bold">58</div>
+                <div className=" text-sm text-muted-foreground">Members</div>
+              </div>
+              <div className="flex-1">
+                <div className="text-2xl font-bold">34</div>
+                <div className=" text-sm text-muted-foreground">Collective Donations</div>
+              </div>
+            </div> */}
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-6">
-                    <Badge variant="secondary">Animal Welfare</Badge>
-                    <Badge variant="secondary">Environment</Badge>
-                    <Badge variant="secondary">Food Insecurity</Badge>
+                    <Badge variant="secondary" className="bg-[#F0F2FA] rounded-full px-3 py-1">Animal Welfare</Badge>
+                    <Badge variant="secondary" className="bg-[#F0F2FA] rounded-full px-3 py-1">Environment</Badge>
+                    <Badge variant="secondary" className="bg-[#F0F2FA] rounded-full px-3 py-1">Food Insecurity</Badge>
                   </div>
 
                   {/* Partner Logos */}
                   <div className="mb-6">
-                    <h3 className="font-medium mb-3">Supporting Organizations</h3>
-                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
-                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
-                        <div key={i} className="aspect-square rounded-lg bg-muted flex items-center justify-center">
-                          <Avatar className="h-12 w-12">
-                            <AvatarImage src={`/placeholder.svg?height=60&width=60`} alt={`Partner ${i}`} />
-                            <AvatarFallback>{i}</AvatarFallback>
-                          </Avatar>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+  {/* <h3 className="font-medium mb-3">Supporting Organizations</h3> */}
+  <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
+    {[
+      'adidas.jpg',
+      'benz.jpg',
+      'maz.jpg',
+      'starbucks.jpg',
+      'hy.jpg',
+      'por.jpg',
+      'tesla.jpg',
+      'astronmartin.jpg',
+      'mclaren.jpg',
+    ].map((logo, index) => (
+      <div key={index} className="aspect-square rounded-lg  flex items-center justify-center">
+        <Avatar className="h-14 w-14">
+          <AvatarImage src={logo} alt={`Partner ${index + 1}`} />
+          <AvatarFallback>{index + 1}</AvatarFallback>
+        </Avatar>
+      </div>
+    ))}
+  </div>
+</div>
 
                   {/* Non-Profits */}
                   <div className="mb-6">
@@ -432,7 +500,7 @@ export default function Home() {
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between">
                   <h2 className="text-xl font-medium">Updates</h2>
-                  <Button size="icon" className="rounded-full">
+                  <Button size="icon" className="rounded-xl bg-[#4367FF] hover:bg-[#4367FF] hover:opacity-85">
                     <Plus className="h-5 w-5" />
                   </Button>
                 </CardHeader>
@@ -462,7 +530,17 @@ export default function Home() {
                           Thick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex!
                         </p>
                       </div>
-                      <div className="flex items-center">
+
+                      <div className="rounded-lg overflow-hidden">
+                          <Image
+                            src="/post.jpg"
+                            alt="Food donation"
+                            width={800}
+                            height={400}
+                            className="w-full"
+                          />
+                      </div>
+                      <div className="flex items-center mt-4">
                         <Button variant="ghost" size="sm" className="mr-6">
                           <Heart className="h-4 w-4 mr-2" />
                           <span>2 likes</span>
@@ -500,7 +578,7 @@ export default function Home() {
                         </p>
                         <div className="rounded-lg overflow-hidden">
                           <Image
-                            src="/placeholder.svg?height=800&width=400"
+                            src="/post2.jpg"
                             alt="Food donation"
                             width={800}
                             height={400}
@@ -532,12 +610,12 @@ export default function Home() {
             <div className="lg:col-span-1 space-y-6">
               {/* Donation Card */}
               <Card>
-                <CardContent className="p-6">
-                  <h2 className="text-xl font-bold mb-4">Support this cause</h2>
-                  <p className="text-muted-foreground mb-6">
+                <CardContent className="">
+                  <h2 className="text-xl font-bold mb-4 text-center">Support this cause</h2>
+                  <p className="text-muted-foreground text-center mb-6">
                     Your donation helps provide meals to families in need throughout the greater Atlanta area.
                   </p>
-                  <Button className="w-full py-6 text-lg" size="lg">
+                  <Button className="w-full py-6 text-lg bg-[#4367FF] hover:bg-[#4367FF] hover:opacity-85" size="lg">
                     Donate
                   </Button>
                   <div className="text-center text-sm text-muted-foreground mt-4">
@@ -548,7 +626,7 @@ export default function Home() {
 
               {/* Related Causes */}
               <Card>
-                <CardContent className="p-6">
+                <CardContent className="">
                   <h2 className="text-xl font-bold mb-4">Related Causes</h2>
                   <div className="space-y-4">
                     {[1, 2, 3].map((i) => (
@@ -569,7 +647,7 @@ export default function Home() {
 
               {/* Recent Activity */}
               <Card>
-                <CardContent className="p-6">
+                <CardContent className="">
                   <h2 className="text-xl font-bold mb-4">Recent Activity</h2>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
