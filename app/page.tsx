@@ -195,7 +195,7 @@ export default function Home() {
             </div>
 
             {/* Posts */}
-            <Card className="border-t border-b rounded-none">
+            <Card className="border-t border-b p-0 rounded-none">
               <CardHeader className="p-4 pb-0">
                 <div className="flex justify-between">
                   <div className="flex items-center">
@@ -213,7 +213,7 @@ export default function Home() {
                   </Button>
                 </div>
               </CardHeader>
-              <CardContent className="p-4 pt-2">
+              <CardContent className="p-4 py-0 ">
                 <p className="text-muted-foreground mb-3">Thick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex!</p>
                 <div className="rounded-lg overflow-hidden">
                   <Image
@@ -245,7 +245,7 @@ export default function Home() {
             </Card>
 
             {/* Second Post with Image */}
-            <Card className="border-t border-b rounded-none">
+            <Card className="border-t border-b p-0 rounded-none">
               <CardHeader className="p-4 pb-0">
                 <div className="flex justify-between">
                   <div className="flex items-center">
@@ -263,7 +263,7 @@ export default function Home() {
                   </Button>
                 </div>
               </CardHeader>
-              <CardContent className="p-4 pt-2">
+              <CardContent className="p-4 py-0">
                 <p className="text-muted-foreground mb-3">
                   The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk
                 </p>
