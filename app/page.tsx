@@ -67,7 +67,7 @@ export default function Home() {
           {/* Change 1: Adjusted layout to keep "Feed the hungry" and "supports" on one line, moved buttons to top-right */}
           <div className="flex justify-between items-start p-4">
             <div className="flex items-center">
-              <Avatar className="h-14 w-14 mr-3">
+              <Avatar className="h-10 w-10 mr-3">
                 <AvatarImage src="/placeholder.svg?height=60&width=60" alt="CRWD Logo" />
                 <AvatarFallback>FH</AvatarFallback>
               </Avatar>
