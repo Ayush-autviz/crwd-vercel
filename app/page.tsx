@@ -52,299 +52,218 @@ export default function Home() {
 
       {/* Mobile Content */}
       <div className="md:hidden mx-auto bg-background min-h-screen">
-          {/* Header */}
-          <header className="flex items-center justify-between p-4 bg-card border-b sticky top-0 z-10">
-            <div className="flex h-5 w-5 items-center">
-              {/* <Button variant="ghost" size="icon" className="mr-2">
-                <ArrowLeft className="h-5 w-5" />
-              </Button> */}
+        <header className="flex items-center justify-between p-4 bg-card border-b sticky top-0 z-10">
+          <div className="flex h-5 w-5 items-center"></div>
+          <Image src="/logo3.png" width={100} height={100} alt="Picture of the author" />
+          <div className="flex items-center">
+            <div className="w-8 h-8 flex items-center justify-center relative">
+              <div className="w-3 h-3 rounded-full bg-destructive absolute top-1 right-1"></div>
+              <Bell className="h-5 w-5" />
             </div>
-            <Image
-      src="/logo3.png"
-      width={100}
-      height={100}
-      alt="Picture of the author"
-    />
-            <div className="flex items-center">
-              <div className="w-8 h-8 flex items-center justify-center relative">
-                <div className="w-3 h-3 rounded-full bg-destructive absolute top-1 right-1"></div>
-                <Bell className="h-5 w-5" />
-              </div>
-            </div>
-          </header>
+          </div>
+        </header>
 
-          {/* Main Content */}
-          <main className="pb-16">
-            {/* Logo and Action Buttons */}
-            <div className="flex justify-between  flex-wrap items-center p-4">
-              <div className="flex items-center mt-4">
-                <Avatar className="h-14 w-14 mr-3">
-                  <AvatarImage src="/placeholder.svg?height=60&width=60" alt="CRWD Logo" />
-                  <AvatarFallback>FH</AvatarFallback>
-                </Avatar>
-                <div className="flex flex-col">
-                  <h1 className="text-2xl font-bold">Feed the hungry</h1>
-                  <span className="text-muted-foreground">supports</span>
+        <main className="pb-16">
+          {/* Change 1: Adjusted layout to keep "Feed the hungry" and "supports" on one line, moved buttons to top-right */}
+          <div className="flex justify-between items-start p-4">
+            <div className="flex items-center">
+              <Avatar className="h-14 w-14 mr-3">
+                <AvatarImage src="/placeholder.svg?height=60&width=60" alt="CRWD Logo" />
+                <AvatarFallback>FH</AvatarFallback>
+              </Avatar>
+              <div className="flex flex-col">
+                <div className="flex flex-col ">
+                  {/* Reduced font size to fit on one line */}
+                  <h1 className="text-md font-bold mr-1">Feed the hungry</h1>
+                  <span className="text-muted-foreground text-sm">supports</span>
                 </div>
               </div>
-              <div className="flex space-x-2 mt-4">
-                <Button variant="outline" size="icon" className="rounded-full">
-                  <Share className="h-4 w-4" />
-                </Button>
-                <Button variant="outline" size="icon" className="rounded-full">
-                  <Bookmark className="h-4 w-4" />
-                </Button>
-                <Button variant="outline" className="">Join</Button>
-              </div>
             </div>
-
-            {/* Description */}
-            <div className="px-4 py-2">
-              <p className="text-xl leading-relaxed">
-                families experiencing food insecurity in the greater Atlanta area. Join us in the cause to solve world
-                hunger.
-              </p>
+            {/* Moved Share, Bookmark, Join buttons to top-right */}
+            <div className="flex space-x-2">
+              <Button variant="outline" size="icon" className="rounded-full">
+                <Share className="h-4 w-4" />
+              </Button>
+              <Button variant="outline" size="icon" className="rounded-full">
+                <Bookmark className="h-4 w-4" />
+              </Button>
+              <Button variant="outline">Join</Button>
             </div>
+          </div>
 
-            {/* Founder */}
-            <div className="px-4 py-2 flex items-center">
-              <Avatar className="h-8 w-8 mr-2">
-                <AvatarImage src="/placeholder.svg?height=40&width=40" alt="Founder" />
-                <AvatarFallback>CF</AvatarFallback>
-              </Avatar>
-              <span className="text-muted-foreground">
-                Founded by <span className="text-foreground font-medium">@ChadFofana1</span>
-              </span>
+          <div className="px-4 py-2">
+            <p className="text-xl leading-relaxed">
+               Join us in the cause to solve world hunger.
+            </p>
+          </div>
+
+          <div className="px-4 py-2 flex items-center">
+            <Avatar className="h-8 w-8 mr-2">
+              <AvatarImage src="/placeholder.svg?height=40&width=40" alt="Founder" />
+              <AvatarFallback>CF</AvatarFallback>
+            </Avatar>
+            <span className="text-muted-foreground">
+              Founded by <span className="text-foreground font-medium">@ChadFofana1</span>
+            </span>
+          </div>
+
+          <div className="flex justify-between px-4 py-4 text-center border-t border-b my-2">
+            <div className="flex-1 border-r">
+              <div className="font-bold">10</div>
+              <div className="text-sm text-muted-foreground">Supporting</div>
             </div>
-
-            {/* Stats */}
-            <div className="flex justify-between px-4 py-4 text-center border-t border-b my-2">
-              <div className="flex-1 border-r">
-                <div className="font-bold">10</div>
-                <div className="text-sm text-muted-foreground">Supporting</div>
-              </div>
-              <Link className="flex-1 border-r" href="/members">
-              <div className="">
+            <Link className="flex-1 border-r" href="/members">
+              <div>
                 <div className="font-bold">58</div>
                 <div className="text-sm text-muted-foreground">Members</div>
               </div>
-              </Link>
-              <div className="flex-1">
-                <div className="font-bold">34</div>
-                <div className="text-sm text-muted-foreground">Collective</div>
+            </Link>
+            <div className="flex-1">
+              <div className="font-bold">34</div>
+              <div className="text-sm text-muted-foreground">Collective</div>
+            </div>
+          </div>
+
+          <div className="flex px-4 py-2 space-x-2 overflow-x-auto">
+            <Badge variant="secondary" className="bg-[#F0F2FA] rounded-full px-3 py-1">Animal Welfare</Badge>
+            <Badge variant="secondary" className="bg-[#F0F2FA] rounded-full px-3 py-1">Environment</Badge>
+            <Badge variant="secondary" className="bg-[#F0F2FA] rounded-full px-3 py-1">Food Insecurity</Badge>
+          </div>
+
+          <div className="px-4 py-2">
+            <div className="w-full overflow-x-auto whitespace-nowrap">
+              <div className="flex space-x-2 p-2 rounded-lg min-w-max">
+                {[
+                  'adidas.jpg',
+                  'benz.jpg',
+                  'maz.jpg',
+                  'starbucks.jpg',
+                  'hy.jpg',
+                  'por.jpg',
+                  'tesla.jpg',
+                  'astronmartin.jpg',
+                  'mclaren.jpg',
+                ].map((logo, i) => (
+                  <Avatar key={i} className="h-10 w-10">
+                    <AvatarImage src={logo} alt={`Partner ${i + 1}`} />
+                    <AvatarFallback>{i + 1}</AvatarFallback>
+                  </Avatar>
+                ))}
               </div>
             </div>
+          </div>
 
-            {/* Tags */}
-            <div className="flex px-4 py-2 space-x-2 overflow-x-auto">
-              <Badge variant="secondary" className="bg-[#F0F2FA] rounded-full px-3 py-1">Animal Welfare</Badge>
-              <Badge variant="secondary" className="bg-[#F0F2FA] rounded-full px-3 py-1">Environment</Badge>
-              <Badge variant="secondary" className="bg-[#F0F2FA] rounded-full px-3 py-1">Food Insecurity</Badge>
-            </div>
+          <div className="px-4 py-2 text-muted-foreground">
+            <p>
+              Featuring the Non Profits: Grocery Spot, Food for Thought, Meals on Wheels, American Red Cross, & Pizza Hut...
+              <Button variant="link" className="p-0 h-auto text-primary">See More</Button>
+            </p>
+          </div>
 
-            {/* Partner Logos */}
-            <div className="px-4 py-2">
-  <div className="w-full overflow-x-auto whitespace-nowrap">
-    <div className="flex space-x-2  p-2 rounded-lg min-w-max">
-      {[
-      'adidas.jpg',
-      'benz.jpg',
-      'maz.jpg',
-      'starbucks.jpg',
-      'hy.jpg',
-      'por.jpg',
-      'tesla.jpg',
-      'astronmartin.jpg',
-      'mclaren.jpg',
-    ].map((logo,i) => (
-        <Avatar key={i} className="h-10 w-10">
-          <AvatarImage src={logo} alt={`Partner ${i + 1}`} />
-          <AvatarFallback>{i + 1}</AvatarFallback>
-        </Avatar>
-      ))}
-    </div>
-  </div>
-</div>
+          <div className="px-4 py-4">
+            <Button className="w-full py-6 text-lg bg-[#4367FF] hover:bg-[#4367FF] hover:opacity-85" size="lg">
+              Donate
+            </Button>
+          </div>
 
-            {/* Non-Profits */}
-            <div className="px-4 py-2 text-muted-foreground">
-              <p>
-                Featuring the Non Profits: Grocery Spot, Food for Thought, Meals on Wheels, American Red Cross, & Pizza
-                Hut...
-                <Button variant="link" className="p-0 h-auto text-primary">
-                  See More
-                </Button>
-              </p>
-            </div>
-
-            {/* Donate Button */}
-            <div className="px-4 py-4">
-              <Button className="w-full py-6 text-lg bg-[#4367FF] hover:bg-[#4367FF] hover:opacity-85" size="lg">
-                Donate
+          <div className="border-t">
+            <div className="px-4 py-4 flex justify-between items-center">
+              <h2 className="text-2xl font-medium">4 Updates</h2>
+              <Button size="icon" className="rounded-xl bg-[#4367FF] hover:bg-[#4367FF] hover:opacity-85">
+                <Plus className="h-5 w-5" />
               </Button>
             </div>
+          </div>
 
-            {/* Updates Section */}
-            <div className="border-t">
-              <div className="px-4 py-4 flex justify-between items-center">
-                <h2 className="text-2xl font-medium">4 Updates</h2>
-                <Button size="icon" className="rounded-xl bg-[#4367FF] hover:bg-[#4367FF] hover:opacity-85">
-                  <Plus className="h-5 w-5" />
+          <Card className="border-t border-b p-0 rounded-none">
+            <CardHeader className="p-4 pb-0">
+              <div className="flex justify-between">
+                <div className="flex items-center">
+                  <Avatar className="h-8 w-8 mr-2">
+                    <AvatarImage src="/placeholder.svg?height=40&width=40" alt="Chad" />
+                    <AvatarFallback>CF</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <span className="font-medium">@Chad</span>
+                    <span className="text-muted-foreground ml-2">· 17h</span>
+                  </div>
+                </div>
+                <Button variant="ghost" size="icon">
+                  <MoreHorizontal className="h-5 w-5" />
                 </Button>
               </div>
-            </div>
+            </CardHeader>
+            <CardContent className="p-4 py-0">
+              <p className="text-muted-foreground mb-3">Thick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex!</p>
+              <div className="rounded-lg overflow-hidden">
+                <Image src="/post.jpg" alt="Food donation" width={500} height={300} className="w-full" />
+              </div>
+            </CardContent>
+            <CardFooter className="p-4 pt-0">
+              <div className="flex items-center w-full">
+                <Button variant="ghost" size="sm" className="mr-2">
+                  <Heart className="h-4 w-4 mr-1" />
+                  <span>2</span>
+                </Button>
+                <Button variant="ghost" size="sm" className="mr-2">
+                  <MessageSquare className="h-4 w-4 mr-1" />
+                  <span>0</span>
+                </Button>
+                <div className="flex-grow"></div>
+                <Button variant="ghost" size="sm">
+                  <Share2 className="h-4 w-4 mr-1" />
+                  <span>3</span>
+                </Button>
+              </div>
+            </CardFooter>
+          </Card>
 
-            {/* Posts */}
-            <Card className="border-t border-b p-0 rounded-none">
-              <CardHeader className="p-4 pb-0">
-                <div className="flex justify-between">
-                  <div className="flex items-center">
-                    <Avatar className="h-8 w-8 mr-2">
-                      <AvatarImage src="/placeholder.svg?height=40&width=40" alt="Chad" />
-                      <AvatarFallback>CF</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <span className="font-medium">@Chad</span>
-                      <span className="text-muted-foreground ml-2">· 17h</span>
-                    </div>
+          <Card className="border-t border-b p-0 rounded-none">
+            <CardHeader className="p-4 pb-0">
+              <div className="flex justify-between">
+                <div className="flex items-center">
+                  <Avatar className="h-8 w-8 mr-2">
+                    <AvatarImage src="/placeholder.svg?height=40&width=40" alt="Chad" />
+                    <AvatarFallback>CF</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <span className="font-medium">@Chad</span>
+                    <span className="text-muted-foreground ml-2">· 17h</span>
                   </div>
-                  <Button variant="ghost" size="icon">
-                    <MoreHorizontal className="h-5 w-5" />
-                  </Button>
                 </div>
-              </CardHeader>
-              <CardContent className="p-4 py-0 ">
-                <p className="text-muted-foreground mb-3">Thick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex!</p>
-                <div className="rounded-lg overflow-hidden">
-                  <Image
-                    src="/post.jpg"
-                    alt="Food donation"
-                    width={500}
-                    height={300}
-                    className="w-full"
-                  />
-                </div>
-              </CardContent>
-              <CardFooter className="p-4 pt-0">
-                <div className="flex items-center w-full">
-                  <Button variant="ghost" size="sm" className="mr-2">
-                    <Heart className="h-4 w-4 mr-1" />
-                    <span>2</span>
-                  </Button>
-                  <Button variant="ghost" size="sm" className="mr-2">
-                    <MessageSquare className="h-4 w-4 mr-1" />
-                    <span>0</span>
-                  </Button>
-                  <div className="flex-grow"></div>
-                  <Button variant="ghost" size="sm">
-                    <Share2 className="h-4 w-4 mr-1" />
-                    <span>3</span>
-                  </Button>
-                </div>
-              </CardFooter>
-            </Card>
-
-            {/* Second Post with Image */}
-            <Card className="border-t border-b p-0 rounded-none">
-              <CardHeader className="p-4 pb-0">
-                <div className="flex justify-between">
-                  <div className="flex items-center">
-                    <Avatar className="h-8 w-8 mr-2">
-                      <AvatarImage src="/placeholder.svg?height=40&width=40" alt="Chad" />
-                      <AvatarFallback>CF</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <span className="font-medium">@Chad</span>
-                      <span className="text-muted-foreground ml-2">· 17h</span>
-                    </div>
-                  </div>
-                  <Button variant="ghost" size="icon">
-                    <MoreHorizontal className="h-5 w-5" />
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent className="p-4 py-0">
-                <p className="text-muted-foreground mb-3">
-                  The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk
-                </p>
-                <div className="rounded-lg overflow-hidden">
-                  <Image
-                    src="/post2.jpg"
-                    alt="Food donation"
-                    width={500}
-                    height={300}
-                    className="w-full"
-                  />
-                </div>
-              </CardContent>
-              <CardFooter className="p-4 pt-2">
-                <div className="flex items-center w-full">
-                  <Button variant="ghost" size="sm" className="mr-2">
-                    <Heart className="h-4 w-4 mr-1" />
-                    <span>Like</span>
-                  </Button>
-                  <Button variant="ghost" size="sm" className="mr-2">
-                    <MessageSquare className="h-4 w-4 mr-1" />
-                    <span>Comment</span>
-                  </Button>
-                  <div className="flex-grow"></div>
-                  <Button variant="ghost" size="sm">
-                    <Share2 className="h-4 w-4 mr-1" />
-                    <span>Share</span>
-                  </Button>
-                </div>
-              </CardFooter>
-            </Card>
-          </main>
-
-          {/* Bottom Navigation */}
-          {/* <nav className="fixed bottom-0 left-0 right-0 bg-card border-t flex justify-around py-3 mx-auto z-10">
-            <Button
-              variant="ghost"
-              className={cn(
-                "flex flex-col items-center h-auto py-2 px-0 flex-1",
-                activeTab === "home" ? "text-primary" : "text-muted-foreground",
-              )}
-              onClick={() => setActiveTab("home")}
-            >
-              <HomeI className="h-5 w-5" />
-              <span className="text-xs mt-1">Home</span>
-            </Button>
-            <Button
-              variant="ghost"
-              className={cn(
-                "flex flex-col items-center h-auto py-2 px-0 flex-1",
-                activeTab === "discover" ? "text-primary" : "text-muted-foreground",
-              )}
-              onClick={() => setActiveTab("discover")}
-            >
-              <Search className="h-5 w-5" />
-              <span className="text-xs mt-1">Discover</span>
-            </Button>
-            <Button
-              variant="ghost"
-              className={cn(
-                "flex flex-col items-center h-auto py-2 px-0 flex-1",
-                activeTab === "donation" ? "text-primary" : "text-muted-foreground",
-              )}
-              onClick={() => setActiveTab("donation")}
-            >
-              <Box className="h-5 w-5" />
-              <span className="text-xs mt-1">Donation Box</span>
-            </Button>
-            <Button
-              variant="ghost"
-              className={cn(
-                "flex flex-col items-center h-auto py-2 px-0 flex-1",
-                activeTab === "profile" ? "text-primary" : "text-muted-foreground",
-              )}
-              onClick={() => setActiveTab("profile")}
-            >
-              <User className="h-5 w-5" />
-              <span className="text-xs mt-1">Profile</span>
-            </Button>
-          </nav> */}
-        </div>
+                <Button variant="ghost" size="icon">
+                  <MoreHorizontal className="h-5 w-5" />
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent className="p-4 py-0">
+              <p className="text-muted-foreground mb-3">
+                The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk
+              </p>
+              <div className="rounded-lg overflow-hidden">
+                <Image src="/post2.jpg" alt="Food donation" width={500} height={300} className="w-full" />
+              </div>
+            </CardContent>
+            <CardFooter className="p-4 pt-2">
+              <div className="flex items-center w-full">
+                <Button variant="ghost" size="sm" className="mr-2">
+                  <Heart className="h-4 w-4 mr-1" />
+                  <span>Like</span>
+                </Button>
+                <Button variant="ghost" size="sm" className="mr-2">
+                  <MessageSquare className="h-4 w-4 mr-1" />
+                  <span>Comment</span>
+                </Button>
+                <div className="flex-grow"></div>
+                <Button variant="ghost" size="sm">
+                  <Share2 className="h-4 w-4 mr-1" />
+                  <span>Share</span>
+                </Button>
+              </div>
+            </CardFooter>
+          </Card>
+        </main>
+      </div>
 
       {/* Desktop Content */}
       <div className="hidden md:block">
@@ -372,8 +291,8 @@ export default function Home() {
             <div className="lg:col-span-2 space-y-6">
               <Card className="py-0">
                 {/* Hero Section */}
-                <div className="relative h-52 md:h-52 bg-gradient-to-r to-[#99badd] from-[#1e90ff] rounded-t-lg">
-                  <div className="absolute bottom-0 left-0 p-6 text-white">
+                <div className="relative h-52 md:h-52 bg-muted rounded-t-lg">
+                  <div className="absolute bottom-0 left-0 p-6 ">
                     <h1 className="text-3xl font-bold mb-2">Feed the hungry</h1>
                     <p className="text-lg opacity-90">
                       Supporting families experiencing food insecurity in the greater Atlanta area
@@ -408,9 +327,10 @@ export default function Home() {
                   </div>
 
                   <p className="text-lg ">
-                    Join us in the cause to solve world hunger. We're working to provide nutritious meals and
-                    sustainable food solutions to families experiencing food insecurity in the greater Atlanta area.
+                    Join us in the cause to solve world hunger.
                   </p>
+
+                  
 
                   {/* Stats */}
                   <div className="grid grid-cols-3 gap-4 my-6">
