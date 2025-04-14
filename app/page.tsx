@@ -74,7 +74,7 @@ export default function Home() {
               <div className="flex flex-col">
                 <div className="flex flex-col ">
                   {/* Reduced font size to fit on one line */}
-                  <h1 className="text-md font-bold mr-1">Feed the hungry</h1>
+                  <h1 className="text-sm font-bold mr-1">Feed the hungry</h1>
                   <span className="text-muted-foreground text-sm">supports</span>
                 </div>
               </div>
