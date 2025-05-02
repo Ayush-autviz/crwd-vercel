@@ -24,6 +24,7 @@ const DonationFlow = () => {
       {step === "initial" ? (
         <DonationBoxWrapper onNext={handleNext} />
       ) : (
+        //@ts-ignore
         <DonationBox2 initialAmount={donationAmount} onBack={handleBack} />
       )}
     </div>

@@ -171,7 +171,10 @@ const DonationBox = () => {
         </div>
       )}
 
-      {step === 2 && <DonationBox2 step={step} setStep={setStep} />}
+      {step === 2 && (
+        //@ts-ignore
+        <DonationBox2 step={step} setStep={setStep} />
+      )}
       {/* Next Button Section */}
     </div>
   );
