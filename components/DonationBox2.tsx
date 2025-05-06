@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { useState } from "react";
 import { ArrowRight, ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -57,14 +59,23 @@ interface DonationBox2Props {
   onBack: () => void;
   step: number;
   setStep: (step: number) => void;
+  selectedOrganizations: any;
+  setSelectedOrganizations: any;
 }
 
-const DonationBox2 = ({ initialAmount, onBack, step }: DonationBox2Props) => {
-  const [selectedOrganizations, setSelectedOrganizations] = useState<string[]>(
-    []
-  );
+const DonationBox2 = ({
+  initialAmount,
+  onBack,
+  step,
+  setStep,
+  selectedOrganizations,
+  setSelectedOrganizations,
+}: DonationBox2Props) => {
+  // const [selectedOrganizations, setSelectedOrganizations] = useState<string[]>(
+  //   []
+  // );
   const [donationAmount] = useState(7);
-
+  const isMobile = useIsMobile();
   // Function to toggle selection of an organization
   const toggleOrganization = (orgId: string) => {
     setSelectedOrganizations((prev) =>
@@ -226,14 +237,23 @@ const DonationBox2 = ({ initialAmount, onBack, step }: DonationBox2Props) => {
         </div>
       </div>
       {/* Bottom Action Area */}
-      <div className="sticky bottom-0 bg-white p-4 shadow-lg w-full">
-        <Button className="bg-green-400 hover:bg-green-500 text-black w-full py-3 rounded-full font-medium mb-3">
+      <div
+        className={`sticky bottom-0 bg-white p-4 shadow-lg w-full  ${
+          isMobile ? "mb-20" : ""
+        }`}
+      >
+        <Button
+          onClick={() => setStep(3)}
+          className={`bg-green-400 hover:bg-green-500 text-black w-full py-3 rounded-full font-medium mb-3${
+            isMobile ? "mb-20" : ""
+          } `}
+        >
           Confirm
         </Button>
 
         <div className="flex items-center justify-center text-xs text-gray-500">
           <span className="mr-1">⚔️</span>
-          <p>
+          <p className="mt-2">
             Your donation is protected and guaranteed.{" "}
             <a href="#" className="text-blue-500">
               Learn More
