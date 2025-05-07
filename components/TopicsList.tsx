@@ -12,14 +12,14 @@ const TopicsList = ({ topics }: any) => {
     <div>
       <h2 className="text-base font-medium text-gray-800 mb-3 px-4">Topics</h2>
       <div className="space-y-3">
-        {topics.map((topic) => (
+        {topics.map((topic: any) => (
           <div
             key={topic.id}
             className="flex justify-between items-center hover:bg-gray-50 p-2 rounded-md cursor-pointer transition-colors"
           >
             <div className="flex items-center">
               <div className="flex -space-x-2 mr-3">
-                {topic.avatars.map((avatar, index) => (
+                {topic.avatars.map((avatar: any, index: any) => (
                   <div
                     key={index}
                     className="w-6 h-6 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center overflow-hidden"
