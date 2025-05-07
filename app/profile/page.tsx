@@ -10,7 +10,7 @@ import ProfileSidebar from '../../components/profile/ProfileSidebar';
 export default function Page() {
   return (
     <div className="bg-white overflow-hidden  mb-8  rounded-xl  space-y-4 md:space-y-0">
-<ProfileNavbar title="Profile" />
+      <ProfileNavbar title="Profile"/>
       <div className=" flex flex-col space-y-4 px-3">
         <ProfileHeader
           avatarUrl="https://randomuser.me/api/portraits/women/44.jpg"

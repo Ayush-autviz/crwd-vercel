@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, HelpCircle, Menu } from "lucide-react";
+import { ArrowLeft, ArrowRight, HelpCircle, Menu, Search } from "lucide-react";
 import { useState } from "react";
 // import { Organization } from "../types/Organization";
 import { Button } from "@/components/ui/button";
@@ -124,6 +124,20 @@ export const Checkout = ({
               Manage →
             </Button>
           </div>
+        </div>
+      </div>
+
+      {/* Search Bar */}
+      <div className="px-4 mb-4">
+        <div className="relative w-full">
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+            <Search className="w-5 h-5 text-gray-400" />
+          </span>
+          <input
+            type="text"
+            placeholder="Search causes or CRWDs..."
+            className="w-full pl-10 pr-4 py-2 rounded-full border border-gray-200 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-200 shadow-sm"
+          />
         </div>
       </div>
 

@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import TopicsList from "@/components/TopicsList";
 import PopularPosts from "@/components/PopularPosts";
 
-export default function DiscoverPage() {
+export default function HomePage() {
   // Sample data for topics
   const topics = [
     {
@@ -232,7 +232,8 @@ export default function DiscoverPage() {
             <Input
               type="search"
               placeholder="Search"
-              className="bg-muted/50 border-none"
+              className="bg-muted/50 border-none"  
+              //@ts-ignore
               prefix={
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
