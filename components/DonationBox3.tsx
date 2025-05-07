@@ -112,19 +112,19 @@ export const DonationBox3 = ({
           ))}
         </div>
       </Card>
-      <div className={`py-4  w-full  ${isMobile ? "mb-20" : ""}`}>
+      <div className={`py-3  w-full  ${isMobile ? "mb-20" : ""}`}>
         <Button
           onClick={() => setCheckout(true)}
-          className={`bg-green-400 hover:bg-green-500 text-black w-full py-3 rounded-full font-medium mb-3${
+          className={`bg-[#6cd89b] hover:bg-green-500 text-black w-full py-3 rounded-full font-medium mb-3${
             isMobile ? "mb-20" : ""
           } `}
         >
           Checkout
         </Button>
 
-        <div className="flex items-center justify-center text-xs text-gray-500">
+        <div className="flex items-center justify-center text-xs text-gray-500 mt-2">
           <span className="mr-1">⚔️</span>
-          <p className="mt-2">
+          <p className="">
             Your donation is protected and guaranteed.{" "}
             <a href="#" className="text-blue-500">
               Learn More

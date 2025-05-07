@@ -36,12 +36,12 @@ const DonationBox = () => {
   return (
     <div className="w-full h-full bg-white flex flex-col">
       {checkout ? (
-        <Checkout />
+        <Checkout onBack={() => setCheckout(false)} />
       ) : (
         <>
           {isMobile ? (
             <>
-              <header className="flex items-center justify-between p-4 bg-card border-b sticky top-0 z-10">
+              {/* <header className="flex items-center justify-between p-4 bg-card border-b sticky top-0 z-10">
                 <Image
                   src="/logo3.png"
                   width={100}
@@ -54,11 +54,11 @@ const DonationBox = () => {
                     <Bell className="h-5 w-5" />
                   </div>
                 </div>
-              </header>
+              </header> */}
             </>
           ) : (
             <>
-              <header className="bg-card border-b p-[13.5px] flex items-center justify-between sticky top-0 z-10">
+              {/* <header className="bg-card border-b p-[13.5px] flex items-center justify-between sticky top-0 z-10">
                 <h1 className="text-xl font-bold">Donation</h1>
 
                 <div className="flex items-center space-x-4">
@@ -77,16 +77,18 @@ const DonationBox = () => {
                     </Avatar>
                   </div>
                 </div>
-              </header>
+              </header> */}
             </>
           )}
           <div className="flex items-center p-4 border-b">
             {/* <button className="p-1">
           <X size={20} />
         </button> */}
-            <button onClick={() => setStep((s) => s - 1)}>
-              <ArrowLeft />
-            </button>
+            {step > 1 && activeTab !== "onetime" && (
+              <button onClick={() => setStep((s) => s - 1)}>
+                <ArrowLeft />
+              </button>
+            )}
             <h1 className="text-center flex-1 font-medium">Donation Box</h1>
             <div className="w-5"></div> {/* Spacer for alignment */}
           </div>

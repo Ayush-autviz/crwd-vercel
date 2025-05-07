@@ -216,7 +216,7 @@ const DonationBox2 = ({
           {/* More Suggested */}
           <div className="mt-6 px-4">
             <h2 className="text-sm text-gray-500 mb-3">More Suggested</h2>
-            <div className="space-y-3">
+            <div className="space-y-3 max-h-[150px] overflow-y-auto no-scrollbar">
               {SUGGESTED.map((org) => (
                 <div key={org.id} className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -245,11 +245,7 @@ const DonationBox2 = ({
         </div>
       </div>
       {/* Bottom Action Area */}
-      <div
-        className={`sticky bottom-0 bg-white p-4 shadow-lg w-full  ${
-          isMobile ? "mb-20" : ""
-        }`}
-      >
+      <div className={` bg-white p-4 pb-9 w-full  ${isMobile ? "mb-20" : ""}`}>
         <Button
           onClick={() => setStep(3)}
           className={`bg-green-400 hover:bg-green-500 text-black w-full py-3 rounded-full font-medium mb-3${

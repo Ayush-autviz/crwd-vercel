@@ -115,7 +115,7 @@ export const Checkout = ({
           </div>
           <div className="flex-1 text-center">
             <div className="text-2xl font-bold">{crowds.length}</div>
-            <div className="text-sm">CROWDS</div>
+            <div className="text-sm">CRWDS</div>
           </div>
           <div className="flex-1 flex justify-end items-center">
             <Button
@@ -140,7 +140,7 @@ export const Checkout = ({
           {crowds.map((crowd) => (
             <div
               key={crowd.id}
-              className="w-14 h-14 rounded-lg flex items-center justify-center"
+              className="w-12 h-12 rounded-lg flex items-center justify-center"
               style={{
                 backgroundColor: crowd.color || "#e2e8f0",
                 backgroundImage: crowd.imageUrl
@@ -167,7 +167,7 @@ export const Checkout = ({
         <div className="space-y-4">
           {organizations.map((org) => (
             <div key={org.id} className="flex gap-3">
-              <div className="w-10 h-10 flex-shrink-0 rounded-md overflow-hidden">
+              <div className="w-8 h-8 flex-shrink-0 rounded-md overflow-hidden">
                 {org.imageUrl ? (
                   <img
                     src={org.imageUrl}
