@@ -9,6 +9,7 @@ import Image from "next/image";
 import { DonationBox3 } from "./DonationBox3";
 import OneTimeDonation from "./OneTimeDonation";
 import { Checkout } from "./Checkout";
+import ProfileNavbar from "./profile/ProfileNavbar";
 const DonationBox = () => {
   const [activeTab, setActiveTab] = useState<"setup" | "onetime">("setup");
   const [checkout, setCheckout] = useState(false);
@@ -39,47 +40,7 @@ const DonationBox = () => {
         <Checkout onBack={() => setCheckout(false)} />
       ) : (
         <>
-          {isMobile ? (
-            <>
-              {/* <header className="flex items-center justify-between p-4 bg-card border-b sticky top-0 z-10">
-                <Image
-                  src="/logo3.png"
-                  width={100}
-                  height={100}
-                  alt="Picture of the author"
-                />
-                <div className="flex items-center">
-                  <div className="w-8 h-8 flex items-center justify-center relative">
-                    <div className="w-3 h-3 rounded-full bg-destructive absolute top-1 right-1"></div>
-                    <Bell className="h-5 w-5" />
-                  </div>
-                </div>
-              </header> */}
-            </>
-          ) : (
-            <>
-              {/* <header className="bg-card border-b p-[13.5px] flex items-center justify-between sticky top-0 z-10">
-                <h1 className="text-xl font-bold">Donation</h1>
-
-                <div className="flex items-center space-x-4">
-                  <Button variant="outline" className="flex items-center gap-2">
-                    <Bell className="h-4 w-4" />
-                    <span>Notifications</span>
-                  </Button>
-                  <div className="relative">
-                    <div className="absolute z-10 top-[-2] right-0 w-3 h-3 bg-destructive rounded-full"></div>
-                    <Avatar>
-                      <AvatarImage
-                        src="/placeholder.svg?height=40&width=40"
-                        alt="User"
-                      />
-                      <AvatarFallback>JD</AvatarFallback>
-                    </Avatar>
-                  </div>
-                </div>
-              </header> */}
-            </>
-          )}
+          <ProfileNavbar title="Donation Box" />
           <div className="flex items-center p-4 border-b">
             {/* <button className="p-1">
           <X size={20} />

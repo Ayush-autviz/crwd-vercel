@@ -226,7 +226,7 @@ export default function RootLayout({
             </Link>
             <Link
               className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground"
-              href={"/"}
+              href={"/profile"}
             >
               <Button
                 variant="ghost"

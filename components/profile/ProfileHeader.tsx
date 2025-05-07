@@ -16,7 +16,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ avatarUrl, name, location
     {/* Top right buttons */}
     <div className="flex justify-end gap-3 ">
       <Button className="h-8 rounded-lg text-sm font-semibold bg-white text-gray-700 border border-gray-300 shadow-none hover:bg-gray-50 transition-none"><Upload className='w-2 h-2'/></Button>
-      <Link href={`/profile/${name}`} className="h-8 px-4 flex items-center justify-center rounded-lg text-sm font-semibold bg-blue-100 text-blue-700 border bg-blue-500 text-white shadow-none hover:bg-blue-200 transition-none">Follow</Link>
+      <Link href={`/profile/${name}`} className="h-8 px-4 flex items-center justify-center rounded-lg text-sm font-semibold bg-blue-100 text-blue-700 border bg-blue-500 text-white shadow-none hover:bg-blue-600 hover:text-white transition-none">Edit</Link>
     </div>
     {/* Avatar and info */}
     <div className="flex items-center gap-4 mb-3">

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Bell } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 
-export default function ProfileNavbar() {
+export default function ProfileNavbar({title}: {title: string}) {
   return (
     <>
     <header className="w-full flex items-center p-4 bg-card border-b sticky top-0 z-10 md:hidden">
@@ -39,7 +39,7 @@ export default function ProfileNavbar() {
   </header>
     {/* Desktop Header - Only visible on desktop */}
     <header className="w-full bg-card border-b hidden p-[13.5px] md:flex items-center justify-between sticky top-0">
-    <h1 className="text-xl font-bold">Home</h1>
+    <h1 className="text-xl font-bold">{title}</h1>
     <div className="flex items-center space-x-4">
       <Button variant="outline" className="flex items-center gap-2">
         <Bell className="h-4 w-4" />

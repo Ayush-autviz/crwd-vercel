@@ -52,7 +52,7 @@ const ProfileAside: React.FC = () => (
               <AvatarImage src={f.avatar} alt={f.name} />
             </Avatar>
             <span className="flex-1 text-sm font-medium">{f.name}</span>
-            <Button className="h-7 px-3 rounded-full text-xs font-semibold bg-blue-100 text-blue-700 border border-blue-200 shadow-none hover:bg-blue-200 transition-none">Follow</Button>
+            <Button className="h-7 px-3 rounded-lg text-xs font-semibold bg-blue-500 text-white border border-blue-200 shadow-none hover:bg-blue-200 transition-none">Follow</Button>
           </div>
         ))}
       </div>

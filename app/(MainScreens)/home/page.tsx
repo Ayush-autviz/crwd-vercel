@@ -229,7 +229,7 @@ export default function DiscoverPage() {
         <div className="md:col-span-8">
           {/* Search Input */}
           <div className="p-4 md:p-0 md:mb-6">
-            {/* <Input
+            <Input
               type="search"
               placeholder="Search"
               className="bg-muted/50 border-none"
@@ -250,7 +250,7 @@ export default function DiscoverPage() {
                   <path d="m21 21-4.3-4.3" />
                 </svg>
               }
-            /> */}
+            />
           </div>
 
           {/* Topics Section */}

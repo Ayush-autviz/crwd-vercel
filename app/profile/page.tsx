@@ -10,8 +10,8 @@ import ProfileSidebar from '../../components/profile/ProfileSidebar';
 export default function Page() {
   return (
     <div className="bg-white overflow-hidden  mb-8  rounded-xl  space-y-4 md:space-y-0">
-<ProfileNavbar />
-      <div className=" flex flex-col space-y-4">
+<ProfileNavbar title="Profile" />
+      <div className=" flex flex-col space-y-4 px-3">
         <ProfileHeader
           avatarUrl="https://randomuser.me/api/portraits/women/44.jpg"
           name="Mya"
@@ -21,7 +21,7 @@ export default function Page() {
         <ProfileBio bio="This is a bio about Mya and how she likes to help others and give back to her community. She also loves ice cream." />
         <ProfileStats causes={10} crwds={3} followers={58} following={8} />
         <ProfileInterests interests={["Environment", "Food Insecurity", "Environment","Food Insecurity"]} />
-       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 py-4">
+       <div className="w-full grid grid-cols-1 md:grid-cols-5 gap-2 py-4">
        <ProfileActivity
           updates={[
             {
