@@ -81,7 +81,7 @@ export default function RootLayout({
                       <span>Donation Box</span>
                     </Button>
                   </Link>
-                  <Link href={"/"}>
+                  <Link href={"/profile"}>
                     <Button variant="ghost" className="w-full justify-start">
                       <User className="mr-2 h-4 w-4" />
                       <span>Profile</span>
