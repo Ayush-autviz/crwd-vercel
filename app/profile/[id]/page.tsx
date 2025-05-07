@@ -6,7 +6,7 @@ import ProfileNavbar from '@/components/profile/ProfileNavbar';
 export default function Page() {
   return (
     <div className="w-full flex flex-col items-center justify-start bg-gray-50 space-y-6 bg-white">
-        <ProfileNavbar/>
+        <ProfileNavbar title="Profile"/>
       <ProfileEditCard
         avatarUrl="https://randomuser.me/api/portraits/women/44.jpg"
         name="My Name is Mya"
