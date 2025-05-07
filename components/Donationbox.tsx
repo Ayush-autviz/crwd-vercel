@@ -131,11 +131,11 @@ const DonationBox = () => {
               {step === 1 ? (
                 <div className="flex-1 mx-4 mt-4 mb-4 flex flex-col">
                   {/* Info Card */}
-                  <div className="bg-[#f5f6ff] rounded-xl  mb-4 p-4">
-                    <h2 className="text-xl font-medium text-gray-700  py-1 my-2">
+                  <div className="bg-[#f5f6ff] rounded-xl  mb-4 ">
+                    <h2 className="text-xl font-medium text-gray-700  py-1 my-2 p-4">
                       Welcome to your donation box
                     </h2>
-                    <p className="text-gray-600 text-sm py-3 ">
+                    <p className="text-gray-600 text-sm  p-4 ">
                       Your donation box makes giving back easy! Just set your
                       price and you can add as many of your favorite causes at
                       any time. Your donation will be evenly distributed across
@@ -190,7 +190,7 @@ const DonationBox = () => {
                     <p className={`text-gray-500`}>Now let's add some causes</p>
                     <button
                       onClick={() => setStep(2)}
-                      className={`bg-green-500 text-white px-6 py-2 rounded-full font-medium `}
+                      className={`bg-[#6cd89b] text-black px-6 py-2 rounded-full font-medium `}
                     >
                       Next
                     </button>
@@ -217,7 +217,7 @@ const DonationBox = () => {
               ) : (
                 <div className="flex-1 mx-4 mt-4 mb-4 flex flex-col">
                   {/* Info Card */}
-                  <div className="bg-[#f5f6ff] rounded-xl  mb-4 p-4">
+                  <div className="bg-[#f5f6ff] rounded-xl  mb-4 ">
                     <h2 className="text-xl font-medium text-gray-700  py-1 my-2">
                       Welcome to your donation box
                     </h2>
@@ -227,7 +227,7 @@ const DonationBox = () => {
                       any time. Your donation will be evenly distributed across
                       all of the organizations in your box. Let's get started!
                     </p>
-                    <div className=" bg-[#e6e7f4] rounded-lg mt-6 p-4 flex justify-between items-center">
+                    <div className=" bg-[#e6e7f4] rounded-lg mt-6  flex justify-between items-center">
                       <div>
                         <p className="text-sm font-medium mb-1">
                           Enter monthly donation

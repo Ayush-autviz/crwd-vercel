@@ -45,13 +45,21 @@ const RECENTS: Organization[] = [
   { id: "101", name: "Red Cross", imageUrl: "" },
   { id: "102", name: "St. Judes", imageUrl: "" },
   { id: "103", name: "Community first", imageUrl: "" },
-  { id: "104", name: "Make a Wish", imageUrl: "" },
-  { id: "105", name: "Planned", imageUrl: "" },
-  { id: "106", name: "Made with love", imageUrl: "" },
+  { id: "104", name: "Community first", imageUrl: "" },
+  { id: "105", name: "Make a Wish", imageUrl: "" },
+  { id: "106", name: "Planned", imageUrl: "" },
+  { id: "107", name: "Planned", imageUrl: "" },
+  { id: "108", name: "Made with love", imageUrl: "" },
+  { id: "109", name: "Made with love", imageUrl: "" },
 ];
 
 const SUGGESTED: Organization[] = [
   { id: "201", name: "World Aid", imageUrl: "" },
+  { id: "202", name: "Make a wish", imageUrl: "" },
+  { id: "203", name: "Community first", imageUrl: "" },
+  { id: "204", name: "Planned", imageUrl: "" },
+  { id: "205", name: "Red Cross", imageUrl: "" },
+  { id: "206", name: "St. Jude's", imageUrl: "" },
 ];
 
 interface DonationBox2Props {
@@ -145,7 +153,7 @@ const DonationBox2 = ({
 
         {/* CROWDS Section */}
         <div className="mt-2 p-4 ">
-          <h2 className="text-sm  text-gray-500 mb-3">
+          <h2 className="text-sm  text-[#8993bf] mb-3">
             Select from your CRWDS
           </h2>
           <div className="flex gap-3 overflow-x-auto pb-2">
@@ -186,7 +194,7 @@ const DonationBox2 = ({
             <h2 className="text-sm text-gray-500 mb-3">
               Select from your Recents
             </h2>
-            <div className="space-y-3">
+            <div className="space-y-3 max-h-[150px] overflow-y-auto no-scrollbar">
               {RECENTS.map((org) => (
                 <div key={org.id} className="flex items-center justify-between">
                   <div className="flex items-center gap-2">

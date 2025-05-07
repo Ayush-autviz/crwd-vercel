@@ -188,7 +188,10 @@ export default function RootLayout({
 
           {/* Mobile Bottom Navigation */}
           <nav className="fixed bottom-0 left-0 right-0 bg-card border-t flex justify-around py-3 mx-auto z-10 md:hidden">
-            <Link href={"/"}>
+            <Link
+              className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground"
+              href={"/"}
+            >
               <Button
                 variant="ghost"
                 className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground"
@@ -197,14 +200,22 @@ export default function RootLayout({
                 <span className="text-xs ">Home</span>
               </Button>
             </Link>
-            <Button
-              variant="ghost"
+            <Link
               className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground"
+              href={"/"}
             >
-              <Search className="h-5 w-5" />
-              <span className="text-xs ">Discover</span>
-            </Button>
-            <Link href={"/donation"}>
+              <Button
+                variant="ghost"
+                className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground"
+              >
+                <Search className="h-5 w-5" />
+                <span className="text-xs ">Discover</span>
+              </Button>
+            </Link>
+            <Link
+              className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground"
+              href={"/donation"}
+            >
               <Button
                 variant="ghost"
                 className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground"
@@ -213,13 +224,18 @@ export default function RootLayout({
                 <span className="text-xs ">Donation Box</span>
               </Button>
             </Link>
-            <Button
-              variant="ghost"
+            <Link
               className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground"
+              href={"/"}
             >
-              <User className="h-5 w-5" />
-              <span className="text-xs ">Profile</span>
-            </Button>
+              <Button
+                variant="ghost"
+                className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground"
+              >
+                <User className="h-5 w-5" />
+                <span className="text-xs ">Profile</span>
+              </Button>
+            </Link>
           </nav>
         </div>
       </body>

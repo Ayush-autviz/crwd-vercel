@@ -7,43 +7,10 @@ interface Topic {
   avatars: string[];
 }
 
-const TopicsList = () => {
-  const topics: Topic[] = [
-    {
-      id: "1",
-      name: "NFT Funding",
-      posts: 34,
-      avatars: ["1", "2", "3"],
-    },
-    {
-      id: "2",
-      name: "Harvard",
-      posts: 126,
-      avatars: ["4", "5", "6", "7"],
-    },
-    {
-      id: "3",
-      name: "#givingtuesday",
-      posts: 156,
-      avatars: ["8", "9", "10", "11"],
-    },
-    {
-      id: "4",
-      name: "National Parks",
-      posts: 176,
-      avatars: ["12", "13", "14"],
-    },
-    {
-      id: "5",
-      name: "Columbia",
-      posts: 76,
-      avatars: ["15", "16", "17", "18"],
-    },
-  ];
-
+const TopicsList = ({ topics }: any) => {
   return (
     <div>
-      <h2 className="text-base font-medium text-gray-800 mb-3">Topics</h2>
+      <h2 className="text-base font-medium text-gray-800 mb-3 px-4">Topics</h2>
       <div className="space-y-3">
         {topics.map((topic) => (
           <div
