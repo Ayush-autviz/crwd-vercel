@@ -1,7 +1,6 @@
 import React from 'react';
 import CauseHeader from '@/components/cause/CauseHeader'; 
 import CauseProfileCard from '@/components/cause/CauseProfileCard';
-import CauseCommunityHighlights from '@/components/cause/CauseCommunityHighlights';
 import CauseRecentDonations from '@/components/cause/CauseRecentDonations';
 import CauseAboutCard from '@/components/cause/CauseAboutCard';
 import CauseDonateBar from '@/components/cause/CauseDonateBar';
