@@ -88,7 +88,7 @@ export const Checkout = ({
     organizations.length > 0 ? Math.floor(100 / organizations.length) : 0;
 
   return (
-    <div className="flex flex-col h-full bg-gray-50 min-h-screen p-0 md:p-6">
+    <div className="flex flex-col h-full bg-gray-50 min-h-screen p-0 md:p-6 bg-white">
       {/* Header */}
       <div className="bg-blue-600 text-white p-5 pb-8 rounded-b-2xl shadow-md mb-6">
         <div className="flex justify-between items-center mb-4">
@@ -128,7 +128,7 @@ export const Checkout = ({
       </div>
 
       {/* Search Bar */}
-      <div className="px-4 mb-4">
+      {/* <div className="px-4 mb-4">
         <div className="relative w-full">
           <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
             <Search className="w-5 h-5 text-gray-400" />
@@ -139,15 +139,15 @@ export const Checkout = ({
             className="w-full pl-10 pr-4 py-2 rounded-full border border-gray-200 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-200 shadow-sm"
           />
         </div>
-      </div>
+      </div> */}
 
       {/* CROWDS Section */}
-      <div className="px-4 mt-2 mb-6">
-        <div className="flex items-center mb-3">
+      <div className="px-8 mt-2">
+        <div className="flex items-center mb-3 ">
           <h2 className="text-base font-semibold text-gray-700 uppercase tracking-wide">CRWDS</h2>
           <HelpCircle size={16} className="ml-2 text-gray-500" />
         </div>
-        <div className="flex gap-4 mb-8">
+        <div className="flex gap-4 mb-8 ">
           {crowds.map((crowd) => (
             <div
               key={crowd.id}
@@ -170,13 +170,13 @@ export const Checkout = ({
       </div>
 
       {/* CAUSES Section */}
-      <div className="px-4 flex-1 overflow-auto">
-        <h2 className="text-base font-semibold text-gray-700 uppercase mb-4 tracking-wide">
+      <div className=" flex-1 overflow-auto">
+        <h2 className="text-base font-semibold text-gray-700 uppercase mb-4 tracking-wide px-8">
           CAUSES
         </h2>
-        <div className="space-y-6">
+        <div className="space-y-2 ">
           {organizations.map((org) => (
-            <div key={org.id} className="flex gap-4 items-center bg-white rounded-xl p-4 shadow-sm">
+            <div key={org.id} className="flex gap-4 items-center bg-white  px-8 py-4 border-b border-gray-200    ">
               <div className="w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden shadow">
                 {org.imageUrl ? (
                   <img
@@ -212,17 +212,17 @@ export const Checkout = ({
               </div>
             </div>
           ))}
-          <p className="text-sm text-gray-500 text-left mt-4">
+          <p className="text-sm text-gray-500 text-left mt-4 px-10">
             Add up to 45 more causes to this box
           </p>
-          <div className="pt-2 pb-2 text-left">
-            <button className="flex items-center gap-1 text-blue-600 font-semibold">
+          <div className="pt-2 pb-2 text-left px-10">
+            <button className="flex items-center gap-1 text-sm text-gray-700  font-semibold">
               Discover <ArrowRight />
             </button>
           </div>
-          <div className="flex justify-center items-center mt-4">
+          <div className="h-full flex justify-center items-center ">
             <Button
-              className={`bg-blue-600 text-white rounded-full font-semibold px-6 py-3 text-base shadow-md ${
+              className={`bg-blue-600 text-white rounded-full font-semibold px-8 py-6 text-base shadow-md ${
                 isMobile ? "mb-30" : "mb-5"
               }`}
             >

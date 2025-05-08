@@ -5,7 +5,7 @@ import { Bell } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import HamburgerMenu from '../hamburgerMenu/HamburgerMenu'
 
-export default function ProfileNavbar({title,showMobileMenu=true,showDesktopMenu=true}: {title: string,showMobileMenu?: boolean,showDesktopMenu?: boolean}) {
+export default function ProfileNavbar({showMobileMenu=true,showDesktopMenu=true,title}: {showMobileMenu?: boolean,showDesktopMenu?: boolean,title?:string}) {
   return (
     <>
    {
@@ -25,7 +25,7 @@ export default function ProfileNavbar({title,showMobileMenu=true,showDesktopMenu
     {showDesktopMenu && (
 
     <header className="w-full bg-card border-b hidden h-16 px-6 md:flex items-center justify-between sticky top-0">
-    <h1 className="text-xl font-bold">{title}</h1>
+    {title && <h1 className="text-xl font-bold">{title}</h1>}
     <div className="flex items-center space-x-4">
       <Button variant="outline" className="flex items-center gap-2">
         <Bell className="h-4 w-4" />

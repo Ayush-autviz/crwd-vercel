@@ -47,12 +47,12 @@ export const DonationBox3 = ({
 
   return (
     <div className="pb-10 mt-5 px-2 md:px-6 md:hidden">
-      <Card className="w-full bg-white rounded-2xl p-5 shadow-lg border border-gray-100">
-        <div className="flex flex-col items-center mb-6">
+      <Card className="w-full h-fit bg-white rounded-2xl px-5 shadow-lg border border-gray-100">
+        <div className="flex flex-col items-center ">
           <h2 className="text-[#564F6F] text-lg font-semibold mb-2">Your donation will support</h2>
           <span className="text-[#564F6F] text-base font-medium px-4 py-1 bg-[#F3F2FA] rounded-full mb-2">{selectedOrganizations.length} CAUSES</span>
         </div>
-        <div className="space-y-6">
+        <div className=" ">
           {selectedOrgs?.map((org, index) => (
             <div key={org.id}>
               <div className="bg-gray-50 rounded-2xl p-4 flex flex-col gap-3 shadow-sm">
@@ -105,7 +105,7 @@ export const DonationBox3 = ({
       <div className="py-6 w-full">
         <Button
           onClick={() => setCheckout(true)}
-          className="bg-[#6cd89b] hover:bg-green-500 text-black w-full py-4 rounded-full font-semibold text-lg shadow-md mb-4"
+          className="bg-[#6cd89b] hover:bg-green-500 text-black w-full py-8 rounded-xl font-semibold text-lg shadow-md mb-4"
         >
           Checkout
         </Button>

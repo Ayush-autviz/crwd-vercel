@@ -167,7 +167,7 @@ export default function OneTimeDonation({ setCheckout }: any) {
       <div className={`  py-4  w-full  ${isMobile ? "mb-20" : ""}`}>
         <Button
           onClick={() => setCheckout(true)}
-          className={`bg-green-400 hover:bg-green-500 text-black w-full py-3 rounded-full font-medium mb-3${
+          className={`bg-[#6cd89b]  hover:bg-green-500 text-black w-full py-8 rounded-2xl font-medium mb-3${
             isMobile ? "mb-20" : ""
           } `}
         >

@@ -129,7 +129,7 @@ const DonationBox2 = ({
 
         {/* Selected Organizations List */}
         {selectedOrgs.length > 0 && (
-          <div className="mt-2 px-4 ">
+          <div className="mt-2 px-4 mb-3 ">
             <h2 className="text-sm text-gray-500 mb-2">Selected Causes</h2>
             <div className="flex flex-wrap gap-2">
               {selectedOrgs.map((org) => (
@@ -152,16 +152,16 @@ const DonationBox2 = ({
         )}
 
         {/* CROWDS Section */}
-        <div className="mt-2 p-4 ">
+        <div className=" px-4 ">
           <h2 className="text-sm  text-[#8993bf] mb-3">
             Select from your CRWDS
           </h2>
-          <div className="flex gap-3 overflow-x-auto pb-2">
+          <div className="flex gap-3 overflow-y-auto pb-2">
             {CROWDS.map((org) => (
               <button
                 key={org.id}
                 className={cn(
-                  "flex-shrink-0 flex flex-col items-center justify-center min-w-16 h-16 rounded-lg relative",
+                  "flex-shrink-0 flex flex-col items-center justify-center min-w-12 h-12 rounded-lg relative",
                   org.color ? `bg-[${org.color}]` : "bg-cover bg-center",
                   selectedOrganizations.includes(org.id) &&
                     "ring-2 ring-blue-500"
@@ -189,16 +189,16 @@ const DonationBox2 = ({
         </div>
 
         {/* Recents Section */}
-        <div className=" bg-[#ededfa] rounded-lg p-3">
-          <div className="mt-6 px-4">
+        <div className=" bg-[#ededfa] rounded-lg p-2">
+          <div className="mt-3 px-4">
             <h2 className="text-sm text-gray-500 mb-3">
               Select from your Recents
             </h2>
-            <div className="space-y-3 max-h-[150px] overflow-y-auto no-scrollbar">
+            <div className="space-y-3 max-h-[150px] overflow-y-auto no-scrollbar ">
               {RECENTS.map((org) => (
                 <div key={org.id} className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Avatar className="h-8 w-8 bg-gray-300">
+                    <Avatar className="h-5 w-5 bg-gray-300">
                       <div className="h-full w-full bg-gray-300 rounded-full" />
                       <img src="/redcross.png" alt="" />
                     </Avatar>
@@ -207,6 +207,7 @@ const DonationBox2 = ({
                   <Checkbox
                     checked={selectedOrganizations.includes(org.id)}
                     onCheckedChange={() => toggleOrganization(org.id)}
+                    className="h-5 w-5 border-gray-300"
                   />
                 </div>
               ))}
@@ -214,13 +215,13 @@ const DonationBox2 = ({
           </div>
 
           {/* More Suggested */}
-          <div className="mt-6 px-4">
+          <div className="mt-6 px-4 pb-2">
             <h2 className="text-sm text-gray-500 mb-3">More Suggested</h2>
             <div className="space-y-3 max-h-[150px] overflow-y-auto no-scrollbar">
               {SUGGESTED.map((org) => (
                 <div key={org.id} className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Avatar className="h-8 w-8 bg-gray-300">
+                    <Avatar className="h-5 w-5 bg-gray-300">
                       <div className="h-full w-full bg-gray-300 rounded-full" />
                     </Avatar>
                     <span className="text-sm text-gray-700">{org.name}</span>
@@ -228,6 +229,7 @@ const DonationBox2 = ({
                   <Checkbox
                     checked={selectedOrganizations.includes(org.id)}
                     onCheckedChange={() => toggleOrganization(org.id)}
+                    className="h-5 w-5 border-gray-300"
                   />
                 </div>
               ))}
@@ -235,7 +237,7 @@ const DonationBox2 = ({
           </div>
         </div>
 
-        <div className="mt-4 text-right">
+        <div className="mt-4 text-right px-6">
           <a
             href="#"
             className="text-blue-500 text-sm flex items-center justify-end"
@@ -248,7 +250,7 @@ const DonationBox2 = ({
       <div className={` bg-white p-4 pb-9 w-full  ${isMobile ? "mb-20" : ""}`}>
         <Button
           onClick={() => setStep(3)}
-          className={`bg-green-400 hover:bg-green-500 text-black w-full py-3 rounded-full font-medium mb-3${
+          className={`bg-[#6cd89b]  hover:bg-green-500 text-black w-full py-8 rounded-xl font-medium mb-3${
             isMobile ? "mb-20" : ""
           } `}
         >

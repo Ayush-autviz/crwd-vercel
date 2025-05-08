@@ -24,7 +24,7 @@ const ProfileActivity: React.FC<ProfileActivityProps> = ({ updates }) => (
     
     <div className="space-y-6 py-5 px-6 ">
       { updates.length > 0 && updates.map((u, idx) => (
-        <div key={idx} className="grid grid-cols-12 gap-3 bg-white rounded-xl bg-green-200 ">
+        <div key={idx} className="grid grid-cols-12 gap-8 bg-white rounded-xl bg-green-200 ">
           <div className="col-span-1 flex justify-center">
             <Avatar className="w-11 h-11">
               <AvatarImage src={u.avatarUrl} alt={u.username} />

@@ -17,12 +17,12 @@ import Link from 'next/link';
 
 const menuItems = [
 //   { icon: <Plus size={20} />, label: 'Create a CRWD', href: '#' },
-  { icon: <Users size={20} />, label: 'Your CRWDs', href: '#' },
-  { icon: <Bookmark size={20} />, label: 'Saved', href: '#' },
+  { icon: <Users size={20} />, label: 'Your CRWDs', href: '/your-crdws' },
+  { icon: <Bookmark size={20} />, label: 'Saved', href: '/saved' },
   { icon: <Search size={20} />, label: 'Explore', href: '#' },
-  { icon: <Archive size={20} />, label: 'Donation box', href: '#' },
-  { icon: <Bell size={20} />, label: 'Notifications', href: '#' },
-  { icon: <Shuffle size={20} />, label: 'Transaction history', href: '#' },
+  { icon: <Archive size={20} />, label: 'Donation box', href: '/donation' },
+  { icon: <Bell size={20} />, label: 'Notifications', href: '/notifications' },
+  { icon: <Shuffle size={20} />, label: 'Transaction history', href: '/transaction' },
   { icon: <Info size={20} />, label: 'About', href: '#' },
   { icon: <HelpCircle size={20} />, label: 'Help', href: '#' },
 ];
@@ -30,12 +30,12 @@ const menuItems = [
 const HamburgerMenu: React.FC = () => (
   <div className="md:hidden">
     <Sheet>
-      <SheetTrigger asChild className=''>
-        <Button variant="ghost" size="icon" className="m-2">
-          <MenuIcon size={28} />
-        </Button>
+      <SheetTrigger asChild className='p-2'>
+        {/* <Button variant="ghost" size="icon" className="  w-16 h-10 bg-green-300"> */}
+          <MenuIcon  size={40} className='w-11 h-11'/>
+        {/* </Button> */}
       </SheetTrigger>
-      <SheetContent side="left" className="p-0 w-[100vw] pt-14 ">
+      <SheetContent side="left" className="p-0 w-[100vw] pt-16 ">
         {/* Profile */}
         <div className="flex items-center gap-3 px-10 py-6 border-y border-gray-200">
           <img

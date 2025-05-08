@@ -1,21 +1,21 @@
 import { useState } from "react";
-import { Bell, Minus, Plus, X, StepBack, ArrowLeft } from "lucide-react";
+import { Minus, Plus, X, } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 import DonationBox2 from "./DonationBox2";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import Image from "next/image";
 import { DonationBox3 } from "./DonationBox3";
 import OneTimeDonation from "./OneTimeDonation";
 import { Checkout } from "./Checkout";
-import ProfileNavbar from "./profile/ProfileNavbar";
+import Link from "next/link";
+
+
 const DonationBox = () => {
   const [activeTab, setActiveTab] = useState<"setup" | "onetime">("setup");
   const [checkout, setCheckout] = useState(false);
   const [selectedOrganizations, setSelectedOrganizations] = useState<string[]>(
     []
   );
+ 
   const [donationAmount, setDonationAmount] = useState(7);
   const [step, setStep] = useState(1);
 
@@ -40,16 +40,18 @@ const DonationBox = () => {
         <Checkout onBack={() => setCheckout(false)} />
       ) : (
         <>
-          <ProfileNavbar title="Donation Box" />
-          <div className="flex items-center p-4 border-b">
-            {/* <button className="p-1">
+          {/* <ProfileNavbar  /> */}
+          <div className="flex items-center p-4 ">
+          {/* {step   && ( */}
+              <Link href="/" className="p-1 md:hidden">
           <X size={20} />
-        </button> */}
-            {step > 1 && activeTab !== "onetime" && (
+              </Link>
+            {/* )} */}
+            {/* {step > 1 && activeTab !== "onetime" && (  
               <button onClick={() => setStep((s) => s - 1)}>
-                <ArrowLeft />
-              </button>
-            )}
+               <X size={20} />
+             </button>
+            )} */}
             <h1 className="text-center flex-1 font-medium">Donation Box</h1>
             <div className="w-5"></div> {/* Spacer for alignment */}
           </div>
@@ -92,9 +94,9 @@ const DonationBox = () => {
           ) : (
             <>
               {step === 1 ? (
-                <div className="flex-1 mx-4 mt-4 mb-4 flex flex-col">
+                <div className="flex-1 mx-4 mt-4 mb-4 flex flex-col p-4">
                   {/* Info Card */}
-                  <div className="bg-[#f5f6ff] rounded-xl  mb-4 ">
+                  <div className="bg-[#f5f6ff] rounded-xl  mb-4 p-8">
                     <h2 className="text-xl font-medium text-gray-700  py-1 my-2 p-4">
                       Welcome to your donation box
                     </h2>
@@ -153,7 +155,7 @@ const DonationBox = () => {
                     <p className={`text-gray-500`}>Now let's add some causes</p>
                     <button
                       onClick={() => setStep(2)}
-                      className={`bg-[#6cd89b] text-black px-6 py-2 rounded-full font-medium `}
+                      className={`bg-[#6cd89b] text-black px-8 py-4 rounded-2xl font-medium `}
                     >
                       Next
                     </button>

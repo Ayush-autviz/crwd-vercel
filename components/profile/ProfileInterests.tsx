@@ -1,12 +1,15 @@
+import { cn } from '@/lib/utils';
 import React from 'react';
 
 interface ProfileInterestsProps {
   interests: string[];
+  title?: string;
+  className?: string;
 }
 
-const ProfileInterests: React.FC<ProfileInterestsProps> = ({ interests }) => (
-  <div className="px-4 pt-2 pb-4  border-b border-gray-200 ">
-    <div className="font-semibold text-sm mb-2">Mya's Interests</div>
+const ProfileInterests: React.FC<ProfileInterestsProps> = ({ interests, title, className }) => (
+  <div className={cn("px-4 pt-2 pb-4  border-b border-gray-200 ", className)}>
+   {title && <div className="font-semibold text-sm mb-2">{title}</div>}
     <div className="w-full flex gap-2 overflow-x-auto scrollbar-none" >
       {interests.map((interest, idx) => (
         <span
