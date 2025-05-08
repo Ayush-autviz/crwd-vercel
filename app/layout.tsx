@@ -29,6 +29,8 @@ import {
   Calendar,
   Menu,
   ArrowLeft,
+  ArrowRightLeft,
+  Heart,
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -94,25 +96,41 @@ export default function RootLayout({
                   Features
                 </h2>
                 <div className="space-y-1">
-                  <Button variant="ghost" className="w-full justify-start">
+                  <Link href={"/notifications"}>
+                  <Button variant="ghost" className="w-full justify-start cursor-pointer">
                     <Bell className="mr-2 h-4 w-4" />
                     <span>Notifications</span>
                   </Button>
-                  <Button variant="ghost" className="w-full justify-start">
+                  </Link>
+                  <Link href={"/saved"}>
+                  <Button variant="ghost" className="w-full justify-start cursor-pointer">
+                    <Heart className="mr-2 h-4 w-4" />
+                    <span>Saved</span>
+                  </Button>
+                  </Link>
+                  <Button variant="ghost" className="w-full justify-start cursor-pointer">
                     <TrendingUp className="mr-2 h-4 w-4" />
                     <span>Analytics</span>
                   </Button>
-                  <Button variant="ghost" className="w-full justify-start">
+                  <Button variant="ghost" className="w-full justify-start cursor-pointer">
                     <Calendar className="mr-2 h-4 w-4" />
                     <span>Events</span>
                   </Button>
-                  <Button variant="ghost" className="w-full justify-start">
+                  <Link href={"/transaction-history"}>
+                  <Button variant="ghost" className="w-full justify-start cursor-pointer">
+                    <ArrowRightLeft className="mr-2 h-4 w-4" />
+                    <span>Transaction History</span>
+                  </Button>
+                  </Link>
+                  <Link href={"/settings"}>
+                  <Button variant="ghost" className="w-full justify-start cursor-pointer">
                     <Settings className="mr-2 h-4 w-4" />
                     <span>Settings</span>
                   </Button>
+                  </Link>
+                  </div>
                 </div>
-              </div>
-            </ScrollArea>
+              </ScrollArea>
             <div className="border-t p-4">
               <div className="flex items-center gap-3">
                 <Avatar>

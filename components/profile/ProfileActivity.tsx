@@ -20,19 +20,17 @@ interface ProfileActivityProps {
 }
 
 const ProfileActivity: React.FC<ProfileActivityProps> = ({ updates }) => (
-  <div className=" w-full px-2  col-span-3 ">
-    <div className="font-semibold text-base mb-2 pt-2 pl-3 flex items-center gap-2">
-      Activity <span className="text-gray-400 text-sm ">• {updates.length} Updates</span>
-    </div>
-    <div className="space-y-6 ">
-      {updates.map((u, idx) => (
-        <div key={idx} className="w-full bg-white  rounded-xl p-1.5 flex gap-2 ">
-          <div className=" ">
-            <Avatar className="w-8 h-8">
+  <div className=" w-full   col-span-3 ">
+    
+    <div className="space-y-6 py-5 px-6 ">
+      { updates.length > 0 && updates.map((u, idx) => (
+        <div key={idx} className="grid grid-cols-12 gap-3 bg-white rounded-xl bg-green-200 ">
+          <div className="col-span-1 flex justify-center">
+            <Avatar className="w-11 h-11">
               <AvatarImage src={u.avatarUrl} alt={u.username} />
             </Avatar>
           </div>
-          <div className="w-full flex flex-col gap-2 pr-4 ">
+          <div className="col-span-11 w-full flex flex-col gap-2 pr-4 ">
           <div className="  flex flex-col ">
           <div className="flex items-center gap-2 items-center ">
             <span className="font-semibold text-sm">{u.username}</span>

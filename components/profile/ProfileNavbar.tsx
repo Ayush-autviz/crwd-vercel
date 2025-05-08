@@ -3,42 +3,28 @@ import { Button } from '../ui/button'
 import Image from 'next/image'
 import { Bell } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+import HamburgerMenu from '../hamburgerMenu/HamburgerMenu'
 
-export default function ProfileNavbar({title}: {title: string}) {
+export default function ProfileNavbar({title,showMobileMenu=true,showDesktopMenu=true}: {title: string,showMobileMenu?: boolean,showDesktopMenu?: boolean}) {
   return (
     <>
-    <header className="w-full flex items-center p-4 bg-card border-b sticky top-0 z-10 md:hidden">
-    {/* <Button variant="ghost" size="icon" className="mr-2" asChild>
-      <Link href="/">
-        <ArrowLeft className="h-5 w-5" />
-      </Link>
-    </Button>
-    <h1 className="text-lg font-semibold">EXPLORE</h1> */}
-    <div className="size-9"></div>
-    <div className="flex-grow"></div>
+   {
+    showMobileMenu && (
+      <header className="w-full relative flex items-center h-16 bg-card border-b sticky top-0 z-10 md:hidden">
+      {/* Centered Logo */}
+      <div className="flex-grow flex justify-center">
         <Image src="/logo3.png" width={80} height={30} alt="Logo" />
-    <div className="flex-grow"></div>
-    <Button variant="ghost" size="icon">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="h-5 w-5"
-      >
-        <line x1="4" x2="20" y1="12" y2="12" />
-        <line x1="4" x2="20" y1="6" y2="6" />
-        <line x1="4" x2="20" y1="18" y2="18" />
-      </svg>
-    </Button>
-  </header>
-    {/* Desktop Header - Only visible on desktop */}
-    <header className="w-full bg-card border-b hidden p-[13.5px] md:flex items-center justify-between sticky top-0">
+      </div>
+      {/* Hamburger Menu at right */}
+      <div className="absolute right-4 top-1/2 -translate-y-1/2">
+        <HamburgerMenu />
+      </div>
+    </header>
+    )
+   }
+    {showDesktopMenu && (
+
+    <header className="w-full bg-card border-b hidden h-16 px-6 md:flex items-center justify-between sticky top-0">
     <h1 className="text-xl font-bold">{title}</h1>
     <div className="flex items-center space-x-4">
       <Button variant="outline" className="flex items-center gap-2">
@@ -57,6 +43,7 @@ export default function ProfileNavbar({title}: {title: string}) {
       </div>
     </div>
   </header>
+  )}
   </>
   )
 }
