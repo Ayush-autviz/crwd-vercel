@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckCircle, Users, Heart, Bookmark, Upload, Award, ShieldCheck } from 'lucide-react';
 import ProfileInterests from '../profile/ProfileInterests';
-
+import ClaimCauseDialog from './ClaimCauseDialog';
 const CauseProfileCard: React.FC = () => (
   <div className="bg-white px-3 py-4 mx-3 mb-2 flex flex-col space-y-4">
     {/* CRWD Verified and Follow */}
@@ -36,7 +36,8 @@ const CauseProfileCard: React.FC = () => (
       </div>
       <div className="text-sm text-gray-700">Tax ID Number: 10125-3129</div>
       <div className="text-sm text-gray-700 mb-1">Address: 123 Main Street. USA 10010</div>
-      <a href="#" className="text-sm text-blue-600 underline">Claim this non-profit?</a>
+      {/* <a href="#" className="text-sm text-blue-600 underline">Claim this non-profit?</a> */}
+      <ClaimCauseDialog/>
     </div>
     {/* Guarantee Note */}
    <div className='flex items-center gap-1 text-sm '>

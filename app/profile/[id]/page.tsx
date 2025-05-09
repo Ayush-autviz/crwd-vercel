@@ -1,12 +1,11 @@
 import React from 'react'
 import ProfileEditCard from '../../../components/profile/ProfileEditCard';
-import { Button } from '../../../components/ui/button';
 import ProfileNavbar from '@/components/profile/ProfileNavbar';
 
 export default function Page() {
   return (
     <div className="w-full flex flex-col items-center justify-start bg-gray-50 space-y-6 bg-white">
-        <ProfileNavbar title="Profile"/>
+        <ProfileNavbar title="Profile" titleClassName="text-2xl" />
       <ProfileEditCard
         avatarUrl="https://randomuser.me/api/portraits/women/44.jpg"
         name="My Name is Mya"

@@ -19,4 +19,5 @@ const CausePage: React.FC = () => (
   </div>
 );
 
+
 export default CausePage; 
