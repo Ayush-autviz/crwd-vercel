@@ -24,7 +24,6 @@ const CauseProfileCard: React.FC = () => (
     {/* Bio */}
     <div className="text-lg text-gray-700">
       This is a bio about Non Profit and how they give back to their community so that users can learn about how their money is supporting others…
-      <span className="text-blue-600 ml-1 cursor-pointer">Learn More</span>
     </div>
     {/* Tags */}
     <ProfileInterests interests={['Animal Welfare', 'Environment', 'Food Insecurity']} className='px-0 border-none' />
@@ -47,4 +46,4 @@ const CauseProfileCard: React.FC = () => (
   </div>
 );
 
-export default CauseProfileCard; 
+export default CauseProfileCard;

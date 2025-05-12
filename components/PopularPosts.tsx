@@ -1,8 +1,7 @@
 import React from "react";
-import { Heart, MessageSquare, Share, MoreHorizontal } from "lucide-react";
-import { Avatar, AvatarImage } from "./ui/avatar";
-import { Badge } from "./ui/badge";
-import starbux from "/starbucks.jpg";
+import { Heart, MessageCircle, Share2, MoreHorizontal } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Card, CardContent } from "./ui/card";
 interface PopularPost {
   id: string;
   username: string;
@@ -65,62 +64,56 @@ const PopularPosts = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-base font-medium text-gray-800 mb-3">Popular</h2>
+    <div className="w-full p-4 md:p-0">
+      <h2 className="text-lg font-semibold mb-4">Popular Posts</h2>
       <div className="space-y-4">
         {popularPosts.map((post) => (
-          <div key={post.id} className="bg-white p-4 rounded-lg shadow-sm">
-            <div className="flex justify-between items-start mb-2">
-              <div className="flex items-center gap-2 ">
-                <div className="h-10 w-10 rounded-full overflow-hidden">
-                  <img src="/starbucks.jpg" alt="" />
-                </div>
-                <div>
-                  <div className="flex items-center gap-1">
+          <Card key={post.id} className="overflow-hidden shadow-sm border-0 ">
+            <CardContent className="px-4">
+              <div className="flex gap-3">
+                <Avatar className="h-10 w-10 flex-shrink-0">
+                  <AvatarImage src="/starbucks.jpg" alt={post.username} />
+                  <AvatarFallback>{post.username.charAt(0)}</AvatarFallback>
+                </Avatar>
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
                     <div>
-                      <span className="text-sm font-medium">
-                        {post.username}
-                      </span>
-                      <span className="text-xs text-gray-500">
-                        · {post.timeAgo}
-                      </span>
+                      <span className="font-medium text-sm">{post.username}</span>
+                      <span className="text-xs text-muted-foreground ml-2">• {post.timeAgo}</span>
                     </div>
+                    <MoreHorizontal className="h-4 w-4 text-muted-foreground cursor-pointer" />
                   </div>
-                  <span className="text-xs text-blue-500">@{post.handle}</span>
+                  <div href={`/@${post.handle}`} className="text-xs text-primary hover:underline">@{post.handle}</div>
+
+                  <div className="text-sm mt-2 mb-3 whitespace-pre-line leading-snug">
+                    {post.content}
+                  </div>
+
+                  {post.postImage && (
+                    <div className="w-full h-48 rounded-lg overflow-hidden mb-3">
+                      <img src={post.postImage} alt="Post" className="w-full h-full object-cover" />
+                    </div>
+                  )}
+
+                  <div className="flex items-center gap-4 text-muted-foreground mt-2">
+                    <button className="flex items-center gap-1 hover:text-primary transition-colors">
+                      <Heart className="w-4 h-4" />
+                      <span className="text-xs">{formatNumber(post.likes)}</span>
+                    </button>
+                    <button className="flex items-center gap-1 hover:text-primary transition-colors">
+                      <MessageCircle className="w-4 h-4" />
+                      <span className="text-xs">{formatNumber(post.comments)}</span>
+                    </button>
+                    <button className="flex items-center gap-1 hover:text-primary transition-colors">
+                      <Share2 className="w-4 h-4" />
+                      <span className="text-xs">{formatNumber(post.shares)}</span>
+                    </button>
+                  </div>
                 </div>
               </div>
-              <button className="text-gray-500">
-                <MoreHorizontal className="h-5 w-5" />
-              </button>
-            </div>
-
-            <p className="text-sm text-gray-800 mb-3">{post.content}</p>
-
-            {post.postImage && (
-              <div className="mb-3 rounded-lg overflow-hidden">
-                <img
-                  src={post.postImage}
-                  alt="Post content"
-                  className="w-full h-auto object-cover max-h-[300px] md:max-h-[180px] lg:max-h-[220px]"
-                />
-              </div>
-            )}
-
-            <div className="flex items-center gap-4 pt-2">
-              <button className="flex items-center gap-1.5 text-gray-600 hover:text-red-500">
-                <Heart className="h-5 w-5" />
-                <span className="text-xs">{formatNumber(post.likes)}</span>
-              </button>
-              <button className="flex items-center gap-1.5 text-gray-600 hover:text-blue-500">
-                <MessageSquare className="h-5 w-5" />
-                <span className="text-xs">{formatNumber(post.comments)}</span>
-              </button>
-              <button className="flex items-center gap-1.5 text-gray-600 hover:text-green-500">
-                <Share className="h-5 w-5" />
-                <span className="text-xs">{formatNumber(post.shares)}</span>
-              </button>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </div>

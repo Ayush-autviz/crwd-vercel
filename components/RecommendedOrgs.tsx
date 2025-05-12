@@ -33,15 +33,15 @@ const RecommendedOrgs = () => {
   ];
 
   return (
-    <div className="bg-white p-4 md:p-5 rounded-lg shadow-sm">
-      <h2 className="text-base md:text-lg font-medium text-gray-800 mb-3 md:mb-4">
+    <div className="bg-card p-4 md:p-5 rounded-lg border shadow-sm">
+      <h2 className="text-lg font-semibold mb-4">
         Suggested Organizations
       </h2>
-      <div className="space-y-3 md:space-y-4">
+      <div className="space-y-3">
         {organizations.map((org) => (
           <div
             key={org.id}
-            className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+            className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card border shadow-sm"
           >
             <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
               <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
@@ -55,24 +55,21 @@ const RecommendedOrgs = () => {
               </Avatar>
               <div className="min-w-0">
                 <h3 className="font-medium text-sm truncate">{org.name}</h3>
-                <p className="text-xs text-gray-500 truncate">
+                <p className="text-xs text-muted-foreground truncate">
                   {org.description}
                 </p>
               </div>
             </div>
-            <Button className="bg-blue-500 text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
+            <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
               Visit
             </Button>
           </div>
         ))}
       </div>
-      <div className="flex justify-end mt-2 md:mt-3">
-        <a
-          href="#"
-          className="text-sm text-blue-600 font-medium flex items-center"
-        >
+      <div className="flex justify-end mt-4">
+        <Button variant="link" className="text-primary flex items-center p-0 h-auto">
           Discover More <ArrowRight className="ml-1 h-4 w-4" />
-        </a>
+        </Button>
       </div>
     </div>
   );

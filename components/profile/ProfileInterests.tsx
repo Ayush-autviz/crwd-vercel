@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
 import React from 'react';
+import Link from 'next/link';
 
 interface ProfileInterestsProps {
   interests: string[];
@@ -12,16 +13,18 @@ const ProfileInterests: React.FC<ProfileInterestsProps> = ({ interests, title, c
    {title && <div className="font-semibold text-sm mb-2">{title}</div>}
     <div className="w-full flex gap-2 overflow-x-auto scrollbar-none" >
       {interests.map((interest, idx) => (
-        <span
+        <Link
           key={idx}
-          className="w-fit bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-xs font-medium whitespace-nowrap break-keep"
+          href={`/search?q=${encodeURIComponent(interest)}`}
         >
-          {interest}
-        </span>
+          <span className="w-fit bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-xs font-medium whitespace-nowrap break-keep cursor-pointer hover:bg-gray-200 transition-colors">
+            {interest}
+          </span>
+        </Link>
       ))}
     </div>
-  
+
   </div>
 );
 
-export default ProfileInterests; 
+export default ProfileInterests;

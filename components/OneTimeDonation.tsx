@@ -73,7 +73,6 @@ export default function OneTimeDonation({ setCheckout }: any) {
         </div>
 
         <div className="flex items-center justify-center gap-2 text-xs text-gray-600 mt-4 border-t pt-4">
-          <Shield size={14} />
           <span>Your donation is protected and guaranteed.</span>
           <Link href="#" className="text-blue-600">
             Learn More

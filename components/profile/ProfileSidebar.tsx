@@ -1,13 +1,13 @@
 import React from 'react';
-import { Avatar, AvatarImage } from '../ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Button } from '../ui/button';
-import { Star, Award } from 'lucide-react';
-
-const aboutMe = `Passionate about helping others, volunteering, and making a difference in the community. Ice cream lover.`;
+import { Star, Award, ChevronRight } from 'lucide-react';
+import { Card, CardContent } from '../ui/card';
+import { Badge } from '../ui/badge';
 
 const achievements = [
   { icon: <Star className="w-4 h-4 text-yellow-400" />, label: 'Top Volunteer 2024' },
-  { icon: <Award className="w-4 h-4 text-blue-500" />, label: 'Community Hero' },
+  { icon: <Award className="w-4 h-4 text-primary" />, label: 'Community Hero' },
 ];
 
 const suggestedFriends = [
@@ -23,50 +23,67 @@ const trendingCauses = [
   'Animal Rescue',
 ];
 
-const ProfileAside: React.FC = () => (
-  <aside className="space-y-6 w-full  ">
-    {/* About Me */}
-    {/* <div className="bg-gray-50 rounded-xl p-4 shadow-sm">
-      <div className="font-semibold text-base mb-2">About Me</div>
-      <div className="text-sm text-gray-700 leading-snug">{aboutMe}</div>
-    </div> */}
+const ProfileSidebar: React.FC = () => (
+  <aside className="space-y-6 w-full">
     {/* Achievements */}
-    <div className="w-full bg-gray-50 rounded-xl p-4 shadow-sm">
-      <div className="font-semibold text-base mb-2">Achievements</div>
-      <ul className="space-y-2">
-        {achievements.map((ach, idx) => (
-          <li key={idx} className="flex items-center gap-2 text-sm text-gray-800">
-            {ach.icon}
-            <span>{ach.label}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Card>
+      <CardContent className="">
+        <h2 className="text-xl font-bold mb-4">Achievements</h2>
+        <ul className="space-y-3">
+          {achievements.map((ach, idx) => (
+            <li key={idx} className="flex items-center gap-3 py-1">
+              <div className="flex-shrink-0 bg-muted/50 w-8 h-8 rounded-full flex items-center justify-center">
+                {ach.icon}
+              </div>
+              <span className="text-sm font-medium">{ach.label}</span>
+            </li>
+          ))}
+        </ul>
+      </CardContent>
+    </Card>
+
     {/* Suggested Friends */}
-    <div className="w-full bg-gray-50 rounded-xl p-4 shadow-sm">
-      <div className="font-semibold text-base mb-3">Suggested Friends</div>
-      <div className="space-y-3">
-        {suggestedFriends.map((f, idx) => (
-          <div key={idx} className="flex items-center gap-3">
-            <Avatar className="w-9 h-9">
-              <AvatarImage src={f.avatar} alt={f.name} />
-            </Avatar>
-            <span className="flex-1 text-sm font-medium">{f.name}</span>
-            <Button className="h-7 px-3 rounded-lg text-xs font-semibold bg-blue-500 text-white border border-blue-200 shadow-none hover:bg-blue-200 transition-none">Follow</Button>
-          </div>
-        ))}
-      </div>
-    </div>
+    <Card>
+      <CardContent className="">
+        <h2 className="text-xl font-bold mb-4">Suggested Friends</h2>
+        <div className="space-y-4">
+          {suggestedFriends.map((friend, idx) => (
+            <div key={idx} className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Avatar className="h-10 w-10">
+                  <AvatarImage src={friend.avatar} alt={friend.name} />
+                  <AvatarFallback>{friend.name.charAt(0)}</AvatarFallback>
+                </Avatar>
+                <span className="text-sm font-medium">{friend.name}</span>
+              </div>
+              <Button size="sm">Follow</Button>
+            </div>
+          ))}
+        </div>
+        <Button variant="link" className="text-primary p-0 -ml-2 h-auto mt-2 flex items-center">
+          See all <ChevronRight className="h-4 w-4 " />
+        </Button>
+      </CardContent>
+    </Card>
+
     {/* Trending Causes */}
-    <div className="bg-gray-50 rounded-xl p-4 shadow-sm">
-      <div className="font-semibold text-base mb-3">Trending Causes</div>
-      <ul className="space-y-2">
-        {trendingCauses.map((cause, idx) => (
-          <li key={idx} className="text-sm text-gray-700">{cause}</li>
-        ))}
-      </ul>
-    </div>
+    <Card>
+      <CardContent className="">
+        <h2 className="text-xl font-bold mb-4">Trending Causes</h2>
+        <div className="flex flex-wrap gap-2">
+          {trendingCauses.map((cause, idx) => (
+            <Badge
+              key={idx}
+              variant="secondary"
+              className="bg-muted/50 hover:bg-muted text-foreground rounded-md px-3 py-1 whitespace-nowrap"
+            >
+              {cause}
+            </Badge>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
   </aside>
 );
 
-export default ProfileAside; 
+export default ProfileSidebar;

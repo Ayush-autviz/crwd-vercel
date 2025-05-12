@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useIsMobile } from "@/hooks/use-mobile";
+import Link from "next/link";
 
 interface DonationOverviewProps {
   donationAmount?: number;
@@ -221,13 +222,9 @@ export const Checkout = ({
             </button>
           </div>
           <div className="h-full flex justify-center items-center ">
-            <Button
-              className={`bg-blue-600 text-white rounded-full font-semibold px-8 py-6 text-base shadow-md ${
-                isMobile ? "mb-30" : "mb-5"
-              }`}
-            >
-              Create a CRWD
-            </Button>
+            <Link href="/create-crwd">
+              <Button variant="link">Create a CRWD</Button>
+            </Link>
           </div>
         </div>
       </div>

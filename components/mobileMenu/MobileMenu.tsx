@@ -12,6 +12,7 @@ import {
   Info,
   HelpCircle,
 } from 'lucide-react';
+import Link from "next/link";
 
 const menuItems = [
   { icon: <Plus size={20} />, label: 'Create a CRWD', href: '#' },
@@ -29,6 +30,9 @@ const MobileMenu: React.FC = () => (
   <div className="w-full min-h-screen bg-white flex flex-col">
     <MobileMenuProfile />
     <div className="flex flex-col gap-1 mt-2">
+      <Link href="/create-crwd">
+        <span>Create a CRWD</span>
+      </Link>
       {menuItems.map((item) => (
         <MobileMenuItem key={item.label} {...item} />
       ))}

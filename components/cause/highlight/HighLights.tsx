@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from "next/link";
 
 interface Highlight {
   avatar: string;
@@ -55,9 +56,10 @@ const HighLights: React.FC = () => (
         {highlightPairs.map((pair, i) => (
           <div key={i} className="flex flex-col gap-y-4 w-[80vw] max-w-xs min-w-sm">
             {pair.map((h, j) => (
-              <div
+              <Link
+                href={`/feed-hungry`}
                 key={j}
-                className="bg-gray-50 rounded-xl p-4 flex flex-col gap-2 shadow-sm"
+                className="bg-gray-50 rounded-xl p-4 flex flex-col gap-2 shadow-sm hover:bg-gray-100 transition-colors cursor-pointer"
               >
                 <div className="flex gap-3">
                   <img src={h.avatar} alt={h.name} className="w-11 h-11 rounded-lg object-cover" />
@@ -70,14 +72,16 @@ const HighLights: React.FC = () => (
                   </div>
                 </div>
                 <div className="text-lg text-gray-700 line-clamp-2 mt-2">{h.bio}</div>
-              </div>
+              </Link>
             ))}
           </div>
         ))}
       </div>
     </div>
     <div className="flex justify-end mt-3">
-      <a href="#" className="text-blue-600 text-sm font-medium">Create a CRWD</a>
+      <Link href="/create-crwd">
+        <div className="text-blue-600 text-sm font-medium hover:text-blue-800 cursor-pointer">Create a CRWD</div>
+      </Link>
     </div>
   </div>
 );

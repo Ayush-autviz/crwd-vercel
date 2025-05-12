@@ -1,60 +1,89 @@
 import {
   Heart,
-  MessageSquare,
+  MessageCircle,
   MoreHorizontal,
   Share2,
   User,
 } from "lucide-react";
-import Image from "next/image";
 import React from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Card, CardContent } from "./ui/card";
 
-export default function Post() {
+interface PostProps {
+  username?: string;
+  timeAgo?: string;
+  organization?: string;
+  organizationUrl?: string;
+  content?: string;
+  imageUrl?: string;
+  likes?: number;
+  comments?: number;
+  shares?: number;
+  avatarUrl?: string;
+}
+
+export default function Post({
+  username = "mynameismya",
+  timeAgo = "17h",
+  organization = "feedthehungry",
+  organizationUrl = "/profile",
+  content = "The quick, brown fox jumps over a lazy dog. DJs flock by animal welfare quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex!",
+  imageUrl,
+  likes = 258,
+  comments = 15,
+  shares = 3,
+  avatarUrl = "/placeholder.svg?height=48&width=48"
+}: PostProps) {
   return (
-    <div className="bg-white rounded-xl shadow-sm p-4">
-      <div className="flex items-start mb-3">
-        <div className="flex-shrink-0 mr-3">
-          {/* <Image
-            src="/placeholder.svg?height=48&width=48"
-            alt="Profile picture"
-            width={48}
-            height={48}
-            className="rounded-full"
-          /> */}
+    <Card className="overflow-hidden">
+      <CardContent className="p-4">
+        <div className="flex gap-3">
+          <Avatar className="h-10 w-10 flex-shrink-0">
+            {avatarUrl ? (
+              <AvatarImage src={avatarUrl} alt={username} />
+            ) : (
+              <User className="h-6 w-6" />
+            )}
+            <AvatarFallback>{username.charAt(0)}</AvatarFallback>
+          </Avatar>
 
-          <User />
-        </div>
-        <div className="flex-1">
-          <div className="flex justify-between">
-            <div>
-              <span className="font-medium">mynameismya</span>
-              <span className="text-gray-500 text-sm ml-1">· 17h</span>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="font-medium text-sm">{username}</span>
+                <span className="text-xs text-muted-foreground ml-2">• {timeAgo}</span>
+              </div>
+              <MoreHorizontal className="h-4 w-4 text-muted-foreground cursor-pointer" />
             </div>
-            <button className="text-gray-500">
-              <MoreHorizontal className="h-5 w-5" />
-            </button>
+            <a href={organizationUrl} className="text-xs text-primary hover:underline">{organization}</a>
+
+            <div className="text-sm mt-2 mb-3 whitespace-pre-line leading-snug">
+              {content}
+            </div>
+
+            {imageUrl && (
+              <div className="w-full h-48 rounded-lg overflow-hidden mb-3">
+                <img src={imageUrl} alt="Post" className="w-full h-full object-cover" />
+              </div>
+            )}
+
+            <div className="flex items-center gap-4 text-muted-foreground mt-2">
+              <button className="flex items-center gap-1 hover:text-primary transition-colors">
+                <Heart className="w-4 h-4" />
+                <span className="text-xs">{likes}</span>
+              </button>
+              <button className="flex items-center gap-1 hover:text-primary transition-colors">
+                <MessageCircle className="w-4 h-4" />
+                <span className="text-xs">{comments}</span>
+              </button>
+              <button className="flex items-center gap-1 hover:text-primary transition-colors">
+                <Share2 className="w-4 h-4" />
+                <span className="text-xs">{shares}</span>
+              </button>
+            </div>
           </div>
-          <div className="text-blue-500 font-medium mt-1">#feedthehungry</div>
-          <p className="mt-2">
-            The quick, brown fox jumps over a lazy dog. DJs flock by animal
-            welfare quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog,
-            flick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex!
-          </p>
         </div>
-      </div>
-      <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-100 text-gray-500">
-        <button className="flex items-center space-x-2">
-          <Heart className="h-5 w-5" />
-          <span>258</span>
-        </button>
-        <button className="flex items-center space-x-2">
-          <MessageSquare className="h-5 w-5" />
-          <span>15</span>
-        </button>
-        <button className="flex items-center space-x-2">
-          <Share2 className="h-5 w-5" />
-          <span>3</span>
-        </button>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }

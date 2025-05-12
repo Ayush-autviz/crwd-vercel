@@ -1,5 +1,4 @@
-import { ArrowLeft, Bell, ChevronRight } from "lucide-react";
-import Image from "next/image";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -12,59 +11,6 @@ import PopularPosts from "@/components/PopularPosts";
 import ProfileNavbar from "@/components/profile/ProfileNavbar";
 
 export default function HomePage() {
-  // Sample data for topics
-  const topics = [
-    {
-      name: "NIH Funding",
-      posts: "4.2k Posts",
-      users: [
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U1" },
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U2" },
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U3" },
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U4" },
-      ],
-    },
-    {
-      name: "Harvard",
-      posts: "10k Posts",
-      users: [
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U1" },
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U2" },
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U3" },
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U4" },
-      ],
-    },
-    {
-      name: "#givingthursday",
-      posts: "15k Posts",
-      users: [
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U1" },
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U2" },
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U3" },
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U4" },
-      ],
-    },
-    {
-      name: "National Parks",
-      posts: "10k Posts",
-      users: [
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U1" },
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U2" },
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U3" },
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U4" },
-      ],
-    },
-    {
-      name: "Columbia",
-      posts: "10k Posts",
-      users: [
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U1" },
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U2" },
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U3" },
-        { avatar: "/placeholder.svg?height=30&width=30", fallback: "U4" },
-      ],
-    },
-  ];
   const topi: any = [
     {
       id: "1",
@@ -181,7 +127,7 @@ export default function HomePage() {
             <Input
               type="search"
               placeholder="Search"
-              className="bg-muted/50 border-none"  
+              className="bg-muted/50 border-none"
               //@ts-ignore
               prefix={
                 <svg
@@ -235,7 +181,7 @@ export default function HomePage() {
               ))}
             </div>
           </div> */}
-          <div className="px-4">
+          <div className="p-4 md:p-0">
             <TopicsList topics={topi} />
           </div>
 
@@ -243,49 +189,18 @@ export default function HomePage() {
           <div className="px-4 mt-8 md:px-0 md:mt-10">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-semibold">Suggested CRWD's</h2>
-              <Button variant="link" className="text-[#2b7fff] p-0 h-auto">
-                Create a CRWD
-              </Button>
+              <Link href="/create-crwd">
+                <Button variant="link" className="text-primary p-0 h-auto">
+                  Create a CRWD
+                </Button>
+              </Link>
             </div>
             <div className="overflow-x-auto pb-2">
               <div className="flex space-x-4 min-w-max">
                 {suggestedCRWDs.map((crwd, index) => (
-                  // <Card
-                  //   key={index}
-                  //   className="bg-muted/30 w-[280px] flex-shrink-0"
-                  // >
-                  //   <CardContent className="p-4">
-                  //     <div className="flex items-center justify-between">
-                  //       <div className="flex items-center">
-                  //         <Avatar className="h-12 w-12 mr-3">
-                  //           <AvatarImage
-                  //             src={crwd.image || "/placeholder.svg"}
-                  //             alt={crwd.name}
-                  //           />
-                  //           <AvatarFallback>
-                  //             {crwd.name.charAt(0)}
-                  //           </AvatarFallback>
-                  //         </Avatar>
-                  //         <div>
-                  //           <h3 className="font-medium">{crwd.name}</h3>
-                  //           <p className="text-sm text-muted-foreground">
-                  //             {crwd.members}
-                  //           </p>
-                  //           <p className="text-sm text-muted-foreground">
-                  //             {crwd.description}
-                  //           </p>
-                  //         </div>
-                  //       </div>
-                  //     </div>
-                  //     <Button className="w-full mt-3 bg-primary hover:bg-primary/90">
-                  //       Join
-                  //     </Button>
-                  //   </CardContent>
-                  // </Card>
-
                   <div
                     key={index}
-                    className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                    className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card  w-[340px] flex-shrink-0"
                   >
                     <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
                       <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
@@ -301,12 +216,15 @@ export default function HomePage() {
                         <h3 className="font-medium text-sm truncate">
                           {crwd.name}
                         </h3>
-                        <p className="text-xs text-gray-500 truncate">
+                        <p className="text-xs text-muted-foreground truncate">
+                          {crwd.members}
+                        </p>
+                        <p className="text-xs text-muted-foreground truncate">
                           {crwd.description}
                         </p>
                       </div>
                     </div>
-                    <Button className="bg-blue-500 text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
+                    <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
                       Visit
                     </Button>
                   </div>
@@ -336,53 +254,32 @@ export default function HomePage() {
           {/* Suggested Causes Section */}
           <div className="px-4 mt-8 md:px-0 md:mt-10">
             <h2 className="text-lg font-semibold mb-4">Suggested causes</h2>
-            <div className="space-y-4">
-              {suggestedCauses.map((crwd, index) => (
-                // <div key={index} className="flex items-center justify-between">
-                //   <div className="flex items-center">
-                //     <Avatar className="h-12 w-12 mr-3">
-                //       <AvatarImage
-                //         src={cause.image || "/placeholder.svg"}
-                //         alt={cause.name}
-                //       />
-                //       <AvatarFallback>{cause.name.charAt(0)}</AvatarFallback>
-                //     </Avatar>
-                //     <div>
-                //       <h3 className="font-medium">{cause.name}</h3>
-                //       <p className="text-sm text-muted-foreground">
-                //         {cause.description}
-                //       </p>
-                //     </div>
-                //   </div>
-                //   <Button className="bg-primary hover:bg-primary/90">
-                //     Visit
-                //   </Button>
-                // </div>
-
+            <div className="space-y-3">
+              {suggestedCauses.map((cause, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                  className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card "
                 >
                   <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
                     <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
-                      {crwd.image && (
+                      {cause.image && (
                         <img
-                          src={crwd.image}
-                          alt={crwd.name}
+                          src={cause.image}
+                          alt={cause.name}
                           className="object-cover"
                         />
                       )}
                     </Avatar>
                     <div className="min-w-0">
                       <h3 className="font-medium text-sm truncate">
-                        {crwd.name}
+                        {cause.name}
                       </h3>
-                      <p className="text-xs text-gray-500 truncate">
-                        {crwd.description}
+                      <p className="text-xs text-muted-foreground truncate">
+                        {cause.description}
                       </p>
                     </div>
                   </div>
-                  <Button className="bg-blue-500 text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
+                  <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
                     Visit
                   </Button>
                 </div>
@@ -396,102 +293,52 @@ export default function HomePage() {
           </div>
 
           {/* Causes and CRWDs near you Section */}
-          <div className="px-4 mt-8 pb-8 md:px-0 md:mt-10">
+          <div className="px-4 mt-8 pb-8 md:px-0 md:mt-4">
             <h2 className="text-lg font-semibold mb-4">
               Causes and CRWD's near you
             </h2>
-            <div className="space-y-4">
-              {nearbyCauses.map((crwd, index) => (
-                // <div key={index} className="flex items-center justify-between">
-                //   <div className="flex items-center">
-                //     <Avatar className="h-12 w-12 mr-3">
-                //       <AvatarImage
-                //         src={cause.image || "/placeholder.svg"}
-                //         alt={cause.name}
-                //       />
-                //       <AvatarFallback>{cause.name.charAt(0)}</AvatarFallback>
-                //     </Avatar>
-                //     <div>
-                //       <h3 className="font-medium">{cause.name}</h3>
-                //       <p className="text-sm text-muted-foreground">
-                //         {cause.description}
-                //       </p>
-                //     </div>
-                //   </div>
-                //   <Button className="bg-primary hover:bg-primary/90">
-                //     Visit
-                //   </Button>
-                // </div>
-
+            <div className="space-y-3">
+              {nearbyCauses.map((cause, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                  className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card "
                 >
                   <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
                     <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
-                      {crwd.image && (
+                      {cause.image && (
                         <img
-                          src={crwd.image}
-                          alt={crwd.name}
+                          src={cause.image}
+                          alt={cause.name}
                           className="object-cover"
                         />
                       )}
                     </Avatar>
                     <div className="min-w-0">
                       <h3 className="font-medium text-sm truncate">
-                        {crwd.name}
+                        {cause.name}
                       </h3>
-                      <p className="text-xs text-gray-500 truncate">
-                        {crwd.description}
+                      <p className="text-xs text-muted-foreground truncate">
+                        {cause.description}
                       </p>
                     </div>
                   </div>
-                  <Button className="bg-blue-500 text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
+                  <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
                     Visit
                   </Button>
                 </div>
               ))}
             </div>
           </div>
+          <div className="mr-auto  ">
+        <PopularPosts />
+      </div>
         </div>
 
         {/* Sidebar - Only visible on desktop */}
         <div className="hidden md:block md:col-span-4">
           <Card>
-            <CardContent className="p-6">
-              {/* <h2 className="text-xl font-bold mb-4">Trending Topics</h2> */}
-              {/* <div className="space-y-4">
-                {topics.slice(0, 3).map((topic, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between"
-                  >
-                    <div>
-                      <h3 className="font-medium">{topic.name}</h3>
-                      <div className="flex items-center mt-1">
-                        <div className="flex -space-x-2 mr-2">
-                          {topic.users.map((user, userIndex) => (
-                            <Avatar
-                              key={userIndex}
-                              className="h-6 w-6 border-2 border-background"
-                            >
-                              <AvatarImage
-                                src={user.avatar || "/placeholder.svg"}
-                                alt={`User ${userIndex + 1}`}
-                              />
-                              <AvatarFallback>{user.fallback}</AvatarFallback>
-                            </Avatar>
-                          ))}
-                        </div>
-                        <span className="text-xs text-muted-foreground">
-                          {topic.posts}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div> */}
-
+            <CardContent className="">
+              <h2 className="text-xl font-bold mb-4">Trending Topics</h2>
               <TopicsList topics={topi} />
               <Button variant="link" className="text-primary p-0 h-auto mt-2">
                 See all topics
@@ -500,7 +347,7 @@ export default function HomePage() {
           </Card>
 
           <Card className="mt-6">
-            <CardContent className="p-6">
+            <CardContent className="">
               <h2 className="text-xl font-bold mb-4">Popular Categories</h2>
               <div className="overflow-x-auto pb-2">
                 <div className="flex flex-wrap gap-2">
@@ -524,22 +371,20 @@ export default function HomePage() {
           </Card>
 
           <Card className="mt-6">
-            <CardContent className="p-6">
+            <CardContent className="">
               <h2 className="text-xl font-bold mb-4">Create Your Own</h2>
               <p className="text-muted-foreground mb-4">
                 Start your own CRWD to support a cause you care about or connect
                 with like-minded individuals.
               </p>
-              <Button className="w-full bg-[#2b7fff] hover:bg-primary/90">
+              <Button className="w-full">
                 Create a CRWD
               </Button>
             </CardContent>
           </Card>
         </div>
       </div>
-      <div className="mr-auto max-w-[50rem] px-4">
-        <PopularPosts />
-      </div>
+
     </div>
   );
 }

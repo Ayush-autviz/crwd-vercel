@@ -1,4 +1,5 @@
 import React from "react";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 interface Topic {
   id: string;
@@ -7,32 +8,44 @@ interface Topic {
   avatars: string[];
 }
 
-const TopicsList = ({ topics }: any) => {
+interface TopicsListProps {
+  topics: Topic[];
+  showTitle?: boolean;
+}
+
+const TopicsList = ({ topics, showTitle = true }: TopicsListProps) => {
   return (
-    <div>
-      <h2 className="text-base font-medium text-gray-800 mb-3 px-4">Topics</h2>
-      <div className="space-y-3">
-        {topics.map((topic: any) => (
+    <div className="w-full">
+      {showTitle && (
+        <h2 className="text-lg font-semibold">Topics</h2>
+      )}
+      <div className="space-y-2">
+        {topics.map((topic) => (
           <div
             key={topic.id}
-            className="flex justify-between items-center hover:bg-gray-50 p-2 rounded-md cursor-pointer transition-colors"
+            className="flex justify-between items-center hover:bg-muted/50 py-3 rounded-md cursor-pointer transition-colors"
           >
-            <div className="flex items-center">
-              <div className="flex -space-x-2 mr-3">
-                {topic.avatars.map((avatar: any, index: any) => (
-                  <div
+            <div className="flex items-center min-w-0">
+              <div className="flex -space-x-2 mr-3 flex-shrink-0">
+                {topic.avatars.slice(0, 3).map((avatar, index) => (
+                  <Avatar
                     key={index}
-                    className="w-6 h-6 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center overflow-hidden"
+                    className="w-6 h-6 border-2 border-background"
                   >
-                    <span className="text-xs text-gray-600">
+                    <AvatarFallback className="text-xs bg-muted">
                       {avatar.charAt(0)}
-                    </span>
-                  </div>
+                    </AvatarFallback>
+                  </Avatar>
                 ))}
+                {topic.avatars.length > 3 && (
+                  <div className="w-6 h-6 rounded-full bg-muted border-2 border-background flex items-center justify-center text-xs">
+                    +{topic.avatars.length - 3}
+                  </div>
+                )}
               </div>
-              <span className="text-sm font-medium">{topic.name}</span>
+              <span className="text-sm font-medium truncate">{topic.name}</span>
             </div>
-            <span className="text-xs text-gray-500">{topic.posts} Posts</span>
+            <span className="text-xs text-muted-foreground whitespace-nowrap ml-2">{topic.posts} Posts</span>
           </div>
         ))}
       </div>

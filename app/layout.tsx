@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+// Using only light theme
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "React Vite",
-  description: "React Vite",
+  title: "CRWD",
+  description: "CRWD - Connect with causes you care about",
 };
 
 import {
@@ -31,6 +32,7 @@ import {
   ArrowLeft,
   ArrowRightLeft,
   Heart,
+  Plus,
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -73,14 +75,22 @@ export default function RootLayout({
                       <span>Home</span>
                     </Button>
                   </Link>
-                  <Button variant="ghost" className="w-full justify-start">
-                    <Search className="mr-2 h-4 w-4" />
-                    <span>Discover</span>
-                  </Button>
-                  <Link href="/donation">
+                  <Link href="/search">
                     <Button variant="ghost" className="w-full justify-start">
-                      <Box className="mr-2 h-4 w-4" />
-                      <span>Donation Box</span>
+                      <Search className="mr-2 h-4 w-4" />
+                      <span>Search</span>
+                    </Button>
+                  </Link>
+                  <Link href="/create-post">
+                    <Button variant="ghost" className="w-full justify-start">
+                      <Plus className="mr-2 h-4 w-4" />
+                      <span>Post</span>
+                    </Button>
+                  </Link>
+                  <Link href="/notifications">
+                    <Button variant="ghost" className="w-full justify-start">
+                      <Bell className="mr-2 h-4 w-4" />
+                      <span>Activity</span>
                     </Button>
                   </Link>
                   <Link href={"/profile"}>
@@ -132,19 +142,21 @@ export default function RootLayout({
                 </div>
               </ScrollArea>
             <div className="border-t p-4">
-              <div className="flex items-center gap-3">
-                <Avatar>
-                  <AvatarImage
-                    // src="/placeholder.svg?height=40&width=40"
-                    alt="User"
-                  />
-                  <AvatarFallback>JD</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="text-sm font-medium">John Doe</p>
-                  <p className="text-xs text-muted-foreground">
-                    john@example.com
-                  </p>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <Avatar>
+                    <AvatarImage
+                      // src="/placeholder.svg?height=40&width=40"
+                      alt="User"
+                    />
+                    <AvatarFallback>JD</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <p className="text-sm font-medium">John Doe</p>
+                    <p className="text-xs text-muted-foreground">
+                      john@example.com
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -220,26 +232,38 @@ export default function RootLayout({
             </Link>
             <Link
               className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground"
-              href={"/"}
+              href={"/search"}
             >
               <Button
                 variant="ghost"
                 className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground"
               >
                 <Search className="h-5 w-5" />
-                <span className="text-xs ">Discover</span>
+                <span className="text-xs ">Search</span>
               </Button>
             </Link>
             <Link
               className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground"
-              href={"/donation"}
+              href={"/create-post"}
             >
               <Button
                 variant="ghost"
                 className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground"
               >
-                <Box className="h-5 w-5" />
-                <span className="text-xs ">Donation Box</span>
+                <Plus className="h-5 w-5" />
+                <span className="text-xs ">Post</span>
+              </Button>
+            </Link>
+            <Link
+              className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground"
+              href={"/notifications"}
+            >
+              <Button
+                variant="ghost"
+                className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground"
+              >
+                <Bell className="h-5 w-5" />
+                <span className="text-xs ">Activity</span>
               </Button>
             </Link>
             <Link

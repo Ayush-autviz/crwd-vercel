@@ -43,8 +43,8 @@ const DonationBox = () => {
           {/* <ProfileNavbar  /> */}
           <div className="flex items-center p-4 ">
           {/* {step   && ( */}
-              <Link href="/" className="p-1 md:hidden">
-          <X size={20} />
+              <Link href="/"  className=" text-xl font-bold md:hidden">
+          <X strokeWidth={2} size={20} />
               </Link>
             {/* )} */}
             {/* {step > 1 && activeTab !== "onetime" && (  
@@ -52,7 +52,7 @@ const DonationBox = () => {
                <X size={20} />
              </button>
             )} */}
-            <h1 className="text-center flex-1 font-medium">Donation Box</h1>
+            <h1 className="text-center flex-1 text-xl font-bold">Donation Box</h1>
             <div className="w-5"></div> {/* Spacer for alignment */}
           </div>
 

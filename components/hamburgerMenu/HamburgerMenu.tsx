@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import {
   Menu as MenuIcon,
@@ -12,8 +12,10 @@ import {
   Shuffle,
   Info,
   HelpCircle,
+  X,
 } from 'lucide-react';
 import Link from 'next/link';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const menuItems = [
 //   { icon: <Plus size={20} />, label: 'Create a CRWD', href: '#' },
@@ -31,50 +33,65 @@ const HamburgerMenu: React.FC = () => (
   <div className="md:hidden">
     <Sheet>
       <SheetTrigger asChild className='p-2'>
-        {/* <Button variant="ghost" size="icon" className="  w-16 h-10 bg-green-300"> */}
-          <MenuIcon  size={40} className='w-11 h-11'/>
-        {/* </Button> */}
+        <MenuIcon size={42} className='text-black' />
       </SheetTrigger>
-      <SheetContent side="left" className="p-0 w-[100vw] pt-16 ">
+      <SheetContent side="left" className="p-0 w-[85vw] max-w-[320px] border-r shadow-lg">
+        {/* Header with close button */}
+        {/* <div className="flex items-center justify-between p-4 border-b">
+          <h2 className="font-semibold">Menu</h2>
+          <SheetClose className="rounded-full p-1 hover:bg-muted">
+            <X size={18} />
+          </SheetClose>
+        </div> */}
+
         {/* Profile */}
-        <div className="flex items-center gap-3 px-10 py-6 border-y border-gray-200">
-          <img
-            src="https://randomuser.me/api/portraits/women/44.jpg"
-            alt="Profile"
-            className="w-12 h-12 rounded-lg object-cover"
-          />
+        <div className="flex items-center gap-3 p-4 border-b">
+          <Avatar className="h-12 w-12">
+            <AvatarImage
+              src="https://randomuser.me/api/portraits/women/44.jpg"
+              alt="Profile"
+            />
+            <AvatarFallback>MY</AvatarFallback>
+          </Avatar>
           <div className="flex flex-col">
-            <span className="font-semibold text-sm text-gray-900">My Name is Mya</span>
-            <span className="text-xs text-gray-500">Go to your profile</span>
+            <span className="font-semibold text-sm">My Name is Mya</span>
+            <Link href="/profile" className="text-xs text-muted-foreground hover:text-primary">
+              Go to your profile
+            </Link>
           </div>
         </div>
+
         {/* Menu List */}
-        <div className="flex flex-col gap-2 mt-2">
-        <Link
-            //   key={label}
-            href={"/profile"}
-              className="flex items-center gap-5 px-10 py-5 text-gray-500 text-sm font-medium hover:bg-gray-50 transition"
-            >
-              <span className="text-lg w-6 flex justify-center"><Plus size={20} /></span>
-              <span>Create a CRWD</span>
-            </Link>
+        <div className="flex flex-col py-2">
+          <Link
+            href="/create-crwd"
+            className="flex items-center gap-3 px-4 py-3 text-sm font-medium hover:bg-muted/50 transition-colors"
+          >
+            <Plus size={18} className="text-primary" />
+            <span>Create a CRWD</span>
+          </Link>
+
           {menuItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className="flex items-center gap-5 px-10 py-5 text-gray-800 text-sm font-medium hover:bg-gray-50 transition"
+              className="flex items-center gap-3 px-4 py-3 text-sm font-medium hover:bg-muted/50 transition-colors"
             >
-              <span className="text-lg w-6 flex justify-center">{item.icon}</span>
+              <span className="text-primary">{item.icon}</span>
               <span>{item.label}</span>
             </Link>
           ))}
         </div>
-        {/* <div className="flex-1" /> */}
-        <div className="px-10 py-4 text-xs text-blue-500">Privacy Policy</div>
-        <div className="px-10 py-4 text-xs text-blue-500">Terms of Service</div>
+
+        <div className="mt-auto border-t">
+          <div className="flex gap-4 p-4">
+            <Link href="/privacy" className="text-xs text-primary">Privacy Policy</Link>
+            <Link href="/terms" className="text-xs text-primary">Terms of Service</Link>
+          </div>
+        </div>
       </SheetContent>
     </Sheet>
   </div>
 );
 
-export default HamburgerMenu; 
+export default HamburgerMenu;

@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 interface Community {
   id: string;
@@ -32,9 +34,9 @@ const SuggestedCommunities = () => {
         <h2 className="text-base md:text-lg font-medium text-gray-800">
           Suggested CRWDs
         </h2>
-        <a href="#" className="text-sm text-blue-600 font-medium">
-          Create a CRWD
-        </a>
+        <Link href="/create-crwd">
+          <Button variant="link">Create a CRWD</Button>
+        </Link>
       </div>
 
       <div className="space-y-3 md:space-y-4">
