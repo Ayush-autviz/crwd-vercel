@@ -41,7 +41,7 @@ const ProfileActivity: React.FC<ProfileActivityProps> = ({ updates }) => (
                   </div>
                   <EllipsisIcon className="h-4 w-4 text-muted-foreground cursor-pointer" />
                 </div>
-                <div href={update.orgUrl} className="text-xs text-primary hover:underline">{update.org}</div>
+                <div className="text-xs text-primary hover:underline">{update.org}</div>
 
                 <div className="text-sm mt-2 mb-3 whitespace-pre-line leading-snug">
                   {update.text}
