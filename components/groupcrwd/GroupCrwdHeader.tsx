@@ -1,17 +1,32 @@
 import React from 'react';
 import { Share2, Bookmark, UserPlus } from 'lucide-react';
 import ProfileInterests from '../profile/ProfileInterests';
+import { Button } from '../ui/button';
 
 const orgAvatars = [
-  '/org1.png', '/org2.png', '/org3.png', '/org4.png', '/org5.png', '/org6.png', '/org7.png', '/org8.png', '/org9.png', '/org10.png',
+  "adidas.jpg",
+  "benz.jpg",
+  "maz.jpg",
+  "starbucks.jpg",
+  "hy.jpg",
+  "por.jpg",
+  "tesla.jpg",
+  "astronmartin.jpg",
+  "mclaren.jpg",
 ];
 
 const GroupCrwdHeader: React.FC = () => (
   <div className="bg-white  p-4 mx-2 mt-4 mb-4 flex flex-col gap-4">
      <div className="flex items-center gap-2 ml-auto">
-        <button className="px-4 py-1 bg-gray-100 rounded-full hover:bg-gray-200"><Share2 size={20} /></button>
-        <button className="px-4 py-1 bg-gray-100 rounded-full hover:bg-gray-200"><Bookmark size={20} /></button>
-        <button className="border text-blue-600 text-lg px-6 py-1 rounded-xl font-semibold">Join</button>
+        <Button  variant='outline'>
+        <Share2 size={20} />
+        </Button>
+        <Button  variant='outline'>
+        <Bookmark size={20} />
+        </Button>
+        <Button  variant='default'>
+        Join
+        </Button>
       </div>
     {/* Top Row */}
     <div className="flex items-center justify-between ">
@@ -66,7 +81,7 @@ const GroupCrwdHeader: React.FC = () => (
       Currently supporting <span className="font-semibold">10 Non Profits</span>: Grocery Spot, Food for Thought, Meals on Wheels, American Red Cross, & Pizza Hut… <span className="text-blue-600 underline cursor-pointer">See More</span>
     </div>
     {/* Donate Button */}
-    <button className="w-full bg-blue-600 text-white rounded-md py-4 font-semibold text-base mt-2 shadow-lg hover:bg-blue-700 transition">Donate</button>
+    {/* <button className="w-full bg-blue-600 text-white rounded-md py-4 font-semibold text-base mt-2 shadow-lg hover:bg-blue-700 transition">Donate</button> */}
   </div>
 );
 

@@ -27,11 +27,11 @@ const updates = [
 ];
 
 const GroupCrwdUpdates: React.FC = () => (
-  <div className="px-2 pt-2 pb-2 border-b border-gray-200">
-    <div className="flex items-center justify-between mb-2 px-2">
+  <div className="px-4 pt-2 pb-2 ">
+    {/* <div className="flex items-center justify-between mb-2 px-2">
       <span className="font-semibold text-base">4 Updates</span>
       <button className="bg-blue-100 text-blue-600 rounded-full p-1"><Plus size={18} /></button>
-    </div>
+    </div> */}
     <ProfileActivity
           updates={profileActivity}
         />

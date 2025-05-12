@@ -1,4 +1,7 @@
 import React from 'react';
+import { Avatar } from '../ui/avatar';
+import { Button } from '../ui/button';
+import { ChevronRight } from 'lucide-react';
 
 const suggested = [
   {
@@ -15,26 +18,65 @@ const suggested = [
   },
 ];
 
+
+const suggestedCauses = [
+  {
+    name: "The Red Cross",
+    description: "An health organization that...",
+    image: "/adidas.jpg",
+  },
+  {
+    name: "St. Judes",
+    description: "The leading children's hea...",
+    image: "/benz.jpg",
+  },
+  // {
+  //   name: "Women's Healthcare of At...",
+  //   description: "We are Atlanta's #1 healthca...",
+  //   image: "/mclaren.jpg",
+  // },
+];
+
 const GroupCrwdSuggested: React.FC = () => (
-  <div className="px-4 pt-2 pb-2">
-    <div className="flex items-center justify-between mb-2 px-2">
-      <span className="font-semibold text-sm">Suggested CRWD's</span>
-      <a href="#" className="text-blue-600 text-xs font-medium flex items-center gap-1">Discover More <span className="text-lg">&rarr;</span></a>
-    </div>
-    <div className="flex flex-col gap-3 px-5">
-      {suggested.map((s, i) => (
-        <div key={i} className="bg-white rounded-xl shadow-sm p-2 flex items-center gap-3">
-          <img src={s.avatar} alt={s.name} className="w-14 h-14 rounded-lg object-cover" />
-          <div className="flex flex-col flex-1 min-w-0">
-            <span className="font-semibold text-base text-gray-900 truncate">{s.name}</span>
-            <span className="text-sm text-gray-500 truncate">{s.members} Members</span>
-            <span className="text-sm text-gray-500 truncate">{s.subtitle}</span>
+  <div className="mt-4 px-4">
+  <h2 className="text-lg font-semibold mb-4">Suggested CRWDS</h2>
+  <div className="space-y-3">
+    {suggestedCauses.map((cause, index) => (
+      <div
+        key={index}
+        className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card "
+      >
+        <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
+          <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
+            {cause.image && (
+              <img
+                src={cause.image}
+                alt={cause.name}
+                className="object-cover"
+              />
+            )}
+          </Avatar>
+          <div className="min-w-0">
+            <h3 className="font-medium text-sm truncate">
+              {cause.name}
+            </h3>
+            <p className="text-xs text-muted-foreground truncate">
+              {cause.description}
+            </p>
           </div>
-          <button className="bg-blue-500 text-white text-xs px-6 py-2 rounded-lg font-semibold">Join</button>
         </div>
-      ))}
-    </div>
+        <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
+          Visit
+        </Button>
+      </div>
+    ))}
   </div>
+  <div className="flex justify-end mt-4">
+    <Button variant="link" className="text-primary flex items-center">
+      Discover More <ChevronRight className="h-4 w-4 ml-1" />
+    </Button>
+  </div>
+</div>
 );
 
 export default GroupCrwdSuggested; 

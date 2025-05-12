@@ -2,6 +2,7 @@ import React from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { EllipsisIcon, Heart, MessageCircle, Share2 } from 'lucide-react';
 import { Card, CardContent } from '../ui/card';
+import Link from 'next/link';
 
 interface Update {
   avatarUrl: string;
@@ -41,7 +42,9 @@ const ProfileActivity: React.FC<ProfileActivityProps> = ({ updates }) => (
                   </div>
                   <EllipsisIcon className="h-4 w-4 text-muted-foreground cursor-pointer" />
                 </div>
+                <Link href='/groupcrwd'>
                 <div className="text-xs text-primary hover:underline">{update.org}</div>
+                </Link>
 
                 <div className="text-sm mt-2 mb-3 whitespace-pre-line leading-snug">
                   {update.text}
