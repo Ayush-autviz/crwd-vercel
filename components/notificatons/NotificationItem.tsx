@@ -92,11 +92,9 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
               </Link>
               <span className="text-xs text-gray-400">{time}</span>
             </div>
-            <span className="text-gray-700 text-[0.98rem]">
-              {message} <Link href={link || "#"} className="text-blue-600 hover:underline">{link}</Link>
-            </span>
+            {message && <span className="text-gray-700 text-[0.98rem]">{message}</span>}
             <div className="mt-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 mb-2">
                 <Link href="/feed-hungry">
                   <img
                     src={groupAvatar}
@@ -110,6 +108,23 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                   </span>
                 </Link>
               </div>
+              <Link href={link || "#"} className="block">
+                <div className="flex gap-3">
+                  <div className="w-20 h-20 bg-gray-200 rounded-md overflow-hidden">
+                    <img
+                      src="https://placehold.co/80x80/e6e7eb/818cf8"
+                      alt="Link preview"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-medium text-gray-900 line-clamp-1">Health Article: Latest Research</h4>
+                    <p className="text-sm text-gray-600 line-clamp-2 mt-1">
+                      This article discusses the latest research findings on health and wellness, providing valuable insights for community members.
+                    </p>
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -132,7 +147,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
               </Link>
               <span className="text-xs text-gray-400">{time}</span>
             </div>
-            <span className="text-gray-700 text-[0.98rem]">{message}</span>
+            {message && <span className="text-gray-700 text-[0.98rem]">{message}</span>}
             <div className="mt-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
               <div className="flex items-center gap-2 mb-2">
                 <Link href="/feed-hungry">
@@ -151,6 +166,9 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
               <div className="flex flex-col">
                 <span className="font-semibold text-gray-900">{eventTitle}</span>
                 <span className="text-sm text-gray-600">{eventDate}</span>
+                <p className="text-sm text-gray-600 mt-2">
+                  Join us for this community fundraiser event to support our cause. There will be food, music, and activities for everyone.
+                </p>
               </div>
             </div>
           </div>

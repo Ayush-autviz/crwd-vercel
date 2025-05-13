@@ -16,6 +16,7 @@ const SettingsPage: React.FC = () => {
           <button className="bg-blue-600 text-white rounded-full px-12 py-2 font-semibold shadow hover:bg-blue-700 transition">Save</button>
         </div>
       </div>
+      <div className="h-20"/>
     </div>
   );
 };

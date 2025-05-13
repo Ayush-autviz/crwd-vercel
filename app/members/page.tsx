@@ -10,6 +10,7 @@ import { ArrowLeft, Bell, Bookmark, Menu, Search, Share } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
+import ProfileNavbar from "@/components/profile/ProfileNavbar";
 
 export default function MembersScreen() {
   // Sample members data
@@ -33,23 +34,7 @@ export default function MembersScreen() {
     <main className="pb-16 md:pb-0">
       {/* Mobile Content */}
       <div className="md:hidden">
-        <header className="flex items-center justify-between p-4 bg-card border-b sticky top-0 z-10">
-          <div className="flex items-center">
-            <Link href="/">
-            <Button variant="ghost" size="icon" className="mr-2">
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-            </Link>
-
-            <h1 className="text-xl font-bold">Feed the hungry</h1>
-          </div>
-          <div className="flex items-center">
-          <Button variant="ghost" size="icon" className="">
-          <Menu className="h-5 w-5" />
-          </Button>
-           
-          </div>
-        </header>
+        <ProfileNavbar title="Feed the hungry" />
 
         {/* Tab Navigation */}
         <div className="flex justify-around border-b px-4 mt-5 ">
@@ -98,7 +83,7 @@ export default function MembersScreen() {
                 scrollbarWidth: "none" /* Firefox */,
                 msOverflowStyle: "none" /* IE and Edge */,
               }}
-              
+
               >
                 {members.map((member, index) => (
                   <div key={index} className="flex items-center justify-between py-2">
@@ -136,27 +121,7 @@ export default function MembersScreen() {
 
       {/* Desktop Content */}
       <div className="hidden md:block">
-      <header className="bg-card border-b p-[13.5px] flex items-center justify-between sticky top-0 z-10">
-      <Link className="flex items-center" href="/">
-            <Button variant="ghost" size="icon" className="mr-2">
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-            <h1 className="text-xl font-bold">Feed the hungry</h1>
-            </Link>
-            <div className="flex items-center space-x-4">
-              <Button variant="outline" className="flex items-center gap-2">
-                <Bell className="h-4 w-4" />
-                <span>Notifications</span>
-              </Button>
-              <div className="relative">
-                <div className="absolute z-10 top-[-2] right-0 w-3 h-3 bg-destructive rounded-full"></div>
-                <Avatar>
-                  <AvatarImage src="/placeholder.svg?height=40&width=40" alt="User" />
-                  <AvatarFallback>JD</AvatarFallback>
-                </Avatar>
-              </div>
-            </div>
-          </header>
+      <ProfileNavbar title="Feed the hungry" />
         <div className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column - Members Details */}
           <div className="lg:col-span-2 space-y-6">

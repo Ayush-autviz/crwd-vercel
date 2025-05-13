@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import ProfileNavbar from "@/components/profile/ProfileNavbar";
 import {
   ArrowLeft,
   Archive,
@@ -59,18 +60,7 @@ export default function feedHungry() {
     <main className="pb-16 md:pb-0">
       {/* Mobile Content */}
       <div className="md:hidden mx-auto bg-background min-h-screen">
-        <header className="flex items-center justify-between p-4 bg-card border-b sticky top-0 z-10">
-          <div className="flex h-5 w-5 items-center"></div>
-          <Image
-            src="/logo3.png"
-            width={100}
-            height={100}
-            alt="CRWD Logo"
-          />
-          <div className="flex items-center">
-            <HamburgerMenu />
-          </div>
-        </header>
+        <ProfileNavbar title="Feed the hungry" />
 
         <main className="pb-16">
           {/* Change 1: Adjusted layout to keep "Feed the hungry" and "supports" on one line, moved buttons to top-right */}
@@ -250,31 +240,7 @@ export default function feedHungry() {
       {/* Desktop Content */}
       <div className="hidden md:block">
         {/* Desktop Header */}
-        <header className="bg-card border-b p-[13.5px] flex items-center justify-between sticky top-0 z-10">
-          <h1 className="text-xl font-bold">Feed the hungry</h1>
-          <div className="flex items-center space-x-4">
-            <Link href="/donation">
-              <Button variant="outline" className="flex items-center gap-2">
-                <Archive className="h-4 w-4" />
-                <span>Donation Box</span>
-              </Button>
-            </Link>
-            <Button variant="outline" className="flex items-center gap-2">
-              <Bell className="h-4 w-4" />
-              <span>Notifications</span>
-            </Button>
-            <div className="relative">
-              <div className="absolute z-10 top-[-2] right-0 w-3 h-3 bg-destructive rounded-full"></div>
-              <Avatar>
-                <AvatarImage
-                  src="/placeholder.svg?height=40&width=40"
-                  alt="User"
-                />
-                <AvatarFallback>JD</AvatarFallback>
-              </Avatar>
-            </div>
-          </div>
-        </header>
+        <ProfileNavbar title="Feed the hungry" />
 
         {/* Desktop Main Content */}
         <div className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">

@@ -1,5 +1,5 @@
 import React from 'react';
-import SavedHeader from '@/components/saved/SavedHeader';
+import ProfileNavbar from '@/components/profile/ProfileNavbar';
 import SavedList, { SavedData } from '@/components/saved/SavedList';
 
 const savedItems: SavedData[] = [
@@ -23,10 +23,10 @@ const savedItems: SavedData[] = [
 const SavedPage: React.FC = () => (
   <div className="min-h-screen bg-white ">
     {/* <div className="w-full md:max-w-md md:bg-white md:rounded-2xl md:shadow-lg md:mt-12 md:mb-12"> */}
-      <SavedHeader />
+      <ProfileNavbar title="Saved" />
       <SavedList items={savedItems} />
     {/* </div> */}
   </div>
 );
 
-export default SavedPage; 
+export default SavedPage;
