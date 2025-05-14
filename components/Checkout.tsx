@@ -5,12 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from "next/link";
+import ManageDonationBox from "./ManageDonationBox";
 
 interface DonationOverviewProps {
   donationAmount?: number;
-
   onBack?: () => void;
-  onManage?: () => void;
 }
 
 const organizations = [
@@ -20,6 +19,7 @@ const organizations = [
     imageUrl: "/redcross.png",
     description:
       "This is a non-profit mission statement that summarizes the company's goals and...",
+    via: "betterdaze",
   },
   {
     id: "102",
@@ -80,16 +80,20 @@ export const Checkout = ({
   donationAmount = 25,
 
   onBack = () => {},
-  onManage = () => {},
 }: DonationOverviewProps) => {
   const [isMonthly] = useState(true);
   const isMobile = useIsMobile();
+  const [showManageDonationBox, setShowManageDonationBox] = useState(false);
   // Calculate equal distribution percentage
   const distributionPercentage =
     organizations.length > 0 ? Math.floor(100 / organizations.length) : 0;
 
+  if (showManageDonationBox) {
+    return <ManageDonationBox amount={donationAmount} causes={organizations} onBack={() => setShowManageDonationBox(false)} />;
+  }
+
   return (
-    <div className="flex flex-col h-full bg-gray-50 min-h-screen p-0 md:p-6 bg-white">
+    <div className="flex flex-col h-full bg-gray-50 min-h-screen p-0 md bg-white">
       {/* Header */}
       <div className="bg-blue-600 text-white p-5 pb-8 rounded-b-2xl shadow-md mb-6">
         <div className="flex justify-between items-center mb-4">
@@ -118,7 +122,7 @@ export const Checkout = ({
           </div>
           <div className="flex-1 flex justify-end items-center pl-4">
             <Button
-              onClick={onManage}
+              onClick={() => setShowManageDonationBox(true)}
               size="sm"
               className="bg-blue-400/30 text-white hover:bg-blue-400/50 rounded-full px-4 py-2"
             >

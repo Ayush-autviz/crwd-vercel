@@ -8,7 +8,7 @@ export default function CommunityGuideLines() {
         {/* <h1 className='text-2xl px-6 py-4'>Community Updates</h1> */}
         <div className='p-4'>
         <ProfileActivity
-        updates={profileActivity}
+        posts={profileActivity}
         />  
         </div>
     </section>

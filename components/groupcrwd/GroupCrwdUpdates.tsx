@@ -33,7 +33,7 @@ const GroupCrwdUpdates: React.FC = () => (
       <button className="bg-blue-100 text-blue-600 rounded-full p-1"><Plus size={18} /></button>
     </div> */}
     <ProfileActivity
-          updates={profileActivity}
+          posts={profileActivity}
         />
   </div>
 );

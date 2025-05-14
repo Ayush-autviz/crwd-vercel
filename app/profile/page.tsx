@@ -12,7 +12,6 @@ export default function Page() {
   return (
     <div className="pb-16 md:pb-0">
       <ProfileNavbar title="Profile"/>
-
       <div className="md:grid md:grid-cols-12 md:gap-6 md:p-6">
         {/* Main Content */}
         <div className="md:col-span-8">
@@ -28,7 +27,7 @@ export default function Page() {
             <ProfileInterests interests={["Environment", "Food Insecurity", "Education", "Healthcare"]} />
 
             <div className="py-4">
-              <ProfileActivity updates={profileActivity} />
+              <ProfileActivity posts={profileActivity} />
             </div>
           </div>
         </div>
