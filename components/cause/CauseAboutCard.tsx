@@ -28,8 +28,8 @@ const CauseAboutCard: React.FC = () => {
       </span>
     </div>
     <div className="text-lg text-gray-700">
-      {expanded ? fullDescription : shortDescription}
-      <div className="">
+      {fullDescription}
+      {/* <div className="mt-4">
         <button
           onClick={() => setExpanded(!expanded)}
           className="text-blue-600 font-medium cursor-pointer flex items-center gap-1 hover:text-blue-800"
@@ -46,7 +46,7 @@ const CauseAboutCard: React.FC = () => {
             </>
           )}
         </button>
-      </div>
+      </div> */}
     </div>
     <div className="text-sm flex gap-4 items-start  text-gray-600 ">
       <span className="font-semibold  gap-1 text-lg col-span-1">

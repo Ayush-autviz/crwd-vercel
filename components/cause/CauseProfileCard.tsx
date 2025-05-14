@@ -1,8 +1,13 @@
 import React from 'react';
-import { CheckCircle, Users, Heart, Bookmark, Upload, Award, ShieldCheck } from 'lucide-react';
+import { CheckCircle, Users, Heart, Bookmark, Upload, Award, ShieldCheck, ChevronDown } from 'lucide-react';
 import ProfileInterests from '../profile/ProfileInterests';
 import ClaimCauseDialog from './ClaimCauseDialog';
-const CauseProfileCard: React.FC = () => (
+
+interface CauseProfileCardProps {
+  onLearnMoreClick?: () => void;
+}
+
+const CauseProfileCard: React.FC<CauseProfileCardProps> = ({ onLearnMoreClick }) => (
   <div className="bg-white px-3 py-4 mx-3 mb-2 flex flex-col space-y-4">
     {/* CRWD Verified and Follow */}
     <div className="flex items-center gap-2">
@@ -24,6 +29,14 @@ const CauseProfileCard: React.FC = () => (
     {/* Bio */}
     <div className="text-lg text-gray-700">
       This is a bio about Non Profit and how they give back to their community so that users can learn about how their money is supporting others…
+      <div className="mt-2">
+        <button
+          onClick={onLearnMoreClick}
+          className="text-blue-600 font-medium cursor-pointer flex items-center gap-1 hover:text-blue-800"
+        >
+          Learn More
+        </button>
+      </div>
     </div>
     {/* Tags */}
     <ProfileInterests interests={['Animal Welfare', 'Environment', 'Food Insecurity']} className='px-0 border-none' />
