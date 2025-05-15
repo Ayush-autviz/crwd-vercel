@@ -224,7 +224,7 @@ export default function HomePage() {
                         </p>
                       </div>
                     </div>
-                    <Link href="/cause">
+                    <Link href="/groupcrwd">
                       <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
                         Visit
                       </Button>
@@ -241,13 +241,14 @@ export default function HomePage() {
             <div className="overflow-x-auto pb-2">
               <div className="flex space-x-2 min-w-max">
                 {categories.map((category, index) => (
-                  <Badge
-                    key={index}
-                    variant="secondary"
-                    className="bg-muted/50 hover:bg-muted text-foreground rounded-md px-4 py-2 whitespace-nowrap"
-                  >
-                    {category}
-                  </Badge>
+                  <Link href={`/search`} key={index}>
+                    <Badge
+                      variant="secondary"
+                      className="bg-muted/50 hover:bg-muted text-foreground rounded-md px-4 py-2 whitespace-nowrap"
+                    >
+                      {category}
+                    </Badge>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -290,9 +291,11 @@ export default function HomePage() {
               ))}
             </div>
             <div className="flex justify-end mt-4">
-              <Button variant="link" className="text-primary flex items-center">
-                Discover More <ChevronRight className="h-4 w-4 ml-1" />
-              </Button>
+              <Link href="/search">
+                <Button variant="link" className="text-primary flex items-center">
+                  Discover More <ChevronRight className="h-4 w-4 ml-1" />
+                </Button>
+              </Link>
             </div>
           </div>
 
@@ -346,9 +349,11 @@ export default function HomePage() {
             <CardContent className="">
               <h2 className="text-xl font-bold mb-4">Trending Topics</h2>
               <TopicsList topics={topi} />
-              <Button variant="link" className="text-primary p-0 h-auto mt-2">
-                See all topics
-              </Button>
+              <Link href="/search">
+                <Button variant="link" className="text-primary p-0 h-auto mt-2">
+                  See all topics
+                </Button>
+              </Link>
             </CardContent>
           </Card>
 
@@ -363,6 +368,7 @@ export default function HomePage() {
                     "Healthcare",
                     "Homelessness",
                   ].map((category, index) => (
+                    <Link href="/search">
                     <Badge
                       key={index}
                       variant="secondary"
@@ -370,6 +376,7 @@ export default function HomePage() {
                     >
                       {category}
                     </Badge>
+                    </Link>
                   ))}
                 </div>
               </div>

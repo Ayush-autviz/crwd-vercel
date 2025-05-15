@@ -13,6 +13,7 @@ import {
   Info,
   HelpCircle,
   X,
+  Settings,
 } from 'lucide-react';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -27,6 +28,7 @@ const menuItems = [
   { icon: <Shuffle size={20} />, label: 'Transaction history', href: '/transaction' },
   { icon: <Info size={20} />, label: 'About', href: '#' },
   { icon: <HelpCircle size={20} />, label: 'Help', href: '#' },
+  {icon:<Settings size={20}/>,label:"Settings",href:'/settings'}
 ];
 
 const HamburgerMenu: React.FC = () => (

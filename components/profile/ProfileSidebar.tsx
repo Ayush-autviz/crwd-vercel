@@ -4,6 +4,7 @@ import { Button } from '../ui/button';
 import { Star, Award, ChevronRight } from 'lucide-react';
 import { Card, CardContent } from '../ui/card';
 import { Badge } from '../ui/badge';
+import Link from 'next/link';
 
 const achievements = [
   { icon: <Star className="w-4 h-4 text-yellow-400" />, label: 'Top Volunteer 2024' },
@@ -60,9 +61,11 @@ const ProfileSidebar: React.FC = () => (
             </div>
           ))}
         </div>
-        <Button variant="link" className="text-primary p-0 -ml-2 h-auto mt-2 flex items-center">
-          See all <ChevronRight className="h-4 w-4 " />
-        </Button>
+        <Link href="/search">
+          <Button variant="link" className="text-primary p-0 -ml-2 h-auto mt-2 flex items-center">
+            See all <ChevronRight className="h-4 w-4 " />
+          </Button>
+        </Link>
       </CardContent>
     </Card>
 
@@ -72,6 +75,7 @@ const ProfileSidebar: React.FC = () => (
         <h2 className="text-xl font-bold mb-4">Trending Causes</h2>
         <div className="flex flex-wrap gap-2">
           {trendingCauses.map((cause, idx) => (
+            <Link href="/search">
             <Badge
               key={idx}
               variant="secondary"
@@ -79,6 +83,7 @@ const ProfileSidebar: React.FC = () => (
             >
               {cause}
             </Badge>
+            </Link>
           ))}
         </div>
       </CardContent>

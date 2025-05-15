@@ -118,14 +118,6 @@ export default function RootLayout({
                     <span>Saved</span>
                   </Button>
                   </Link>
-                  <Button variant="ghost" className="w-full justify-start cursor-pointer">
-                    <TrendingUp className="mr-2 h-4 w-4" />
-                    <span>Analytics</span>
-                  </Button>
-                  <Button variant="ghost" className="w-full justify-start cursor-pointer">
-                    <Calendar className="mr-2 h-4 w-4" />
-                    <span>Events</span>
-                  </Button>
                   <Link href={"/transaction-history"}>
                   <Button variant="ghost" className="w-full justify-start cursor-pointer">
                     <ArrowRightLeft className="mr-2 h-4 w-4" />

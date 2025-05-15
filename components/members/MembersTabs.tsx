@@ -37,7 +37,13 @@ const MembersTabs: React.FC = () => {
       {/* Mobile */}
       <div className="md:hidden">
         <ProfileNavbar title="Feed the hungry" />
-        <MembersTabNav activeTab={activeTab} setActiveTab={handleTabChange} />
+        <MembersTabNav
+          activeTab={activeTab}
+          setActiveTab={handleTabChange}
+          causesCount={1}
+          membersCount={members.length}
+          donationsCount={34}
+        />
         <div className=" py-2 mt-2">
           {activeTab === 'Cause' && (
             <div className="text-center text-muted-foreground mt-5 px-4">Cause details go here (1 Cause)</div>
@@ -79,7 +85,13 @@ const MembersTabs: React.FC = () => {
                     {/* Add share/save buttons here if needed */}
                   </div>
                 </div>
-                <MembersTabNav activeTab={activeTab} setActiveTab={handleTabChange} />
+                <MembersTabNav
+                  activeTab={activeTab}
+                  setActiveTab={handleTabChange}
+                  causesCount={1}
+                  membersCount={members.length}
+                  donationsCount={34}
+                />
                 {activeTab === 'Cause' && (
                   <div className="text-center text-muted-foreground mt-10">Cause details go here (1 Cause)</div>
                 )}
@@ -105,4 +117,4 @@ const MembersTabs: React.FC = () => {
   );
 };
 
-export default MembersTabs; 
+export default MembersTabs;

@@ -18,11 +18,9 @@ export default function ProfileNavbar({showMobileMenu=true,showDesktopMenu=true,
         <Image src="/logo3.png" width={100} height={100} alt="CRWD Logo" />
       </div>
       {/* Archive icon and Hamburger Menu at right */}
-      <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-4">
+      <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
         <Link href="/donation">
-          <Button variant="ghost" size="icon" className="h-10 w-10">
-            <Archive className="h-5 w-5 text-gray-700" />
-          </Button>
+            <Archive strokeWidth={2} className="h-5 w-5 text-gray-700" />
         </Link>
         <HamburgerMenu />
       </div>
@@ -40,10 +38,10 @@ export default function ProfileNavbar({showMobileMenu=true,showDesktopMenu=true,
           <span>Donation Box</span>
         </Button>
       </Link>
-      <Button variant="outline" className="flex items-center gap-2">
+      {/* <Button variant="outline" className="flex items-center gap-2">
         <Bell className="h-4 w-4" />
         <span>Notifications</span>
-      </Button>
+      </Button> */}
       <div className="relative">
         <div className="absolute z-10 top-0 right-0 w-3 h-3 bg-primary rounded-full"></div>
         <Avatar>

@@ -152,9 +152,11 @@ export default function SearchPage() {
               ))}
             </div>
             <div className="flex justify-end mt-4">
-              <Button variant="link" className="text-primary flex items-center">
-                Discover More <ChevronRight className="h-4 w-4 ml-1" />
-              </Button>
+              <Link href="/search">
+                <Button variant="link" className="text-primary flex items-center">
+                  Discover More <ChevronRight className="h-4 w-4 ml-1" />
+                </Button>
+              </Link>
             </div>
           </div>
           <div className="md:p-4 ">
@@ -189,6 +191,7 @@ export default function SearchPage() {
                     "Healthcare",
                     "Homelessness",
                   ].map((category, index) => (
+                    <Link href="/search">
                     <Badge
                       key={index}
                       variant="secondary"
@@ -196,6 +199,7 @@ export default function SearchPage() {
                     >
                       {category}
                     </Badge>
+                    </Link>
                   ))}
                 </div>
               </div>

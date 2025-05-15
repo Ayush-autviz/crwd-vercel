@@ -36,8 +36,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import Post from "@/components/Post";
+
 import HamburgerMenu from "@/components/hamburgerMenu/HamburgerMenu";
+import PopularPosts from "@/components/PopularPosts";
 
 export default function feedHungry() {
   const [activeTab, setActiveTab] = useState("home");
@@ -198,41 +199,19 @@ export default function feedHungry() {
           <div className="border-t">
             <div className="px-4 py-4 flex justify-between items-center">
               <h2 className="text-2xl font-medium">4 Updates</h2>
+              <Link href="/create-post">
               <Button
                 size="icon"
                 className="rounded-xl bg-[#4367FF] hover:bg-[#4367FF] hover:opacity-85"
               >
                 <Plus className="h-5 w-5" />
               </Button>
+              </Link>
             </div>
           </div>
 
-          <div className="p-4 space-y-4">
-            <Post
-              username="Chad"
-              timeAgo="17h"
-              organization="feedthehungry"
-              organizationUrl="/profile"
-              content="Thick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex!"
-              imageUrl="/post.jpg"
-              likes={2}
-              comments={0}
-              shares={3}
-              avatarUrl="/placeholder.svg?height=48&width=48"
-            />
-
-            <Post
-              username="Chad"
-              timeAgo="17h"
-              organization="feedthehungry"
-              organizationUrl="/profile"
-              content="The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk"
-              imageUrl="/post2.jpg"
-              likes={5}
-              comments={2}
-              shares={1}
-              avatarUrl="/placeholder.svg?height=48&width=48"
-            />
+          <div className="">
+            <PopularPosts />
           </div>
         </main>
       </div>
@@ -430,32 +409,8 @@ export default function feedHungry() {
 
               {/* Posts */}
               <Separator />
-              <CardContent className="p-4 space-y-4">
-                <Post
-                  username="Chad"
-                  timeAgo="17 hours ago"
-                  organization="feedthehungry"
-                  organizationUrl="/profile"
-                  content="Thick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex!"
-                  imageUrl="/post.jpg"
-                  likes={2}
-                  comments={0}
-                  shares={3}
-                  avatarUrl="/placeholder.svg?height=48&width=48"
-                />
-
-                <Post
-                  username="Chad"
-                  timeAgo="17 hours ago"
-                  organization="feedthehungry"
-                  organizationUrl="/profile"
-                  content="The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk"
-                  imageUrl="/post2.jpg"
-                  likes={5}
-                  comments={2}
-                  shares={1}
-                  avatarUrl="/placeholder.svg?height=48&width=48"
-                />
+              <CardContent className="p-4">
+                <PopularPosts />
               </CardContent>
             </Card>
           </div>
@@ -472,12 +427,14 @@ export default function feedHungry() {
                   Your donation helps provide meals to families in need
                   throughout the greater Atlanta area.
                 </p>
+                <Link href="/donation">
                 <Button
                   className="w-full py-6 text-lg bg-[#4367FF] hover:bg-[#4367FF] hover:opacity-85"
                   size="lg"
                 >
                   Donate
                 </Button>
+                </Link>
                 <div className="text-center text-sm text-muted-foreground mt-4">
                   100% of donations go directly to providing meals
                 </div>
@@ -492,7 +449,7 @@ export default function feedHungry() {
                   {[1, 2, 3].map((i) => (
                     <div
                       key={i}
-                      className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card border shadow-sm"
+                      className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card  "
                     >
                       <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
                         <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
@@ -511,9 +468,11 @@ export default function feedHungry() {
                           </p>
                         </div>
                       </div>
+                      <Link href="/cause">
                       <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
                         Visit
                       </Button>
+                      </Link>
                     </div>
                   ))}
                 </div>

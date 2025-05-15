@@ -66,7 +66,7 @@ const GroupCrwdSuggested: React.FC = () => (
             </p>
           </div>
         </div>
-        <Link href="/cause">
+        <Link href="/groupcrwd">
           <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
             Visit
           </Button>
@@ -75,9 +75,11 @@ const GroupCrwdSuggested: React.FC = () => (
     ))}
   </div>
   <div className="flex justify-end mt-4">
-    <Button variant="link" className="text-primary flex items-center">
-      Discover More <ChevronRight className="h-4 w-4 ml-1" />
-    </Button>
+    <Link href="/search">
+      <Button variant="link" className="text-primary flex items-center">
+        Discover More <ChevronRight className="h-4 w-4 ml-1" />
+      </Button>
+    </Link>
   </div>
 </div>
 );

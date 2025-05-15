@@ -1,5 +1,6 @@
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
 
 interface Topic {
   id: string;
@@ -33,9 +34,10 @@ const TopicsList = ({ topics, showTitle = true }: TopicsListProps) => {
       {showTitle && <h2 className="text-lg font-semibold">Topics</h2>}
       <div className="space-y-2">
         {topics.map((topic) => (
+          <Link href="/search">
           <div
             key={topic.id}
-            className="flex justify-between items-center hover:bg-muted/50 py-3 rounded-md cursor-pointer transition-colors"
+            className="flex justify-between items-center hover:bg-muted/50 py-3 px-2 rounded-md cursor-pointer transition-colors"
           >
             <div className="flex items-center min-w-0">
               <div className="flex -space-x-2 mr-3 flex-shrink-0">
@@ -64,6 +66,7 @@ const TopicsList = ({ topics, showTitle = true }: TopicsListProps) => {
             </div>
             <span className="text-xs text-muted-foreground whitespace-nowrap ml-2">{topic.posts} Posts</span>
           </div>
+          </Link>
         ))}
       </div>
     </div>

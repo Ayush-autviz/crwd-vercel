@@ -70,9 +70,11 @@ const RecommendedOrgs = () => {
         ))}
       </div>
       <div className="flex justify-end mt-4">
-        <Button variant="link" className="text-primary flex items-center p-0 h-auto">
-          Discover More <ArrowRight className="ml-1 h-4 w-4" />
-        </Button>
+        <Link href="/search">
+          <Button variant="link" className="text-primary flex items-center p-0 h-auto">
+            Discover More <ArrowRight className="ml-1 h-4 w-4" />
+          </Button>
+        </Link>
       </div>
     </div>
   );

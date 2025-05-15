@@ -58,6 +58,9 @@ export default function CreatePostFlow() {
     caption: "",
   });
 
+  // Track which post type is selected
+  const [postType, setPostType] = useState<'link' | 'image' | 'event'>('event');
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -87,7 +90,10 @@ export default function CreatePostFlow() {
             <div
               key={crwd.name}
               className="flex items-center gap-4 px-4 py-3 hover:bg-muted/50 cursor-pointer border-b transition-colors"
-              onClick={() => setSelectedCRWD(crwd)}
+              onClick={() => {
+                setSelectedCRWD(crwd);
+                setStep(1); // Return to step 1 after selecting a CRWD
+              }}
             >
               <div className="w-12 h-12 rounded-full overflow-hidden">
                 <Image
@@ -159,14 +165,35 @@ export default function CreatePostFlow() {
         </div> */}
 
             <div className="w-full">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+
+              {selectedCRWD ? (
+                <div
+                  className="flex items-center gap-3 w-1/2 rounded-lg  py-2  cursor-pointer"
+                  onClick={() => setStep(2)}
+                >
+                  <div className="w-8 h-8 rounded-full overflow-hidden">
+                    <Image
+                      src={selectedCRWD.image}
+                      alt={selectedCRWD.name}
+                      width={32}
+                      height={32}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <span className="text-sm font-medium italic text-gray-500">Posting to {selectedCRWD.name}</span>
+                </div>
+              ) : (
+                <>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                 Select a CRWD to post to
               </label>
-              <Select>
-                <SelectTrigger className="w-1/2 rounded-lg border px-4 py-2 text-left shadow-none border-none bg-gray-100" onClick={() => setStep(2)}>
-                  <SelectValue placeholder="Choose a CRWD" />
-                </SelectTrigger>
-              </Select>
+                <Select>
+                  <SelectTrigger className="w-1/2 rounded-lg border px-4 py-2 text-left shadow-none border-none bg-gray-100" onClick={() => setStep(2)}>
+                    <SelectValue placeholder="Choose a CRWD" />
+                  </SelectTrigger>
+                </Select>
+                </>
+              )}
             </div>
 
             <Button
@@ -236,12 +263,27 @@ export default function CreatePostFlow() {
       {/* Bottom Bar */}
       <div className="border-t px-6 py-4 flex flex-col gap-2 bg-background/80 backdrop-blur-md">
         <div className="flex gap-8 mb-1">
-          <Link className="h-6 w-6 text-gray-500" />
-          <ImageIcon className="h-6 w-6 text-gray-500" />
-          <Calendar className="h-6 w-6 text-primary" />
+          <button
+            onClick={() => setPostType('link')}
+            className="focus:outline-none"
+          >
+            <Link className={`h-6 w-6 ${postType === 'link' ? 'text-primary' : 'text-gray-500'} transition-colors`} />
+          </button>
+          <button
+            onClick={() => setPostType('image')}
+            className="focus:outline-none"
+          >
+            <ImageIcon className={`h-6 w-6 ${postType === 'image' ? 'text-primary' : 'text-gray-500'} transition-colors`} />
+          </button>
+          <button
+            onClick={() => setPostType('event')}
+            className="focus:outline-none"
+          >
+            <Calendar className={`h-6 w-6 ${postType === 'event' ? 'text-primary' : 'text-gray-500'} transition-colors`} />
+          </button>
         </div>
         <div className="text-muted-foreground text-sm italic">
-          Create a link, photo, or event post
+          Create a {postType === 'link' ? 'link' : postType === 'image' ? 'photo' : 'event'} post
         </div>
       </div>
       <div className="h-20 md:hidden" />
