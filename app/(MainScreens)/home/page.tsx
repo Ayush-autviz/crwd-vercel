@@ -225,7 +225,7 @@ export default function HomePage() {
                       </div>
                     </div>
                     <Link href="/groupcrwd">
-                      <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
+                      <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0 cursor-pointer">
                         Visit
                       </Button>
                     </Link>
@@ -283,7 +283,7 @@ export default function HomePage() {
                     </div>
                   </div>
                   <Link href="/cause">
-                    <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
+                    <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0 cursor-pointer">
                       Visit
                     </Button>
                   </Link>
@@ -330,7 +330,7 @@ export default function HomePage() {
                     </div>
                   </div>
                   <Link href="/cause">
-                    <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
+                    <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0 cursor-pointer">
                       Visit
                     </Button>
                   </Link>

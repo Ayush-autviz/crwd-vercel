@@ -144,7 +144,7 @@ export default function SearchPage() {
                     </div>
                   </div>
                   <Link href="/cause">
-                    <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
+                    <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0 cursor-pointer">
                       Visit
                     </Button>
                   </Link>
@@ -175,7 +175,7 @@ export default function SearchPage() {
                     <div className="font-semibold text-base truncate">{org.name}</div>
                     <div className="text-muted-foreground text-sm truncate">{org.desc}</div>
                   </div>
-                  <Button className="rounded-xl px-4 py-1 font-medium bg-[#4664e4] text-white text-sm">Visit</Button>
+                  <Button className="rounded-xl px-4 py-1 font-medium bg-[#4664e4] text-white text-sm cursor-pointer">Visit</Button>
                 </div>
               ))}
             </div>
