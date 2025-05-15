@@ -200,63 +200,75 @@ export default function CreatePostFlow() {
               variant="outline"
               className="rounded-lg px-6 py-2 text-sm font-medium"
               onClick={() => setStep(2)}
+              disabled={!selectedCRWD}
             >
               Post
             </Button>
           </div>
-          <div className="flex-1 ">
-            <div className="text-gray-500 my-4">Provide your event details</div>
-            <div className="space-y-4">
-              <div>
-                <Input
-                  name="title"
-                  value={form.title}
-                  onChange={handleInputChange}
-                  placeholder="Event Name"
-                  className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
-                />
-              </div>
+          <div className="flex-1">
+            {selectedCRWD ? (
+              <>
+                <div className="text-gray-500 my-4">Provide your event details</div>
+                <div className="space-y-4">
+                  <div>
+                    <Input
+                      name="title"
+                      value={form.title}
+                      onChange={handleInputChange}
+                      placeholder="Event Name"
+                      className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
+                    />
+                  </div>
 
-              <div>
-                <Input
-                  name="day"
-                  value={form.day}
-                  onChange={handleInputChange}
-                  placeholder="Day"
-                  className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
-                />
-              </div>
+                  <div>
+                    <Input
+                      name="day"
+                      value={form.day}
+                      onChange={handleInputChange}
+                      placeholder="Day"
+                      className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
+                    />
+                  </div>
 
-              <div>
-                <Input
-                  name="time"
-                  value={form.time}
-                  onChange={handleInputChange}
-                  placeholder="Time"
-                  className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
-                />
-              </div>
+                  <div>
+                    <Input
+                      name="time"
+                      value={form.time}
+                      onChange={handleInputChange}
+                      placeholder="Time"
+                      className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
+                    />
+                  </div>
 
-              <div>
-                <Input
-                  name="place"
-                  value={form.place}
-                  onChange={handleInputChange}
-                  placeholder="Place"
-                  className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
-                />
-              </div>
+                  <div>
+                    <Input
+                      name="place"
+                      value={form.place}
+                      onChange={handleInputChange}
+                      placeholder="Place"
+                      className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
+                    />
+                  </div>
 
-              <div>
-                <Input
-                  name="caption"
-                  value={form.caption}
-                  onChange={handleInputChange}
-                  placeholder="Caption"
-                  className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
-                />
+                  <div>
+                    <Input
+                      name="caption"
+                      value={form.caption}
+                      onChange={handleInputChange}
+                      placeholder="Caption"
+                      className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
+                    />
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="flex flex-col items-start justify-start h-64 mt-10 px-1">
+                <div className="text-xl text-gray-400 font-light mb-3">Start Typing</div>
+                <div className="text-gray-400 italic text-sm">
+                  You can share an announcement, picture, event, link, etc.
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
