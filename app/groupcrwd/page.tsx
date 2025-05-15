@@ -9,7 +9,7 @@ import ProfileNavbar from '@/components/profile/ProfileNavbar';
 export default function page() {
   return (
     <div>
-      <ProfileNavbar title='Group Crwd' showDesktopMenu={false}/>
+      <ProfileNavbar title='Group Crwd' />
       <GroupCrwdHeader />
       <GroupCrwdSuggested />
       <GroupCrwdUpdates />
