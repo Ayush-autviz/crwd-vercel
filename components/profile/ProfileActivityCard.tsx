@@ -29,9 +29,9 @@ export default function ProfileActivityCard({post,className}:{post:PostDetail,cl
                   </div>
                   <EllipsisIcon className="h-4 w-4 text-muted-foreground cursor-pointer" />
                 </div>
-                {/* <Link href='/groupcrwd'>
+                <Link href='/groupcrwd'>
                 <div className="text-xs text-primary hover:underline">{post.org}</div>
-                </Link> */}
+                </Link>
 
                 <div className="text-sm mt-2 mb-3 whitespace-pre-line leading-snug">
                   {post.text}

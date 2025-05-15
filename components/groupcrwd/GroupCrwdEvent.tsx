@@ -2,7 +2,7 @@ import React from 'react';
 import { MoreHorizontal, Heart, MessageCircle, Share2 } from 'lucide-react';
 
 const GroupCrwdEvent: React.FC = () => (
-  <div className="px-2 pt-2 pb-2">
+  <div className="px-4 pt-2 pb-48">
     <div className="bg-white rounded-xl shadow-sm p-4 flex flex-col gap-2">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
