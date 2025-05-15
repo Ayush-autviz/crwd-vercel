@@ -2,6 +2,7 @@ import React from 'react';
 import { Avatar } from '../ui/avatar';
 import { Button } from '../ui/button';
 import { ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 
 const suggested = [
   {
@@ -65,9 +66,11 @@ const GroupCrwdSuggested: React.FC = () => (
             </p>
           </div>
         </div>
-        <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
-          Visit
-        </Button>
+        <Link href="/cause">
+          <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
+            Visit
+          </Button>
+        </Link>
       </div>
     ))}
   </div>
@@ -79,4 +82,4 @@ const GroupCrwdSuggested: React.FC = () => (
 </div>
 );
 
-export default GroupCrwdSuggested; 
+export default GroupCrwdSuggested;

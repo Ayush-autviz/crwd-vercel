@@ -17,8 +17,13 @@ export default function ProfileNavbar({showMobileMenu=true,showDesktopMenu=true,
       <div className="flex-grow flex justify-center">
         <Image src="/logo3.png" width={100} height={100} alt="CRWD Logo" />
       </div>
-      {/* Hamburger Menu at right */}
-      <div className="absolute right-4 top-1/2 -translate-y-1/2">
+      {/* Archive icon and Hamburger Menu at right */}
+      <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-4">
+        <Link href="/donation">
+          <Button variant="ghost" size="icon" className="h-10 w-10">
+            <Archive className="h-5 w-5 text-gray-700" />
+          </Button>
+        </Link>
         <HamburgerMenu />
       </div>
     </header>

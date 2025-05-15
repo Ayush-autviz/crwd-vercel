@@ -224,9 +224,11 @@ export default function HomePage() {
                         </p>
                       </div>
                     </div>
-                    <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
-                      Visit
-                    </Button>
+                    <Link href="/cause">
+                      <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
+                        Visit
+                      </Button>
+                    </Link>
                   </div>
                 ))}
               </div>
@@ -279,9 +281,11 @@ export default function HomePage() {
                       </p>
                     </div>
                   </div>
-                  <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
-                    Visit
-                  </Button>
+                  <Link href="/cause">
+                    <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
+                      Visit
+                    </Button>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -322,9 +326,11 @@ export default function HomePage() {
                       </p>
                     </div>
                   </div>
-                  <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
-                    Visit
-                  </Button>
+                  <Link href="/cause">
+                    <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0">
+                      Visit
+                    </Button>
+                  </Link>
                 </div>
               ))}
             </div>
