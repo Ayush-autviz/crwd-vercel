@@ -1,59 +1,44 @@
 import { useState } from "react";
-import { ArrowLeft, ArrowRight, ChevronDown, X } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useIsMobile } from "../hooks/use-mobile";
 import { Avatar } from "@/components/ui/avatar";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { CROWDS, RECENTS, SUGGESTED, Organization } from "@/constants";
-import StepIndicator from "./donation/StepIndicator";
+import { CROWDS, RECENTS, SUGGESTED } from "@/constants";
+
+// Define Organization type locally to avoid import issues
+type Organization = {
+  id: string;
+  name: string;
+  imageUrl: string;
+  color?: string;
+  shortDesc?: string;
+  description?: string;
+};
 
 interface DonationBox2Props {
-  initialAmount: number;
-  onBack: () => void;
-  step: number;
+  initialAmount?: number;
+  onBack?: () => void;
+  step?: number;
   setStep: (step: number) => void;
-  selectedOrganizations: any;
-  setSelectedOrganizations: any;
+  selectedOrganizations: string[];
+  setSelectedOrganizations: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const DonationBox2 = ({
-  initialAmount,
-  onBack,
-  step,
   setStep,
   selectedOrganizations,
   setSelectedOrganizations,
 }: DonationBox2Props) => {
-  // const [selectedOrganizations, setSelectedOrganizations] = useState<string[]>(
-  //   []
-  // );
-  const [donationAmount, setDonationAmount] = useState(7);
-  const [inputValue, setInputValue] = useState("7");
-  const isMobile = useIsMobile();
+  const [donationAmount] = useState(7);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Allow only numbers
-    const value = e.target.value.replace(/[^0-9]/g, '');
-    setInputValue(value);
-  };
-
-  const handleInputBlur = () => {
-    // Convert to number and ensure minimum value is 1
-    const numValue = parseInt(inputValue) || 1;
-    // Ensure minimum donation is $5
-    const finalValue = numValue < 5 ? 5 : numValue;
-    setDonationAmount(finalValue);
-    setInputValue(finalValue.toString());
-  };
   // Function to toggle selection of an organization
   const toggleOrganization = (orgId: string) => {
-    setSelectedOrganizations((prev) =>
+    setSelectedOrganizations((prev: string[]) =>
       prev.includes(orgId)
-        ? prev.filter((id) => id !== orgId)
+        ? prev.filter((id: string) => id !== orgId)
         : [...prev, orgId]
     );
   };
@@ -67,13 +52,13 @@ const DonationBox2 = ({
 
   // Function to remove an organization from selected list
   const removeOrganization = (orgId: string) => {
-    setSelectedOrganizations((prev) => prev.filter((id) => id !== orgId));
+    setSelectedOrganizations((prev: string[]) => prev.filter((id: string) => id !== orgId));
   };
 
   // Get all selected organizations objects
   const selectedOrgs = selectedOrganizations
-    .map((id) => getOrganizationById(id))
-    .filter(Boolean) as Organization[];
+    .map((id: string) => getOrganizationById(id))
+    .filter((org): org is Organization => !!org);
 
   return (
     <div className="w-full h-full bg-white flex flex-col">
