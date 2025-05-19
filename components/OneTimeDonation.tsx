@@ -2,9 +2,18 @@ import Image from "next/image";
 import { Minus, Plus, Bookmark, ChevronRight, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { CROWDS, RECENTS, SUGGESTED, Organization } from "@/constants";
+import { CROWDS, RECENTS, SUGGESTED } from "@/constants";
 import { useState } from "react";
+
+// Define Organization type locally to avoid import issues
+type Organization = {
+  id: string;
+  name: string;
+  imageUrl: string;
+  color?: string;
+  shortDesc?: string;
+  description?: string;
+};
 
 interface OneTimeDonationProps {
   setCheckout: (value: boolean) => void;
@@ -17,7 +26,6 @@ export default function OneTimeDonation({
   selectedOrganizations,
   setSelectedOrganizations
 }: OneTimeDonationProps) {
-  const isMobile = useIsMobile();
   const [bookmarkedOrgs, setBookmarkedOrgs] = useState<string[]>([]);
   const [donationAmount, setDonationAmount] = useState(7);
   const [inputValue, setInputValue] = useState("7");
@@ -213,7 +221,7 @@ export default function OneTimeDonation({
               Complete Donation
             </Button>
           </div>
-          <div className="h-10"></div> 
+          <div className="h-10"></div>
         </div>
       </div>
     </div>
