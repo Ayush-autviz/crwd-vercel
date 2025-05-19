@@ -64,7 +64,7 @@ const TopicsList = ({ topics, showTitle = true }: TopicsListProps) => {
               </div>
               <span className="text-sm font-medium truncate">{topic.name}</span>
             </div>
-            <span className="text-xs text-muted-foreground whitespace-nowrap ml-2">{topic.posts} Posts</span>
+
           </div>
           </Link>
         ))}

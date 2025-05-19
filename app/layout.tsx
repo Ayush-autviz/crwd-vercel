@@ -99,9 +99,27 @@ export default function RootLayout({
                       <span>Profile</span>
                     </Button>
                   </Link>
+                  <Link href={"/notifications"}>
+                  <Button variant="ghost" className="w-full justify-start cursor-pointer">
+                    <Bell className="mr-2 h-4 w-4" />
+                    <span>Notifications</span>
+                  </Button>
+                  </Link>
+                  <Link href={"/saved"}>
+                  <Button variant="ghost" className="w-full justify-start cursor-pointer">
+                    <Heart className="mr-2 h-4 w-4" />
+                    <span>Saved</span>
+                  </Button>
+                  </Link>
+                  <Link href={"/settings"}>
+                  <Button variant="ghost" className="w-full justify-start cursor-pointer">
+                    <Settings className="mr-2 h-4 w-4" />
+                    <span>Settings</span>
+                  </Button>
+                  </Link>
                 </div>
               </div>
-              <div className="px-3 py-2">
+              {/* <div className="px-3 py-2">
                 <h2 className="mb-2 px-3 text-lg font-semibold tracking-tight">
                   Features
                 </h2>
@@ -131,9 +149,9 @@ export default function RootLayout({
                   </Button>
                   </Link>
                   </div>
-                </div>
+                </div> */}
               </ScrollArea>
-            <div className="border-t p-4">
+            {/* <div className="border-t p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <Avatar>
@@ -151,7 +169,7 @@ export default function RootLayout({
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Main Content with Mobile and Desktop Views */}

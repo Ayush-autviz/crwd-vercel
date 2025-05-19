@@ -95,17 +95,17 @@ export const Checkout = ({
   return (
     <div className="flex flex-col h-full bg-gray-50 min-h-screen p-0 md bg-white">
       {/* Header */}
-      <div className="bg-blue-600 text-white p-5 pb-8 rounded-b-2xl shadow-md mb-6">
-        <div className="flex justify-between items-center mb-4">
-          <button onClick={onBack} className="p-2 rounded-full hover:bg-blue-500/30 transition">
-            <ArrowLeft size={24} />
-          </button>
-          <h1 className="font-semibold text-lg">Chad Fotana's Donation Box</h1>
-          <button className="p-2 rounded-full hover:bg-blue-500/30 transition">
-            <Menu size={24} />
-          </button>
-        </div>
-        <div className="flex flex-col items-center mt-4">
+      <div className="bg-white border-b border-gray-200 p-4 flex items-center justify-between">
+        <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-100 transition text-gray-600">
+          <ArrowLeft size={20} />
+        </button>
+        <h1 className="font-semibold text-lg">Donation Box</h1>
+        <div className="w-10"></div> {/* Empty div for alignment */}
+      </div>
+
+      {/* Blue Card */}
+      <div className="bg-blue-600 text-white p-5 pb-8 mx-4 mt-4 rounded-xl shadow-md mb-6">
+        <div className="flex flex-col items-center mt-2">
           <div className="text-5xl font-bold mb-1">${donationAmount}</div>
           <div className="text-base flex items-center gap-1">
             per month <HelpCircle size={16} />
@@ -222,7 +222,7 @@ export const Checkout = ({
           </p>
           <div className="pt-2 pb-2 text-left px-10">
             <button className="flex items-center gap-1 text-sm text-gray-700  font-semibold">
-              Discover <ArrowRight />
+              Discover <ArrowRight size={16} />
             </button>
           </div>
           <div className="h-full flex justify-center items-center ">
@@ -232,6 +232,7 @@ export const Checkout = ({
           </div>
         </div>
       </div>
+      <div className="h-30 md:hidden"/>
     </div>
   );
 };

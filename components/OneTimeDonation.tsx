@@ -1,187 +1,220 @@
 import Image from "next/image";
-import { Minus, Plus, Bookmark, ChevronRight, Shield } from "lucide-react";
+import { Minus, Plus, Bookmark, ChevronRight, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { CROWDS, RECENTS, SUGGESTED, Organization } from "@/constants";
+import { useState } from "react";
 
-export default function OneTimeDonation({ setCheckout }: any) {
+interface OneTimeDonationProps {
+  setCheckout: (value: boolean) => void;
+  selectedOrganizations: string[];
+  setSelectedOrganizations: (value: string[]) => void;
+}
+
+export default function OneTimeDonation({
+  setCheckout,
+  selectedOrganizations,
+  setSelectedOrganizations
+}: OneTimeDonationProps) {
   const isMobile = useIsMobile();
+  const [bookmarkedOrgs, setBookmarkedOrgs] = useState<string[]>([]);
+  const [donationAmount, setDonationAmount] = useState(7);
+  const [inputValue, setInputValue] = useState("7");
+
+  const incrementDonation = () => {
+    const newAmount = donationAmount + 1;
+    setDonationAmount(newAmount);
+    setInputValue(newAmount.toString());
+  };
+
+  const decrementDonation = () => {
+    if (donationAmount > 1) {
+      const newAmount = donationAmount - 1;
+      setDonationAmount(newAmount);
+      setInputValue(newAmount.toString());
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Allow only numbers
+    const value = e.target.value.replace(/[^0-9]/g, '');
+    setInputValue(value);
+  };
+
+  const handleInputBlur = () => {
+    // Convert to number and ensure minimum value is 1
+    const numValue = parseInt(inputValue) || 1;
+    // Ensure minimum donation is $5
+    const finalValue = numValue < 5 ? 5 : numValue;
+    setDonationAmount(finalValue);
+    setInputValue(finalValue.toString());
+  };
+
+  const selectedOrgs = selectedOrganizations
+    .map((id) => {
+      const org = [...CROWDS, ...RECENTS, ...SUGGESTED].find((o) => o.id === id);
+      return org;
+    })
+    .filter((org): org is Organization => !!org);
+
+  const handleRemoveOrganization = (id: string) => {
+    setSelectedOrganizations(selectedOrganizations.filter((orgId) => orgId !== id));
+  };
+
+  const handleBookmarkOrganization = (id: string) => {
+    setBookmarkedOrgs((prev) =>
+      prev.includes(id) ? prev.filter(orgId => orgId !== id) : [...prev, id]
+    );
+  };
+
   return (
-    <div className=" bg-[#f5f5ff] flex flex-col items-center justify-center p-4 mx-4 mt-4 mb-4 rounded-lg">
-      <div className="w-full max-w-md mx-auto space-y-5 md:hidden">
-        {/* Mobile view - exactly as in the screenshot */}
-        <h1 className="text-base font-medium text-gray-800">
-          Your donation will support
-        </h1>
-
-        <div className="bg-white rounded-xl p-4 shadow-sm">
-          <div className="flex items-start justify-between">
-            <div className="flex gap-3">
-              <div className="relative h-10 w-10 rounded-md overflow-hidden flex items-center">
-                <Image
-                  src="/redcross.png"
-                  alt="Red Cross logo"
-                  width={40}
-                  height={40}
-                  className="object-cover"
-                />
-              </div>
-              <div className="space-y-1">
-                <h3 className="font-medium">Red Cross</h3>
-                <p className="text-sm text-gray-500">
-                  This is a non-profit mission statement that aligns with the
-                  company's goals and...
-                </p>
-              </div>
+    <div className="p-4 mt-4 mb-4 rounded-lg  ">
+      {/* Main container - flex column on mobile, flex row on larger screens */}
+      <div className="flex flex-col md:flex-row md:gap-6 w-full">
+        {/* Left column - Organizations section */}
+        <div className="w-full  mb-5 md:mb-0">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 h-full">
+            <div className="flex items-center mb-4">
+              <h1 className="text-xl font-medium text-gray-800">
+                Your donation will support
+              </h1>
             </div>
-            <button className="text-gray-400">
-              <Bookmark size={20} />
-            </button>
-          </div>
-          <div className="flex justify-end mt-2">
-            <button className="text-xs text-gray-400">Remove</button>
-          </div>
-        </div>
 
-        <div className="text-sm text-blue-600">
-          <p>You can add up to 10 more causes to this donation</p>
-          <div className="flex items-center mt-1">
-            <span>See More</span>
-            <ChevronRight size={16} className="ml-1" />
-          </div>
-        </div>
-
-        <div className="mt-6">
-          <h2 className="text-sm font-medium text-gray-800 mb-3">
-            Enter donation amount
-          </h2>
-          <div className="bg-[#e8e8ff] rounded-xl p-3 flex items-center justify-between">
-            <button className="h-8 w-8 rounded-full bg-white flex items-center justify-center text-blue-600">
-              <Minus size={16} />
-            </button>
-            <div className="text-xl font-semibold text-blue-600">$7</div>
-            <button className="h-8 w-8 rounded-full bg-white flex items-center justify-center text-blue-600">
-              <Plus size={16} />
-            </button>
-          </div>
-          <p className="text-xs text-gray-500 mt-1">Input amount over $5</p>
-        </div>
-
-        <div className="flex justify-between items-center mt-6 pt-4">
-          <span className="text-sm font-medium">TOTAL:</span>
-          <span className="text-lg font-bold">$7.00</span>
-        </div>
-
-        <div className="flex items-center justify-center gap-2 text-xs text-gray-600 mt-4 border-t pt-4">
-          <span>Your donation is protected and guaranteed.</span>
-          <Link href="#" className="text-blue-600">
-            Learn More
-          </Link>
-        </div>
-      </div>
-
-      {/* Desktop view - better adapted layout */}
-      <div className="hidden md:block w-full max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-8 items-start">
-          <div className="space-y-6">
-            <h1 className="text-2xl font-medium text-gray-800">
-              Your donation will support
-            </h1>
-
-            <div className="bg-white rounded-xl p-6 shadow-sm">
-              <div className="flex items-start justify-between">
-                <div className="flex gap-4">
-                  <div className="relative h-16 w-16 rounded-md overflow-hidden">
-                    <Image
-                      src="/redcross.png"
-                      alt="Red Cross logo"
-                      width={64}
-                      height={64}
-                      className="object-cover"
-                    />
+            {selectedOrgs.length > 0 ? (
+              <div className="space-y-4 mb-4">
+                {selectedOrgs.map((org) => (
+                  <div key={org.id} className="bg-white rounded-xl p-4 border border-blue-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="flex items-start justify-between">
+                      <div className="flex gap-4">
+                        <div className="h-16 w-16 rounded-full overflow-hidden flex items-start mt-1">
+                          <Image
+                            src={org.imageUrl || "/redcross.png"}
+                            alt={`${org.name} logo`}
+                            width={48}
+                            height={48}
+                            className="object-cover rounded-full overflow-hidden h-10 w-10"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <h3 className="font-medium text-gray-800">{org.name}</h3>
+                          <p className="text-sm text-gray-600 line-clamp-2">
+                            {org.description || "This is a non-profit mission statement that aligns with the company's goals and..."}
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        className={`${bookmarkedOrgs.includes(org.id) ? 'text-blue-500' : 'text-gray-400'} hover:text-blue-500 transition-colors`}
+                        onClick={() => handleBookmarkOrganization(org.id)}
+                      >
+                        <Bookmark size={20} />
+                      </button>
+                    </div>
+                    <div className="flex justify-end mt-3">
+                      <button
+                        className="text-xs text-gray-600 hover:text-red-500 flex items-center px-2 py-1 rounded-md bg-gray-50 hover:bg-gray-100 transition-colors"
+                        onClick={() => handleRemoveOrganization(org.id)}
+                      >
+                        <Trash2 size={12} className="mr-1" />
+                        Remove
+                      </button>
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    <h3 className="text-lg font-medium">Red Cross</h3>
-                    <p className="text-sm text-gray-500">
-                      This is a non-profit mission statement that aligns with
-                      the company's goals and mission to help people in need
-                      around the world.
-                    </p>
-                  </div>
+                ))}
+
+                <div className="text-sm text-blue-600 rounded-lg">
+                  <p className="font-medium text-blue-500">You can add up to 10 more causes to this donation</p>
+                  <Link href="/search" className="flex items-center mt-1 text-sm text-black">
+                    <span>See More</span>
+                    <ChevronRight size={16} className="ml-1" />
+                  </Link>
                 </div>
-                <button className="text-gray-400">
-                  <Bookmark size={24} />
-                </button>
               </div>
-              <div className="flex justify-end mt-3">
-                <button className="text-sm text-gray-400">Remove</button>
+            ) : (
+              <div className="bg-gray-50 rounded-lg p-4 text-center mb-4">
+                <p className="text-gray-500">No organizations selected</p>
+                <Link href="/search" className="text-blue-600 text-sm font-medium mt-2 inline-block">
+                  Add organizations
+                </Link>
               </div>
-            </div>
-
-            <div className="text-base text-blue-600">
-              <p>You can add up to 10 more causes to this donation</p>
-              <div className="flex items-center mt-2">
-                <span>See More</span>
-                <ChevronRight size={20} className="ml-1" />
-              </div>
-            </div>
+            )}
           </div>
+        </div>
 
-          <div className="bg-white rounded-xl p-8 shadow-sm space-y-8">
-            <div>
-              <h2 className="text-xl font-medium text-gray-800 mb-4">
+        {/* Right column - Donation amount and checkout */}
+        <div className="w-full  space-y-5">
+          {/* Donation amount section */}
+          <div className="bg-blue-50 rounded-xl w-full p-6">
+            <div className="flex items-center mb-4 rounded-lg">
+              <h2 className="text-base font-medium text-gray-800">
                 Enter donation amount
               </h2>
-              <div className="bg-[#e8e8ff] rounded-xl p-5 flex items-center justify-between">
-                <button className="h-12 w-12 rounded-full bg-white flex items-center justify-center text-blue-600 hover:bg-gray-100 transition-colors">
-                  <Minus size={24} />
+            </div>
+
+            <div className="bg-blue-50 rounded-lg mb-4">
+              <div className="bg-white flex items-center rounded-lg border shadow-sm">
+                <button
+                  onClick={decrementDonation}
+                  className="flex items-center justify-center w-12 h-12 rounded-l-lg hover:bg-gray-50 transition-colors"
+                >
+                  <Minus size={18} />
                 </button>
-                <div className="text-2xl font-semibold text-blue-600">$7</div>
-                <button className="h-12 w-12 rounded-full bg-white flex items-center justify-center text-blue-600 hover:bg-gray-100 transition-colors">
-                  <Plus size={24} />
+                <div className="flex-1 flex justify-center items-center h-12 px-4 border-x">
+                  <span className="text-blue-600 text-2xl font-bold relative">
+                    $
+                    <input
+                      type="text"
+                      value={inputValue}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                      className="bg-transparent w-20 text-center focus:outline-none"
+                      aria-label="Donation amount"
+                    />
+                  </span>
+                </div>
+                <button
+                  onClick={incrementDonation}
+                  className="flex items-center justify-center w-12 h-12 rounded-r-lg hover:bg-gray-50 transition-colors"
+                >
+                  <Plus size={18} />
                 </button>
               </div>
-              <p className="text-sm text-gray-500 mt-2">Input amount over $5</p>
+
+              <p className="text-xs text-gray-500 mt-2">
+                Input amount over $5
+              </p>
             </div>
 
-            <div className="flex justify-between items-center pt-6 border-t border-gray-100">
-              <span className="text-base font-medium">TOTAL:</span>
-              <span className="text-2xl font-bold">$7.00</span>
-            </div>
-
-            <button className="w-full bg-blue-600 text-white py-4 rounded-xl font-medium text-base hover:bg-blue-700 transition-colors">
-              Complete Donation
-            </button>
-
-            <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
-              <Shield size={18} />
-              <span>Your donation is protected and guaranteed.</span>
-              <Link href="#" className="text-blue-600 hover:underline">
-                Learn More
-              </Link>
+            <div className="flex justify-between items-center p-3 border-b border-gray-200">
+              <span className="text-sm font-medium text-gray-700">TOTAL:</span>
+              <span className="text-lg font-bold text-blue-600">${donationAmount.toFixed(2)}</span>
             </div>
           </div>
-        </div>
-      </div>
-      <div className={`  py-4  w-full  ${isMobile ? "mb-20" : ""}`}>
-        <Button
-          onClick={() => setCheckout(true)}
-          className={`bg-[#6cd89b]  hover:bg-green-500 text-black w-full py-8 rounded-2xl font-medium mb-3${
-            isMobile ? "mb-20" : ""
-          } `}
-        >
-          Checkout
-        </Button>
 
-        {/* <div className="flex items-center justify-center text-xs text-gray-500">
-          <span className="mr-1">⚔️</span>
-          <p className="mt-2">
-            Your donation is protected and guaranteed.{" "}
-            <a href="#" className="text-blue-500">
-              Learn More
-            </a>
-          </p>
-        </div> */}
+          {/* Security message */}
+          <div className="flex items-center p-3 bg-gray-50 rounded-lg">
+            <div className="flex items-center justify-center w-6 h-6 rounded-full bg-green-100 text-green-600 mr-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <p className="text-sm text-gray-600">
+              Your donation is protected and guaranteed.{" "}
+              <Link href="#" className="text-blue-600 font-medium">
+                Learn More
+              </Link>
+            </p>
+          </div>
+
+          {/* Checkout button */}
+          <div className="py-4 w-full">
+            <Button
+              onClick={() => setCheckout(true)}
+              className="bg-green-500 hover:bg-green-600 text-white w-full py-6 md:py-6 rounded-lg font-medium transition-colors flex items-center justify-center"
+            >
+              Complete Donation
+            </Button>
+          </div>
+          <div className="h-10"></div> 
+        </div>
       </div>
     </div>
   );

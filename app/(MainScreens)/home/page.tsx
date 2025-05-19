@@ -198,38 +198,37 @@ export default function HomePage() {
             <div className="overflow-x-auto pb-2">
               <div className="flex space-x-4 min-w-max">
                 {suggestedCRWDs.map((crwd, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card  w-[340px] flex-shrink-0"
-                  >
-                    <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
-                      <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
-                        {crwd.image && (
-                          <img
-                            src={crwd.image}
-                            alt={crwd.name}
-                            className="object-cover"
-                          />
-                        )}
-                      </Avatar>
-                      <div className="min-w-0">
-                        <h3 className="font-medium text-sm truncate">
-                          {crwd.name}
-                        </h3>
-                        <p className="text-xs text-muted-foreground truncate">
-                          {crwd.members}
-                        </p>
-                        <p className="text-xs text-muted-foreground truncate">
-                          {crwd.description}
-                        </p>
+                  <Link href="/groupcrwd" key={index} className="block w-[340px] flex-shrink-0">
+                    <div
+                      className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card"
+                    >
+                      <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
+                        <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
+                          {crwd.image && (
+                            <img
+                              src={crwd.image}
+                              alt={crwd.name}
+                              className="object-cover"
+                            />
+                          )}
+                        </Avatar>
+                        <div className="min-w-0">
+                          <h3 className="font-medium text-sm truncate">
+                            {crwd.name}
+                          </h3>
+                          <p className="text-xs text-muted-foreground truncate">
+                            {crwd.members}
+                          </p>
+                          <p className="text-xs text-muted-foreground truncate">
+                            {crwd.description}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                    <Link href="/groupcrwd">
                       <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0 cursor-pointer">
                         Visit
                       </Button>
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -259,35 +258,34 @@ export default function HomePage() {
             <h2 className="text-lg font-semibold mb-4">Suggested causes</h2>
             <div className="space-y-3">
               {suggestedCauses.map((cause, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card "
-                >
-                  <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
-                    <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
-                      {cause.image && (
-                        <img
-                          src={cause.image}
-                          alt={cause.name}
-                          className="object-cover"
-                        />
-                      )}
-                    </Avatar>
-                    <div className="min-w-0">
-                      <h3 className="font-medium text-sm truncate">
-                        {cause.name}
-                      </h3>
-                      <p className="text-xs text-muted-foreground truncate">
-                        {cause.description}
-                      </p>
+                <Link href="/cause" key={index} className="block">
+                  <div
+                    className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card"
+                  >
+                    <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
+                      <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
+                        {cause.image && (
+                          <img
+                            src={cause.image}
+                            alt={cause.name}
+                            className="object-cover"
+                          />
+                        )}
+                      </Avatar>
+                      <div className="min-w-0">
+                        <h3 className="font-medium text-sm truncate">
+                          {cause.name}
+                        </h3>
+                        <p className="text-xs text-muted-foreground truncate">
+                          {cause.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <Link href="/cause">
                     <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0 cursor-pointer">
                       Visit
                     </Button>
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               ))}
             </div>
             <div className="flex justify-end mt-4">
@@ -306,35 +304,34 @@ export default function HomePage() {
             </h2>
             <div className="space-y-3">
               {nearbyCauses.map((cause, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card "
-                >
-                  <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
-                    <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
-                      {cause.image && (
-                        <img
-                          src={cause.image}
-                          alt={cause.name}
-                          className="object-cover"
-                        />
-                      )}
-                    </Avatar>
-                    <div className="min-w-0">
-                      <h3 className="font-medium text-sm truncate">
-                        {cause.name}
-                      </h3>
-                      <p className="text-xs text-muted-foreground truncate">
-                        {cause.description}
-                      </p>
+                <Link href="/cause" key={index} className="block">
+                  <div
+                    className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card"
+                  >
+                    <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
+                      <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
+                        {cause.image && (
+                          <img
+                            src={cause.image}
+                            alt={cause.name}
+                            className="object-cover"
+                          />
+                        )}
+                      </Avatar>
+                      <div className="min-w-0">
+                        <h3 className="font-medium text-sm truncate">
+                          {cause.name}
+                        </h3>
+                        <p className="text-xs text-muted-foreground truncate">
+                          {cause.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <Link href="/cause">
                     <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0 cursor-pointer">
                       Visit
                     </Button>
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -345,18 +342,6 @@ export default function HomePage() {
 
         {/* Sidebar - Only visible on desktop */}
         <div className="hidden md:block md:col-span-4">
-          <Card>
-            <CardContent className="">
-              <h2 className="text-xl font-bold mb-4">Trending Topics</h2>
-              <TopicsList topics={topi} />
-              <Link href="/search">
-                <Button variant="link" className="text-primary p-0 h-auto mt-2">
-                  See all topics
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
-
           <Card className="mt-6">
             <CardContent className="">
               <h2 className="text-xl font-bold mb-4">Popular Categories</h2>
@@ -385,7 +370,7 @@ export default function HomePage() {
 
           <Card className="mt-6">
             <CardContent className="">
-              <h2 className="text-xl font-bold mb-4">Create Your Own</h2>
+              <h2 className="text-xl font-bold mb-4">Start a CRWD</h2>
               <p className="text-muted-foreground mb-4">
                 Start your own CRWD to support a cause you care about or connect
                 with like-minded individuals.

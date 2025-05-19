@@ -1,15 +1,14 @@
 "use client";
 import { useState } from "react";
-import { Bookmark, Trash2 } from "lucide-react";
+import { Bookmark, Trash2, ChevronRight } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import { AvatarImage } from "@/components/ui/avatar";
 import { AvatarFallback } from "@/components/ui/avatar";
-import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { CROWDS, RECENTS, SUGGESTED } from "@/constants";
 import { Button } from "./ui/button";
-import { useIsMobile } from "@/hooks/use-mobile";
+import Link from "next/link";
 
+// Define Organization type locally
 type Organization = {
   id: string;
   name: string;
@@ -20,105 +19,204 @@ type Organization = {
 };
 
 interface DonationSummaryProps {
-  selectedOrganizations: any;
-  setSelectedOrganizations: any;
-  step: any;
-  setCheckout: any;
-  onRemoveOrganization: (id: string) => void;
+  selectedOrganizations: string[];
+  setSelectedOrganizations: React.Dispatch<React.SetStateAction<string[]>>;
+  step?: number;
+  setCheckout: (value: boolean) => void;
+  onRemoveOrganization?: (id: string) => void;
   onBookmarkOrganization?: (id: string) => void;
-  setStep: any;
+  setStep: (step: number) => void;
 }
 
 export const DonationBox3 = ({
   selectedOrganizations,
+  setSelectedOrganizations,
   setCheckout,
   onRemoveOrganization,
   onBookmarkOrganization,
+  setStep,
 }: DonationSummaryProps) => {
-  const isMobile = useIsMobile();
+  const [bookmarkedOrgs, setBookmarkedOrgs] = useState<string[]>([]);
+
   const getOrganizationById = (orgId: string): Organization | undefined => {
     return [...CROWDS, ...RECENTS, ...SUGGESTED].find(
       (org) => org.id === orgId
     );
   };
+
   const selectedOrgs = selectedOrganizations
-    .map((id: any) => getOrganizationById(id))
-    .filter(Boolean) as Organization[];
+    .map((id) => getOrganizationById(id))
+    .filter((org): org is Organization => !!org);
+
+  // Handle remove organization if not provided
+  const handleRemoveOrganization = (id: string) => {
+    if (onRemoveOrganization) {
+      onRemoveOrganization(id);
+    } else {
+      setSelectedOrganizations((prev: string[]) =>
+        prev.filter((orgId: string) => orgId !== id)
+      );
+    }
+  };
+
+  // Handle bookmark organization if not provided
+  const handleBookmarkOrganization = (id: string) => {
+    if (onBookmarkOrganization) {
+      onBookmarkOrganization(id);
+    } else {
+      setBookmarkedOrgs((prev) =>
+        prev.includes(id) ? prev.filter(orgId => orgId !== id) : [...prev, id]
+      );
+    }
+  };
 
   return (
-    <div className="pb-10 mt-5 px-2 md:px-6 md:hidden">
-      <Card className="w-full h-fit bg-white rounded-2xl px-5 shadow-lg border border-gray-100">
-        <div className="flex flex-col items-center ">
-          <h2 className="text-[#564F6F] text-lg font-semibold mb-2">Your donation will support</h2>
-          <span className="text-[#564F6F] text-base font-medium px-4 py-1 bg-[#F3F2FA] rounded-full mb-2">{selectedOrganizations.length} CAUSES</span>
-        </div>
-        <div className=" ">
-          {selectedOrgs?.map((org, index) => (
-            <div key={org.id}>
-              <div className="bg-gray-50 rounded-2xl p-4 flex flex-col gap-3 shadow-sm">
-                <div className="flex gap-4 items-center">
-                  <Avatar className="h-14 w-14 rounded-xl ring-2 ring-blue-100 shadow-sm">
-                    {org.imageUrl ? (
-                      <AvatarImage src={org.imageUrl} alt={org.name} />
-                    ) : (
-                      <AvatarFallback
-                        className="rounded-xl"
-                        style={{ backgroundColor: org.color || "#E5E7EB" }}
-                      >
-                        {org.name.charAt(0)}
-                      </AvatarFallback>
-                    )}
-                  </Avatar>
-                  <div className="flex-1">
-                    <h3 className="text-base font-semibold text-[#1A1F2C] mb-1">{org.name}</h3>
-                    <p className="text-xs text-gray-500 line-clamp-2 mb-2">
-                      {org.description ||
-                        "This is a non-profit mission statement that summarizes the company's goals and ..."}
-                    </p>
-                    <div className="flex gap-2">
+    <div className="p-4 mt-4 mb-4 rounded-lg">
+      {/* Main container - flex column on mobile, flex row on larger screens */}
+      <div className="flex flex-col md:flex-row md:gap-6 w-full">
+        {/* Left column - Organizations section */}
+        <div className="w-full md:w-3/5 mb-5 md:mb-0">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 h-full">
+            <div className="flex items-center mb-4">
+              <h1 className="text-xl font-medium text-gray-800">
+                Your donation will support
+              </h1>
+            </div>
+
+            {selectedOrgs.length > 0 ? (
+              <div className="space-y-4 mb-4">
+                {selectedOrgs.map((org) => (
+                  <div key={org.id} className="bg-white rounded-xl p-4 border border-blue-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="flex items-start justify-between">
+                      <div className="flex gap-4">
+                        <Avatar className="h-16 w-16 rounded-full overflow-hidden flex-shrink-0">
+                          {org.imageUrl ? (
+                            <AvatarImage src={org.imageUrl} alt={org.name} className="object-cover" />
+                          ) : (
+                            <AvatarFallback
+                              className="rounded-full"
+                              style={{ backgroundColor: org.color || "#E5E7EB" }}
+                            >
+                              {org.name.charAt(0)}
+                            </AvatarFallback>
+                          )}
+                        </Avatar>
+                        <div className="space-y-1">
+                          <h3 className="font-medium text-gray-800">{org.name}</h3>
+                          <p className="text-sm text-gray-600 line-clamp-2">
+                            {org.description || "This is a non-profit mission statement that aligns with the company's goals and..."}
+                          </p>
+                        </div>
+                      </div>
                       <button
-                        onClick={() => onRemoveOrganization(org.id)}
-                        className="text-xs text-gray-400 flex items-center hover:text-red-500 transition px-2 py-1 rounded-md bg-white border border-gray-100"
+                        className={`${bookmarkedOrgs.includes(org.id) ? 'text-blue-500' : 'text-gray-400'} hover:text-blue-500 transition-colors`}
+                        onClick={() => handleBookmarkOrganization(org.id)}
                       >
-                        <Trash2 size={14} className="mr-1" />
-                        <span>Remove</span>
+                        <Bookmark size={20} />
                       </button>
+                    </div>
+                    <div className="flex justify-end mt-3">
                       <button
-                        onClick={() =>
-                          onBookmarkOrganization && onBookmarkOrganization(org.id)
-                        }
-                        className="text-gray-300 hover:text-blue-500 transition px-2 py-1 rounded-md bg-white border border-gray-100"
+                        className="text-xs text-gray-600 hover:text-red-500 flex items-center px-2 py-1 rounded-md bg-gray-50 hover:bg-gray-100 transition-colors"
+                        onClick={() => handleRemoveOrganization(org.id)}
                       >
-                        <Bookmark size={18} />
+                        <Trash2 size={12} className="mr-1" />
+                        Remove
                       </button>
                     </div>
                   </div>
+                ))}
+
+                <div className="text-sm text-blue-600 rounded-lg">
+                  <p className="font-medium text-blue-500">You can add up to 10 more causes to this donation</p>
+                  <Link href="/search" className="flex items-center mt-1 text-sm text-black">
+                    <span>See More</span>
+                    <ChevronRight size={16} className="ml-1" />
+                  </Link>
                 </div>
               </div>
-              {index < selectedOrganizations.length - 1 && (
-                <div className="py-3" />
-              )}
-            </div>
-          ))}
+            ) : (
+              <div className="bg-gray-50 rounded-lg p-4 text-center mb-4">
+                <p className="text-gray-500">No organizations selected</p>
+                <button
+                  onClick={() => setStep(2)}
+                  className="text-blue-600 text-sm font-medium mt-2 inline-block"
+                >
+                  Go back to add causes
+                </button>
+              </div>
+            )}
+          </div>
         </div>
-      </Card>
-      <div className="py-6 w-full">
-        <Button
-          onClick={() => setCheckout(true)}
-          className="bg-[#6cd89b] hover:bg-green-500 text-black w-full py-8 rounded-xl font-semibold text-lg shadow-md mb-4"
-        >
-          Checkout
-        </Button>
-        <div className="flex items-center justify-center text-sm text-gray-500 mt-2">
-          <span className="mr-1">⚔️</span>
-          <p className="">
-            Your donation is protected and guaranteed.{' '}
-            <a href="#" className="text-blue-500">
-              Learn More
-            </a>
-          </p>
+
+        {/* Right column - Donation Summary and Checkout */}
+        <div className="w-full md:w-2/5 space-y-5">
+          {/* Donation summary section */}
+          <div className="bg-blue-50 rounded-xl w-full p-6">
+            <div className="flex items-center mb-4 rounded-lg">
+              <h2 className="text-base font-medium text-gray-800">
+                Donation Summary
+              </h2>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 mb-4 border border-gray-100">
+              <div className="flex justify-between items-center mb-3">
+                <span className="text-sm text-gray-600">Monthly donation</span>
+                <span className="text-lg font-bold text-blue-600">$7.00</span>
+              </div>
+              <div className="flex justify-between items-center mb-3">
+                <span className="text-sm text-gray-600">Number of causes</span>
+                <span className="text-sm font-medium text-gray-800">{selectedOrganizations.length}</span>
+              </div>
+              <div className="flex justify-between items-center pt-3 border-t border-gray-200">
+                <span className="text-sm font-medium text-gray-700">Per cause</span>
+                <span className="text-sm font-medium text-gray-800">
+                  ${selectedOrganizations.length > 0
+                    ? (7 / selectedOrganizations.length).toFixed(2)
+                    : "0.00"}
+                </span>
+              </div>
+            </div>
+
+            <div className="flex justify-between items-center p-3 border-b border-gray-200">
+              <span className="text-sm font-medium text-gray-700">TOTAL:</span>
+              <span className="text-lg font-bold text-blue-600">$7.00</span>
+            </div>
+          </div>
+
+          {/* Security message */}
+          <div className="flex items-center p-3 bg-gray-50 rounded-lg">
+            <div className="flex items-center justify-center w-6 h-6 rounded-full bg-green-100 text-green-600 mr-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <p className="text-sm text-gray-600">
+              Your donation is protected and guaranteed.{" "}
+              <Link href="#" className="text-blue-600 font-medium">
+                Learn More
+              </Link>
+            </p>
+          </div>
+
+          {/* Action buttons */}
+          <div className="space-y-3">
+            <Button
+              onClick={() => setCheckout(true)}
+              disabled={selectedOrganizations.length === 0}
+              className="bg-green-500 hover:bg-green-600 text-white w-full py-6 rounded-lg font-medium transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Proceed to Checkout
+            </Button>
+
+            <button
+              onClick={() => setStep(2)}
+              className="w-full text-blue-600 hover:text-blue-700 text-sm font-medium py-2"
+            >
+              ← Back to edit causes
+            </button>
+          </div>
         </div>
       </div>
+      <div className="h-20 md:hidden"></div>
     </div>
   );
 };

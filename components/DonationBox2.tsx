@@ -1,7 +1,5 @@
-//@ts-nocheck
-
 import { useState } from "react";
-import { ArrowRight, ChevronDown, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "../hooks/use-mobile";
 import { Avatar } from "@/components/ui/avatar";
@@ -9,58 +7,9 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-
-type Organization = {
-  id: string;
-  name: string;
-  imageUrl: string;
-  color?: string;
-  shortDesc?: string;
-};
-
-const CROWDS: Organization[] = [
-  {
-    id: "1",
-    name: "Making a difference",
-    imageUrl: "",
-    color: "#E16AFF",
-    shortDesc: "T  k",
-  },
-  {
-    id: "2",
-    name: "Better Days",
-    imageUrl: "",
-    color: "#5A8CFF",
-    shortDesc: "G  D",
-  },
-  //   {
-  //     id: "3",
-  //     name: "Get Power",
-  //     imageUrl: "/lovable-uploads/d5634324-fc91-416b-a5f3-d21fec2bded2.png",
-  //     shortDesc: "Get Power",
-  //   },
-];
-
-const RECENTS: Organization[] = [
-  { id: "101", name: "Red Cross", imageUrl: "" },
-  { id: "102", name: "St. Judes", imageUrl: "" },
-  { id: "103", name: "Community first", imageUrl: "" },
-  { id: "104", name: "Community first", imageUrl: "" },
-  { id: "105", name: "Make a Wish", imageUrl: "" },
-  { id: "106", name: "Planned", imageUrl: "" },
-  { id: "107", name: "Planned", imageUrl: "" },
-  { id: "108", name: "Made with love", imageUrl: "" },
-  { id: "109", name: "Made with love", imageUrl: "" },
-];
-
-const SUGGESTED: Organization[] = [
-  { id: "201", name: "World Aid", imageUrl: "" },
-  { id: "202", name: "Make a wish", imageUrl: "" },
-  { id: "203", name: "Community first", imageUrl: "" },
-  { id: "204", name: "Planned", imageUrl: "" },
-  { id: "205", name: "Red Cross", imageUrl: "" },
-  { id: "206", name: "St. Jude's", imageUrl: "" },
-];
+import Link from "next/link";
+import { CROWDS, RECENTS, SUGGESTED, Organization } from "@/constants";
+import StepIndicator from "./donation/StepIndicator";
 
 interface DonationBox2Props {
   initialAmount: number;
@@ -82,8 +31,24 @@ const DonationBox2 = ({
   // const [selectedOrganizations, setSelectedOrganizations] = useState<string[]>(
   //   []
   // );
-  const [donationAmount] = useState(7);
+  const [donationAmount, setDonationAmount] = useState(7);
+  const [inputValue, setInputValue] = useState("7");
   const isMobile = useIsMobile();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Allow only numbers
+    const value = e.target.value.replace(/[^0-9]/g, '');
+    setInputValue(value);
+  };
+
+  const handleInputBlur = () => {
+    // Convert to number and ensure minimum value is 1
+    const numValue = parseInt(inputValue) || 1;
+    // Ensure minimum donation is $5
+    const finalValue = numValue < 5 ? 5 : numValue;
+    setDonationAmount(finalValue);
+    setInputValue(finalValue.toString());
+  };
   // Function to toggle selection of an organization
   const toggleOrganization = (orgId: string) => {
     setSelectedOrganizations((prev) =>
@@ -112,161 +77,235 @@ const DonationBox2 = ({
 
   return (
     <div className="w-full h-full bg-white flex flex-col">
-      {/* Header with back button */}
+      {/* We'll use the DonationHeader component from the parent instead */}
 
-      <div className="flex-1 overflow-auto bg-[#f5f5ff] rounded-lg pb-8 mt-5 mx-4">
-        {/* Donation Amount Card */}
-        <div className="bg-[#F5F8FF] p-6 rounded-xl mx-4 mt-4 text-center">
-          <div className="bg-[#D3DEFF] inline-flex rounded-xl px-6 py-2 mb-2">
-            <span className="text-blue-600 text-2xl font-bold">
-              ${donationAmount}
-            </span>
-          </div>
-          <p className="text-sm text-gray-600 mt-2">
-            You can add up to 10 more causes to your donation box
-          </p>
-        </div>
+      <div className="flex-1 overflow-auto mt-2 mx-4">
+        {/* Step indicator */}
+        {/* <StepIndicator currentStep={2} /> */}
 
-        {/* Selected Organizations List */}
-        {selectedOrgs.length > 0 && (
-          <div className="mt-2 px-4 mb-3 ">
-            <h2 className="text-sm text-gray-500 mb-2">Selected Causes</h2>
-            <div className="flex flex-wrap gap-2">
-              {selectedOrgs.map((org) => (
-                <Badge
-                  key={org.id}
-                  variant="outline"
-                  className="flex items-center gap-1 px-2 py-1 rounded-full bg-white"
-                >
-                  {org.name}
-                  <button
-                    onClick={() => removeOrganization(org.id)}
-                    className="ml-1 bg-gray-100 rounded-full p-0.5"
-                  >
-                    <X size={12} />
-                  </button>
-                </Badge>
-              ))}
+        {/* Main content container - flex column on mobile, grid on larger screens */}
+        <div className="md:grid md:grid-cols-12 md:gap-6">
+          {/* Left column - Donation Amount and Selected Causes */}
+          <div className="md:col-span-5 space-y-4 order-first md:order-last">
+            {/* Donation Amount Card */}
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mt-4 md:mt-0 mb-4 md:mb-4">
+              <div className="flex justify-center items-center mb-4">
+                <h2 className="text-lg text-center font-medium text-gray-800">Add Causes</h2>
+              </div>
+
+              <div className="mx-auto w-fit items-center justify-between bg-blue-50 rounded-lg px-4 py-3 mb-4">
+                <span className="text-blue-600 text-xl font-bold px-4 py-1">
+                  ${donationAmount}
+                </span>
+              </div>
+
+              <p className="text-sm text-gray-600 mb-2 mx-auto w-fit">
+                You can add up to 10 more causes to your donation box
+              </p>
             </div>
-          </div>
-        )}
 
-        {/* CROWDS Section */}
-        <div className=" px-4 ">
-          <h2 className="text-sm  text-[#8993bf] mb-3">
-            Select from your CRWDS
-          </h2>
-          <div className="flex gap-3 overflow-y-auto pb-2">
-            {CROWDS.map((org) => (
-              <button
-                key={org.id}
-                className={cn(
-                  "flex-shrink-0 flex flex-col items-center justify-center min-w-12 h-12 rounded-lg relative",
-                  org.color ? `bg-[${org.color}]` : "bg-cover bg-center",
-                  selectedOrganizations.includes(org.id) &&
-                    "ring-2 ring-blue-500"
-                )}
-                style={{
-                  backgroundColor: org.color || undefined,
-                  backgroundImage:
-                    org.imageUrl && !org.color
-                      ? `url(${org.imageUrl})`
-                      : undefined,
-                }}
-                onClick={() => toggleOrganization(org.id)}
+            {/* Selected Organizations List - Always visible regardless of screen size */}
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-4">
+              <div className="flex items-center mb-3">
+                <div className="flex items-center justify-center w-6 h-6 rounded-full bg-green-100 text-green-600 mr-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <h2 className="text-sm font-medium text-gray-800">Selected Causes ({selectedOrgs.length})</h2>
+              </div>
+              {selectedOrgs.length > 0 ? (
+                <div className="flex flex-wrap gap-2">
+                  {selectedOrgs.map((org) => (
+                    <Badge
+                      key={org.id}
+                      variant="outline"
+                      className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-blue-50 border-blue-100 text-blue-700"
+                    >
+                      {org.name}
+                      <button
+                        onClick={() => removeOrganization(org.id)}
+                        className="ml-1 bg-blue-100 hover:bg-blue-200 rounded-full p-1 transition-colors"
+                        aria-label={`Remove ${org.name}`}
+                      >
+                        <X size={12} />
+                      </button>
+                    </Badge>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-gray-500 text-center py-2">No causes selected yet</p>
+              )}
+            </div>
+
+            {/* Confirm button - visible on both mobile and desktop */}
+            <div className="w-full mb-4 hidden md:block">
+              <Button
+                onClick={() => setStep(3)}
+                disabled={selectedOrgs.length === 0}
+                className="bg-green-500 hover:bg-green-600 text-white w-full py-6 rounded-lg font-medium transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {org.shortDesc && (
-                  <span className="text-white text-xs">{org.shortDesc}</span>
-                )}
-                {selectedOrganizations.includes(org.id) && (
-                  <div className="absolute top-1 right-1 w-3 h-3 bg-blue-500 rounded-full">
-                    CR
-                  </div>
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Recents Section */}
-        <div className=" bg-[#ededfa] rounded-lg p-2">
-          <div className="mt-3 px-4">
-            <h2 className="text-sm text-gray-500 mb-3">
-              Select from your Recents
-            </h2>
-            <div className="space-y-3 max-h-[150px] overflow-y-auto no-scrollbar ">
-              {RECENTS.map((org) => (
-                <div key={org.id} className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Avatar className="h-5 w-5 bg-gray-300">
-                      <div className="h-full w-full bg-gray-300 rounded-full" />
-                      <img src="/redcross.png" alt="" />
-                    </Avatar>
-                    <span className="text-sm text-gray-700">{org.name}</span>
-                  </div>
-                  <Checkbox
-                    checked={selectedOrganizations.includes(org.id)}
-                    onCheckedChange={() => toggleOrganization(org.id)}
-                    className="h-5 w-5 border-gray-300"
-                  />
-                </div>
-              ))}
+                Confirm
+              </Button>
             </div>
           </div>
 
-          {/* More Suggested */}
-          <div className="mt-6 px-4 pb-2">
-            <h2 className="text-sm text-gray-500 mb-3">More Suggested</h2>
-            <div className="space-y-3 max-h-[150px] overflow-y-auto no-scrollbar">
-              {SUGGESTED.map((org) => (
-                <div key={org.id} className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Avatar className="h-5 w-5 bg-gray-300">
-                      <div className="h-full w-full bg-gray-300 rounded-full" />
-                    </Avatar>
-                    <span className="text-sm text-gray-700">{org.name}</span>
+          {/* Right column - CROWDS, Recents, and Suggested */}
+          <div className="md:col-span-7">
+            {/* CROWDS Section */}
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-4">
+              <div className="flex items-center mb-3">
+                <h2 className="text-sm font-medium text-gray-800">
+                  Select from your CRWDS
+                </h2>
+              </div>
+              <div className="flex flex-wrap gap-3 pb-2 px-1">
+                {CROWDS.map((org) => (
+                  <button
+                    key={org.id}
+                    className={cn(
+                      "flex-shrink-0 flex flex-col items-center justify-center w-16 h-16 rounded-lg relative shadow-sm transition-all",
+                      org.color ? `bg-[${org.color}]` : "bg-cover bg-center",
+                      selectedOrganizations.includes(org.id)
+                        ? "ring-2 ring-blue-500 scale-105"
+                        : "hover:scale-105"
+                    )}
+                    style={{
+                      backgroundColor: org.color || undefined,
+                      backgroundImage:
+                        org.imageUrl && !org.color
+                          ? `url(${org.imageUrl})`
+                          : undefined,
+                    }}
+                    onClick={() => toggleOrganization(org.id)}
+                  >
+                    {org.shortDesc && (
+                      <span className="text-white text-xs font-medium">{org.shortDesc}</span>
+                    )}
+                    {selectedOrganizations.includes(org.id) && (
+                      <div className="absolute -top-1 -right-1 w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs shadow-sm">
+                        ✓
+                      </div>
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Recents and Suggested Section - Scrollable as a whole */}
+            <div className="bg-blue-50 rounded-xl">
+              <div className="bg-blue-100 rounded-xl border mb-4 overflow-hidden">
+                {/* Scrollable container for both sections */}
+                <div className="max-h-[350px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+                  {/* Recents Section */}
+                  <div className="p-4 bg-blue-100 z-10 border-b">
+                    <div className="flex items-center">
+                      <h2 className="text-sm font-medium text-gray-800">
+                        Select from your Recents
+                      </h2>
+                    </div>
                   </div>
-                  <Checkbox
-                    checked={selectedOrganizations.includes(org.id)}
-                    onCheckedChange={() => toggleOrganization(org.id)}
-                    className="h-5 w-5 border-gray-300"
-                  />
+
+                  {/* Recents Cards - Grid on larger screens */}
+                  <div className="px-4 py-2">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                      {RECENTS.map((org) => (
+                        <div
+                          key={org.id}
+                          className={cn(
+                            "flex items-center justify-between p-2 rounded-lg transition-colors",
+                            selectedOrganizations.includes(org.id)
+                              ? "bg-blue-50"
+                              : "hover:bg-blue-200"
+                          )}
+                        >
+                          <div className="flex items-center gap-2">
+                            <Avatar className="h-8 w-8 bg-gray-100 rounded-md">
+                              <img src={org.imageUrl || "/redcross.png"} alt="" className="rounded-md" />
+                            </Avatar>
+                            <span className="text-sm font-medium text-gray-700">{org.name}</span>
+                          </div>
+                          <Checkbox
+                            checked={selectedOrganizations.includes(org.id)}
+                            onCheckedChange={() => toggleOrganization(org.id)}
+                            className={cn(
+                              "h-5 w-5 border-gray-300 rounded-full",
+                              selectedOrganizations.includes(org.id) && "border-blue-500 bg-blue-500"
+                            )}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* More Suggested Section */}
+                  <div className="p-4 bg-blue-100 z-10 border-b border-t">
+                    <div className="flex items-center">
+                      <h2 className="text-sm font-medium text-gray-800">More Suggested</h2>
+                    </div>
+                  </div>
+
+                  {/* Suggested Cards - Grid on larger screens */}
+                  <div className="px-4 py-2 pb-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                      {SUGGESTED.map((org) => (
+                        <div
+                          key={org.id}
+                          className={cn(
+                            "flex items-center justify-between p-2 rounded-lg transition-colors",
+                            selectedOrganizations.includes(org.id)
+                              ? "bg-blue-50"
+                              : "hover:bg-blue-200"
+                          )}
+                        >
+                          <div className="flex items-center gap-2">
+                            <Avatar className="h-8 w-8 bg-gray-100 rounded-md">
+                              <img src={org.imageUrl || "/redcross.png"} alt="" className="rounded-md" />
+                            </Avatar>
+                            <span className="text-sm font-medium text-gray-700">{org.name}</span>
+                          </div>
+                          <Checkbox
+                            checked={selectedOrganizations.includes(org.id)}
+                            onCheckedChange={() => toggleOrganization(org.id)}
+                            className={cn(
+                              "h-5 w-5 border-gray-300 rounded-full",
+                              selectedOrganizations.includes(org.id) && "border-blue-500 bg-blue-500 "
+                            )}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              ))}
+              </div>
+
+              {/* Discover more link */}
+              <div className="my-4 pb-4 text-right px-6">
+                <Link
+                  href="/search"
+                  className="text-blue-500 text-sm flex items-center justify-end"
+                >
+                  Discover more <ArrowRight size={16} className="ml-1" />
+                </Link>
+              </div>
+
+
+
+
+            </div>
+            <div className="w-full mb-4  md:hidden">
+              <Button
+                onClick={() => setStep(3)}
+                disabled={selectedOrgs.length === 0}
+                className="bg-green-500 hover:bg-green-600 text-white w-full py-6 rounded-lg font-medium transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Confirm
+              </Button>
             </div>
           </div>
         </div>
-
-        <div className="mt-4 text-right px-6">
-          <a
-            href="#"
-            className="text-blue-500 text-sm flex items-center justify-end"
-          >
-            Discover more <ArrowRight size={16} className="ml-1" />
-          </a>
-        </div>
       </div>
-      {/* Bottom Action Area */}
-      <div className={` bg-white p-4 pb-9 w-full  ${isMobile ? "mb-20" : ""}`}>
-        <Button
-          onClick={() => setStep(3)}
-          className={`bg-[#6cd89b]  hover:bg-green-500 text-black w-full py-8 rounded-xl font-medium mb-3${
-            isMobile ? "mb-20" : ""
-          } `}
-        >
-          Confirm
-        </Button>
 
-        <div className="flex items-center justify-center text-xs text-gray-500">
-          <span className="mr-1">⚔️</span>
-          <p className="mt-2">
-            Your donation is protected and guaranteed.{" "}
-            <a href="#" className="text-blue-500">
-              Learn More
-            </a>
-          </p>
-        </div>
-      </div>
+      {/* Spacer for mobile */}
+      <div className="h-24 md:hidden"></div>
     </div>
   );
 };

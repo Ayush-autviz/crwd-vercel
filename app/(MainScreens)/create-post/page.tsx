@@ -156,19 +156,11 @@ export default function CreatePostFlow() {
       {/* Event Details Section */}
       <div className="flex-1 flex flex-col  px-2">
         <div className="flex flex-col p-4">
-          <div className="flex  justify-between items-center">
-            {/* <div className="flex flex-row items-center gap-4">
-        <div className="w-12 h-12 rounded-xl overflow-hidden bg-muted">
-          <Image src={"/mclaren.jpg"} className="w-full h-full object-cover" alt="CRWD logo" width={48} height={48} />
-        </div>
-        <div className="text-muted-foreground text-sm">Posting to Feed the Hungry</div>
-        </div> */}
-
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0">
             <div className="w-full">
-
               {selectedCRWD ? (
                 <div
-                  className="flex items-center gap-3 w-1/2 rounded-lg  py-2  cursor-pointer"
+                  className="flex items-center gap-3 w-full sm:w-3/4 md:w-1/2 rounded-lg py-2 cursor-pointer"
                   onClick={() => setStep(2)}
                 >
                   <div className="w-8 h-8 rounded-full overflow-hidden">
@@ -184,21 +176,21 @@ export default function CreatePostFlow() {
                 </div>
               ) : (
                 <>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                Select a CRWD to post to
-              </label>
-                <Select>
-                  <SelectTrigger className="w-1/2 rounded-lg border px-4 py-2 text-left shadow-none border-none bg-gray-100" onClick={() => setStep(2)}>
-                    <SelectValue placeholder="Choose a CRWD" />
-                  </SelectTrigger>
-                </Select>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Select a CRWD to post to
+                  </label>
+                  <Select>
+                    <SelectTrigger className="w-full sm:w-3/4 md:w-1/2 rounded-lg border px-4 py-2 text-left shadow-none border-none bg-gray-100" onClick={() => setStep(2)}>
+                      <SelectValue placeholder="Choose a CRWD" className="truncate" />
+                    </SelectTrigger>
+                  </Select>
                 </>
               )}
             </div>
 
             <Button
               variant="outline"
-              className="rounded-lg px-6 py-2 text-sm font-medium"
+              className="rounded-lg px-6 py-2 text-sm font-medium mt-2 sm:mt-0"
               onClick={() => setStep(2)}
               disabled={!selectedCRWD}
             >

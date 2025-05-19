@@ -40,33 +40,32 @@ const RecommendedOrgs = () => {
       </h2>
       <div className="space-y-3">
         {organizations.map((org) => (
-          <div
-            key={org.id}
-            className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card border shadow-sm"
-          >
-            <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
-              <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
-                {org.image && (
-                  <img
-                    src={org.image}
-                    alt={org.name}
-                    className="object-cover"
-                  />
-                )}
-              </Avatar>
-              <div className="min-w-0">
-                <h3 className="font-medium text-sm truncate">{org.name}</h3>
-                <p className="text-xs text-muted-foreground truncate">
-                  {org.description}
-                </p>
+          <Link href="/cause" key={org.id} className="block">
+            <div
+              className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card border shadow-sm"
+            >
+              <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
+                <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
+                  {org.image && (
+                    <img
+                      src={org.image}
+                      alt={org.name}
+                      className="object-cover"
+                    />
+                  )}
+                </Avatar>
+                <div className="min-w-0">
+                  <h3 className="font-medium text-sm truncate">{org.name}</h3>
+                  <p className="text-xs text-muted-foreground truncate">
+                    {org.description}
+                  </p>
+                </div>
               </div>
-            </div>
-            <Link href="/cause">
               <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0 cursor-pointer">
                 Visit
               </Button>
-            </Link>
-          </div>
+            </div>
+          </Link>
         ))}
       </div>
       <div className="flex justify-end mt-4">

@@ -120,35 +120,34 @@ export default function SearchPage() {
             <h2 className="text-lg font-semibold mb-4">Suggested causes</h2>
             <div className="space-y-3">
               {suggestedCauses.map((cause, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card "
-                >
-                  <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
-                    <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
-                      {cause.image && (
-                        <img
-                          src={cause.image}
-                          alt={cause.name}
-                          className="object-cover"
-                        />
-                      )}
-                    </Avatar>
-                    <div className="min-w-0">
-                      <h3 className="font-medium text-sm truncate">
-                        {cause.name}
-                      </h3>
-                      <p className="text-xs text-muted-foreground truncate">
-                        {cause.description}
-                      </p>
+                <Link href="/cause" key={index} className="block">
+                  <div
+                    className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card"
+                  >
+                    <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
+                      <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
+                        {cause.image && (
+                          <img
+                            src={cause.image}
+                            alt={cause.name}
+                            className="object-cover"
+                          />
+                        )}
+                      </Avatar>
+                      <div className="min-w-0">
+                        <h3 className="font-medium text-sm truncate">
+                          {cause.name}
+                        </h3>
+                        <p className="text-xs text-muted-foreground truncate">
+                          {cause.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <Link href="/cause">
                     <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0 cursor-pointer">
                       Visit
                     </Button>
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               ))}
             </div>
             <div className="flex justify-end mt-4">
@@ -208,7 +207,7 @@ export default function SearchPage() {
 
           <Card className="mt-6">
             <CardContent className="">
-              <h2 className="text-xl font-bold mb-4">Create Your Own</h2>
+              <h2 className="text-xl font-bold mb-4">Start a CRWD</h2>
               <p className="text-muted-foreground mb-4">
                 Start your own CRWD to support a cause you care about or connect
                 with like-minded individuals.
