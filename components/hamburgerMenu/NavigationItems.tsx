@@ -1,0 +1,90 @@
+import React from 'react';
+import {
+  Plus,
+  Users,
+  Bookmark,
+  Search,
+  Archive,
+  Bell,
+  Shuffle,
+  Info,
+  HelpCircle,
+  Settings,
+} from 'lucide-react';
+import Link from 'next/link';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { cn } from "@/lib/utils";
+
+export const menuItems = [
+  { icon: <Users size={20} />, label: 'Your CRWDs', href: '/your-crdws' },
+  { icon: <Bookmark size={20} />, label: 'Saved', href: '/saved' },
+  { icon: <Search size={20} />, label: 'Explore', href: '#' },
+  { icon: <Archive size={20} />, label: 'Donation box', href: '/donation' },
+  { icon: <Bell size={20} />, label: 'Notifications', href: '/notifications' },
+  { icon: <Shuffle size={20} />, label: 'Transaction history', href: '/transaction-history' },
+  { icon: <Info size={20} />, label: 'About', href: '#' },
+  { icon: <HelpCircle size={20} />, label: 'Help', href: '#' },
+  { icon: <Settings size={20} />, label: "Settings", href: '/settings' }
+];
+
+interface NavigationItemsProps {
+  className?: string;
+  linkClassName?: string;
+  iconClassName?: string;
+  showCreateButton?: boolean;
+  showNewPostButton?: boolean;
+}
+
+const NavigationItems: React.FC<NavigationItemsProps> = ({
+  className,
+  linkClassName,
+  iconClassName,
+  showCreateButton = true,
+  showNewPostButton = false,
+}) => {
+  return (
+    <div className={cn("flex flex-col py-2", className)}>
+      {showCreateButton && (
+        <Link
+          href="/create-crwd"
+          className={cn(
+            "flex items-center gap-4 px-6 py-3 text-sm font-medium hover:bg-muted/50 transition-colors",
+            linkClassName
+          )}
+        >
+          <Plus size={18} className={cn("text-primary", iconClassName)} />
+          <span>Create a CRWD</span>
+        </Link>
+      )}
+       {showNewPostButton && (
+        <Link
+          href="/create-post"
+          className={cn(
+            " hidden md:flex items-center gap-4 px-6 py-3 text-sm font-medium hover:bg-muted/50 transition-colors",
+            linkClassName
+          )}
+        >
+          <Plus size={18} className={cn("text-primary", iconClassName)} />
+          <span>New Post</span>
+        </Link>
+      )}
+
+
+      {menuItems.map((item) => (
+        <Link
+          key={item.label}
+          href={item.href}
+          className={cn(
+            "flex items-center gap-4 px-6 py-3 text-sm font-medium hover:bg-muted/50 transition-colors",
+            linkClassName
+          )}
+        >
+          <span className={cn("text-primary", iconClassName)}>{item.icon}</span>
+          <span>{item.label}</span>
+        </Link>
+      ))}
+    </div>
+  );
+};
+
+export default NavigationItems; 

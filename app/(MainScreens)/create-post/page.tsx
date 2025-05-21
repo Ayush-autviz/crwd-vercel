@@ -56,12 +56,13 @@ export default function CreatePostFlow() {
     time: "",
     place: "",
     caption: "",
+    content: "",
   });
 
   // Track which post type is selected
   const [postType, setPostType] = useState<'link' | 'image' | 'event'>('event');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
@@ -256,7 +257,16 @@ export default function CreatePostFlow() {
             ) : (
               <div className="flex flex-col items-start justify-start h-64 mt-10 px-1">
                 <div className="text-xl text-gray-400 font-light mb-3">Start Typing</div>
-                <div className="text-gray-400 italic text-sm">
+                <div className="w-full">
+                  <textarea
+                    name="content"
+                    value={form.content}
+                    onChange={handleInputChange}
+                    placeholder="What's on your mind?"
+                    className="w-full min-h-[200px] p-4 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
+                  />
+                </div>
+                <div className="text-gray-400 italic text-sm mt-2">
                   You can share an announcement, picture, event, link, etc.
                 </div>
               </div>

@@ -41,6 +41,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
 import Link from "next/link";
+import DesktopNavigation from "@/components/hamburgerMenu/DesktopNavigation";
+import { Toaster } from "sonner"
 
 export default function RootLayout({
   children,
@@ -55,7 +57,7 @@ export default function RootLayout({
         <div className="bg-background min-h-screen">
           {/* Desktop Sidebar - Only visible on md screens */}
           <div className="hidden md:flex md:fixed md:inset-y-0 md:left-0 md:z-50 md:w-72 md:flex-col md:border-r md:bg-card">
-            <div className="flex h-16 items-center justify-center px-6 border-b">
+            <div className="flex h-16 items-center justify-center px-6 py-6 border-b">
               <Image
                 src="/logo3.png"
                 width={100}
@@ -63,62 +65,12 @@ export default function RootLayout({
                 alt="Picture of the author"
               />
             </div>
-            <ScrollArea className="flex-1 py-4">
-              <div className="px-3 py-2">
-                <h2 className="mb-2 px-3 text-lg font-semibold tracking-tight">
-                  Navigation
-                </h2>
-                <div className="space-y-1">
-                  <Link href="/">
-                    <Button variant="ghost" className="w-full justify-start">
-                      <Home className="mr-2 h-4 w-4" />
-                      <span>Home</span>
-                    </Button>
-                  </Link>
-                  <Link href="/search">
-                    <Button variant="ghost" className="w-full justify-start">
-                      <Search className="mr-2 h-4 w-4" />
-                      <span>Search</span>
-                    </Button>
-                  </Link>
-                  <Link href="/create-post">
-                    <Button variant="ghost" className="w-full justify-start">
-                      <Plus className="mr-2 h-4 w-4" />
-                      <span>Post</span>
-                    </Button>
-                  </Link>
-                  <Link href="/notifications">
-                    <Button variant="ghost" className="w-full justify-start">
-                      <Bell className="mr-2 h-4 w-4" />
-                      <span>Activity</span>
-                    </Button>
-                  </Link>
-                  <Link href={"/profile"}>
-                    <Button variant="ghost" className="w-full justify-start">
-                      <User className="mr-2 h-4 w-4" />
-                      <span>Profile</span>
-                    </Button>
-                  </Link>
-                  <Link href={"/notifications"}>
-                  <Button variant="ghost" className="w-full justify-start cursor-pointer">
-                    <Bell className="mr-2 h-4 w-4" />
-                    <span>Notifications</span>
-                  </Button>
-                  </Link>
-                  <Link href={"/saved"}>
-                  <Button variant="ghost" className="w-full justify-start cursor-pointer">
-                    <Heart className="mr-2 h-4 w-4" />
-                    <span>Saved</span>
-                  </Button>
-                  </Link>
-                  <Link href={"/settings"}>
-                  <Button variant="ghost" className="w-full justify-start cursor-pointer">
-                    <Settings className="mr-2 h-4 w-4" />
-                    <span>Settings</span>
-                  </Button>
-                  </Link>
-                </div>
-              </div>
+            {/* <ScrollArea className="flex-1 py-4"> */}
+                <DesktopNavigation />
+              {/* </ScrollArea> */}
+          
+          {/* </div> */}
+           
               {/* <div className="px-3 py-2">
                 <h2 className="mb-2 px-3 text-lg font-semibold tracking-tight">
                   Features
@@ -150,7 +102,7 @@ export default function RootLayout({
                   </Link>
                   </div>
                 </div> */}
-              </ScrollArea>
+             
             {/* <div className="border-t p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -290,6 +242,7 @@ export default function RootLayout({
             </Link>
           </nav>
         </div>
+        <Toaster richColors position="top-center" />
       </body>
     </html>
   );
