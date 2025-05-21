@@ -12,7 +12,7 @@ export default function ProfileNavbar({showMobileMenu=true,showDesktopMenu=true,
     <>
    {
     showMobileMenu && (
-      <header className="w-full flex items-center h-16 bg-card border-b sticky top-0 z-10 md:hidden">
+      <header className="w-full flex items-center h-16 bg-gray-50 border-b sticky top-0 z-10 md:hidden">
       {/* Centered Logo */}
       <div className="flex-grow flex justify-center">
         <Image src="/logo3.png" width={100} height={100} alt="CRWD Logo" />
