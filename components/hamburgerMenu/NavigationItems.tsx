@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
 export const menuItems = [
   { icon: <Users size={20} />, label: 'Your CRWDs', href: '/your-crdws' },
   { icon: <Bookmark size={20} />, label: 'Saved', href: '/saved' },
-  { icon: <Search size={20} />, label: 'Explore', href: '#' },
+  { icon: <Search size={20} />, label: 'Explore', href: '/search' },
   { icon: <Archive size={20} />, label: 'Donation box', href: '/donation' },
   { icon: <Bell size={20} />, label: 'Notifications', href: '/notifications' },
   { icon: <Shuffle size={20} />, label: 'Transaction history', href: '/transaction-history' },
