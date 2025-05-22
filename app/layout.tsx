@@ -127,7 +127,7 @@ export default function RootLayout({
           {/* Main Content with Mobile and Desktop Views */}
           <div className="md:pl-72">
             {/* Mobile Content */}
-            <div className="md:hidden">
+            <div className="md:hidden no-scrollbar">
               {/* Mobile Header */}
               {/* <header className="flex items-center justify-between p-4 bg-card border-b sticky top-0 z-10">
             <div className="flex items-center">
