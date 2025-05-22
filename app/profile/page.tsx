@@ -23,7 +23,7 @@ export default function Page() {
               link="thisisaurl.com"
             />
             <ProfileBio bio="This is a bio about Mya and how she likes to help others and give back to her community. She also loves ice cream." />
-            <ProfileStats causes={10} crwds={3} followers={58} following={8} />
+            <ProfileStats profileId="123" causes={10} crwds={3} followers={58} following={8} />
             <ProfileInterests interests={["Environment", "Food Insecurity", "Education", "Healthcare"]} />
 
             <div className="py-4">
