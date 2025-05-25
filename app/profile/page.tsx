@@ -1,12 +1,13 @@
 import React from 'react'
 import ProfileHeader from '../../components/profile/ProfileHeader';
 import ProfileBio from '../../components/profile/ProfileBio';
-import ProfileStats from '../../components/profile/ProfileStats';
+
 import ProfileInterests from '../../components/profile/ProfileInterests';
 import ProfileActivity from '../../components/profile/ProfileActivity';
 import ProfileNavbar from '../../components/profile/ProfileNavbar';
 import ProfileSidebar from '../../components/profile/ProfileSidebar';
 import { profileActivity } from '@/lib/profile/profileActivity';
+import ProfileStats from '@/components/profile/ProfileStats';
 
 export default function Page() {
   return (
