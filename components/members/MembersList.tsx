@@ -32,7 +32,7 @@ const MembersList: React.FC<MembersListProps> = ({ members }) => {
       </div>
       <ScrollArea className="h-[70vh] no-scrollbar px-6">
         {filtered.map((member, index) => (
-          <div key={index} className="flex items-center justify-between py-2">
+          <div key={index} className="flex items-center justify-between py-3">
             <div className="flex items-center">
               <Avatar className="h-10 w-10 mr-3">
                 <AvatarImage src={`/placeholder.svg?height=40&width=40`} alt={member.name} />
@@ -45,7 +45,7 @@ const MembersList: React.FC<MembersListProps> = ({ members }) => {
             </div>
             <Button
               variant="outline"
-              className={`border-0 text-sm mr-2 ${member.connected ? 'bg-[#4367FF] text-white' : 'bg-[#F0F2FB] text-[#4367FF]'}`}
+              className={`border-0 text-sm mr-2 cursor-pointer hover:text-blue-500 ${member.connected ? 'bg-[#4367FF] text-white' : 'bg-[#F0F2FB] text-[#4367FF]'}`}
               size="sm"
             >
               {member.connected ? 'Connected' : 'Connect'}

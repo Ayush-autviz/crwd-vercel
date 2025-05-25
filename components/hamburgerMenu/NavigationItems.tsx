@@ -12,11 +12,10 @@ import {
   Settings,
 } from 'lucide-react';
 import Link from 'next/link';
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 
 export const menuItems = [
-  { icon: <Users size={20} />, label: 'Your CRWDs', href: '/your-crdws' },
+  { icon: <Users size={20} />, label: 'Your CRWDs', href: '/your-crwds' },
   { icon: <Bookmark size={20} />, label: 'Saved', href: '/saved' },
   { icon: <Search size={20} />, label: 'Explore', href: '/search' },
   { icon: <Archive size={20} />, label: 'Donation box', href: '/donation' },
