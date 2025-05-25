@@ -1,25 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import {
-  ArrowLeft,
-  Archive,
-  Bell,
   Calendar,
-  ChevronLeft,
   ImageIcon,
   Link,
-  StepBack,
   X,
 } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import HamburgerMenu from "@/components/hamburgerMenu/HamburgerMenu";
 import ProfileNavbar from "@/components/profile/ProfileNavbar";
-import { CrwdDropdown } from "@/components/post/CrwdDropdown";
 import { Select, SelectTrigger } from "@/components/ui/select";
 import { SelectValue } from "@/components/ui/select";
 
@@ -49,6 +41,7 @@ export default function CreatePostFlow() {
   const [step, setStep] = useState(1);
   const [selectedCRWD, setSelectedCRWD] = useState<CRWD | null>(null);
   const router = useRouter();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [form, setForm] = useState({
     title: "",
@@ -57,14 +50,99 @@ export default function CreatePostFlow() {
     place: "",
     caption: "",
     content: "",
+    url: "",
   });
 
   // Track which post type is selected
-  const [postType, setPostType] = useState<'link' | 'image' | 'event'>('event');
+  const [postType, setPostType] = useState<'link' | 'image' | 'event' | null>(null);
+
+  // Track selected image
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
+  // Track URL validation
+  const [urlError, setUrlError] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
+
+    // Clear URL error when user starts typing
+    if (name === 'url' && urlError) {
+      setUrlError(null);
+    }
+  };
+
+  // Validate URL format
+  const validateUrl = (url: string): boolean => {
+    try {
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  // Handle URL validation
+  const handleUrlBlur = () => {
+    if (form.url && !validateUrl(form.url)) {
+      setUrlError("Oops, this link isn't valid. Double-check, and try again.");
+    }
+  };
+
+  // Handle image selection
+  const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedImage(file);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImagePreview(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // Handle post type selection
+  const handlePostTypeSelect = (type: 'link' | 'image' | 'event') => {
+    setPostType(type);
+
+    // Reset form fields when switching post types
+    setForm(prev => ({
+      ...prev,
+      url: "",
+      title: "",
+      day: "",
+      time: "",
+      place: "",
+      caption: "",
+    }));
+
+    // Reset image selection
+    setSelectedImage(null);
+    setImagePreview(null);
+    setUrlError(null);
+
+    // Trigger image picker for image posts
+    if (type === 'image' && fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  // Check if post can be submitted
+  const canSubmitPost = () => {
+    if (!selectedCRWD || !form.content.trim()) return false;
+
+    switch (postType) {
+      case 'link':
+        return form.url.trim() && validateUrl(form.url) && !urlError;
+      case 'image':
+        return selectedImage !== null;
+      case 'event':
+        return form.title.trim();
+      default:
+        return false;
+    }
   };
 
   // Step 2: Post to (CRWD selection)
@@ -193,67 +271,132 @@ export default function CreatePostFlow() {
               variant="outline"
               className="rounded-lg px-6 py-2 text-sm font-medium mt-2 sm:mt-0"
               onClick={() => setStep(2)}
-              disabled={!selectedCRWD}
+              disabled={!canSubmitPost()}
             >
               Post
             </Button>
           </div>
           <div className="flex-1">
-            {selectedCRWD ? (
-              <>
-                <div className="text-gray-500 my-4">Provide your event details</div>
-                <div className="space-y-4">
-                  <div>
-                    <Input
-                      name="title"
-                      value={form.title}
-                      onChange={handleInputChange}
-                      placeholder="Event Name"
-                      className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
-                    />
+            {selectedCRWD && postType ? (
+              <div className="mt-6">
+                {/* Title/Content Input - Always shown for all post types */}
+                <div className="mb-6">
+                  <div className="text-xl text-gray-400 font-light mb-3">
+                    {postType === 'link' ? 'Title' : postType === 'image' ? 'Title' : 'Event Name'}
                   </div>
-
-                  <div>
-                    <Input
-                      name="day"
-                      value={form.day}
-                      onChange={handleInputChange}
-                      placeholder="Day"
-                      className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
-                    />
-                  </div>
-
-                  <div>
-                    <Input
-                      name="time"
-                      value={form.time}
-                      onChange={handleInputChange}
-                      placeholder="Time"
-                      className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
-                    />
-                  </div>
-
-                  <div>
-                    <Input
-                      name="place"
-                      value={form.place}
-                      onChange={handleInputChange}
-                      placeholder="Place"
-                      className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
-                    />
-                  </div>
-
-                  <div>
-                    <Input
-                      name="caption"
-                      value={form.caption}
-                      onChange={handleInputChange}
-                      placeholder="Caption"
-                      className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
-                    />
-                  </div>
+                  <textarea
+                    name="content"
+                    value={form.content}
+                    onChange={handleInputChange}
+                    placeholder={postType === 'link' ? "Add a title for your link..." :
+                                postType === 'image' ? "Add a title for your photo..." :
+                                "What's the name of your event?"}
+                    className="w-full min-h-[100px] p-0 border-0 bg-transparent text-lg focus:outline-none resize-none placeholder:text-gray-400"
+                  />
                 </div>
-              </>
+
+                {/* URL Input for Link Posts */}
+                {postType === 'link' && (
+                  <div className="mb-6">
+                    <div className="relative">
+                      <Input
+                        name="url"
+                        value={form.url}
+                        onChange={handleInputChange}
+                        onBlur={handleUrlBlur}
+                        placeholder="URL"
+                        className="border-0 border-b border-gray-300 rounded-none px-0 py-3 text-blue-500 focus-visible:ring-0 focus-visible:border-primary placeholder:text-gray-400"
+                      />
+                      {form.url && (
+                        <button
+                          onClick={() => setForm(prev => ({ ...prev, url: "" }))}
+                          className="absolute right-0 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-gray-400 rounded-full flex items-center justify-center text-white text-sm hover:bg-gray-500"
+                        >
+                          <X size={14} />
+                        </button>
+                      )}
+                    </div>
+                    {urlError && (
+                      <div className="text-red-500 text-sm mt-2">{urlError}</div>
+                    )}
+                    <div className="text-gray-500 text-sm mt-4">body text (optional)</div>
+                  </div>
+                )}
+
+                {/* Image Preview for Image Posts */}
+                {postType === 'image' && selectedImage && imagePreview && (
+                  <div className="mb-6">
+                    <div className="relative">
+                      <img
+                        src={imagePreview}
+                        alt="Selected"
+                        className="w-full max-h-64 object-cover rounded-lg"
+                      />
+                      <button
+                        onClick={() => {
+                          setSelectedImage(null);
+                          setImagePreview(null);
+                        }}
+                        className="absolute top-2 right-2 w-8 h-8 bg-black bg-opacity-50 rounded-full flex items-center justify-center text-white hover:bg-opacity-70"
+                      >
+                        <X size={16} />
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* Event Details for Event Posts */}
+                {postType === 'event' && (
+                  <div className="space-y-4">
+                    <div>
+                      <Input
+                        name="day"
+                        value={form.day}
+                        onChange={handleInputChange}
+                        placeholder="Day"
+                        className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
+                      />
+                    </div>
+
+                    <div>
+                      <Input
+                        name="time"
+                        value={form.time}
+                        onChange={handleInputChange}
+                        placeholder="Time"
+                        className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
+                      />
+                    </div>
+
+                    <div>
+                      <Input
+                        name="place"
+                        value={form.place}
+                        onChange={handleInputChange}
+                        placeholder="Place"
+                        className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
+                      />
+                    </div>
+
+                    <div>
+                      <Input
+                        name="caption"
+                        value={form.caption}
+                        onChange={handleInputChange}
+                        placeholder="Caption"
+                        className="border-0 border-b border-border rounded-none px-0 py-2 focus-visible:ring-0 focus-visible:border-primary placeholder:text-muted-foreground/70"
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : selectedCRWD && !postType ? (
+              <div className="flex flex-col items-center justify-center h-64 mt-10 px-1">
+                <div className="text-gray-400 text-center">
+                  <div className="text-lg mb-2">Select a post type below to get started</div>
+                  <div className="text-sm">Choose from link, photo, or event</div>
+                </div>
+              </div>
             ) : (
               <div className="flex flex-col items-start justify-start h-64 mt-10 px-1">
                 <div className="text-xl text-gray-400 font-light mb-3">Start Typing</div>
@@ -274,30 +417,42 @@ export default function CreatePostFlow() {
           </div>
         </div>
       </div>
+      {/* Hidden file input for image selection */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        onChange={handleImageSelect}
+        className="hidden"
+      />
+
       {/* Bottom Bar */}
       <div className="border-t px-6 py-4 flex flex-col gap-2 bg-background/80 backdrop-blur-md">
         <div className="flex gap-8 mb-1">
           <button
-            onClick={() => setPostType('link')}
+            onClick={() => handlePostTypeSelect('link')}
             className="focus:outline-none"
           >
             <Link className={`h-6 w-6 ${postType === 'link' ? 'text-primary' : 'text-gray-500'} transition-colors`} />
           </button>
           <button
-            onClick={() => setPostType('image')}
+            onClick={() => handlePostTypeSelect('image')}
             className="focus:outline-none"
           >
             <ImageIcon className={`h-6 w-6 ${postType === 'image' ? 'text-primary' : 'text-gray-500'} transition-colors`} />
           </button>
           <button
-            onClick={() => setPostType('event')}
+            onClick={() => handlePostTypeSelect('event')}
             className="focus:outline-none"
           >
             <Calendar className={`h-6 w-6 ${postType === 'event' ? 'text-primary' : 'text-gray-500'} transition-colors`} />
           </button>
         </div>
         <div className="text-muted-foreground text-sm italic">
-          Create a {postType === 'link' ? 'link' : postType === 'image' ? 'photo' : 'event'} post
+          {postType ?
+            `Create a ${postType === 'link' ? 'link' : postType === 'image' ? 'photo' : 'event'} post` :
+            'Select a post type to get started'
+          }
         </div>
       </div>
       <div className="h-20 md:hidden" />
