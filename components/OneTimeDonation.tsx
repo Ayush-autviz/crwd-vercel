@@ -216,7 +216,7 @@ export default function OneTimeDonation({
           <div className="py-4 w-full">
             <Button
               onClick={() => setCheckout(true)}
-              className="bg-green-500 hover:bg-green-600 text-white w-full py-6 md:py-6 rounded-lg font-medium transition-colors flex items-center justify-center"
+              className="bg-green-500 hover:bg-green-600 text-black w-full py-6 md:py-6 rounded-lg font-medium transition-colors flex items-center justify-center"
             >
               Complete Donation
             </Button>

@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
+import BackButton from "@/components/ui/BackButton";
 
 const ReportPage = () => {
   const [loading, setLoading] = useState(false);
@@ -26,7 +27,7 @@ const ReportPage = () => {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       toast.success("Your report has been submitted successfully. We'll review it shortly.");
       setFormData({
         type: "",
@@ -60,11 +61,14 @@ const ReportPage = () => {
   return (
     <div className="h-full flex flex-col">
       <ProfileNavbar title="Report an Issue" />
-      
+
       <div className="flex-1 w-full bg-white md:rounded-2xl mt-0 md:mt-8 overflow-hidden">
         <div className="max-w-2xl mx-auto p-6">
           <Card className="border-none shadow-none">
             <CardContent className="p-0">
+            <div className="mb-6">
+              <BackButton variant="outlined" />
+            </div>
               <div className="mb-8">
                 <h1 className="text-2xl font-bold mb-2">Report an Issue</h1>
                 <p className="text-gray-600">
@@ -184,4 +188,4 @@ const ReportPage = () => {
   );
 };
 
-export default ReportPage; 
+export default ReportPage;

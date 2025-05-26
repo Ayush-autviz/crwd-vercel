@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2, Plus, CreditCard, Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import BackButton from "@/components/ui/BackButton";
 
 // Mock data for payment methods
 const mockPaymentMethods = [
@@ -47,7 +48,7 @@ const PaymentMethodsPage = () => {
     try {
       // Here you would typically make an API call to add a new card
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulated API call
-      
+
       toast.success("Payment method added successfully!");
       setShowAddForm(false);
       setNewCard({ number: "", name: "", expiry: "", cvc: "" });
@@ -64,7 +65,7 @@ const PaymentMethodsPage = () => {
     try {
       // Here you would typically make an API call to delete the card
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulated API call
-      
+
       toast.success("Payment method removed successfully!");
     } catch (error) {
       toast.error("Failed to remove payment method. Please try again.");
@@ -79,7 +80,7 @@ const PaymentMethodsPage = () => {
     try {
       // Here you would typically make an API call to set the card as default
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulated API call
-      
+
       toast.success("Default payment method updated!");
     } catch (error) {
       toast.error("Failed to update default payment method. Please try again.");
@@ -91,9 +92,12 @@ const PaymentMethodsPage = () => {
   return (
     <div className="h-full flex flex-col">
       <ProfileNavbar title="Payment Methods" />
-      
+
       <div className="flex-1 w-full bg-white md:rounded-2xl mt-0 md:mt-8 overflow-hidden">
         <div className="max-w-2xl mx-auto p-6">
+        <div className="mb-6">
+          <BackButton variant="outlined" />
+        </div>
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-semibold">Your Payment Methods</h2>
             <Button
@@ -243,4 +247,4 @@ const PaymentMethodsPage = () => {
   );
 };
 
-export default PaymentMethodsPage; 
+export default PaymentMethodsPage;

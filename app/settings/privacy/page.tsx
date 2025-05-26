@@ -2,19 +2,23 @@
 import React from 'react';
 import ProfileNavbar from "@/components/profile/ProfileNavbar";
 import { Card, CardContent } from "@/components/ui/card";
+import BackButton from "@/components/ui/BackButton";
 
 const PrivacyPolicyPage = () => {
   return (
     <div className="h-full flex flex-col">
       <ProfileNavbar title="Privacy Policy" />
-      
+
       <div className="flex-1 w-full bg-white md:rounded-2xl mt-0 md:mt-8 overflow-hidden">
         <div className="max-w-4xl mx-auto p-6">
           <Card className="border-none shadow-none">
             <CardContent className="p-0">
+            <div className="mb-6">
+              <BackButton variant="outlined" />
+            </div>
               <div className="prose prose-blue max-w-none">
                 <h1 className="text-3xl font-bold mb-8">Privacy Policy</h1>
-                
+
                 <section className="mb-8">
                   <h2 className="text-2xl font-semibold mb-4">1. Introduction</h2>
                   <p className="text-gray-600 mb-4">
@@ -120,4 +124,4 @@ const PrivacyPolicyPage = () => {
   );
 };
 
-export default PrivacyPolicyPage; 
+export default PrivacyPolicyPage;

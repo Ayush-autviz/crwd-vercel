@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Mail } from "lucide-react";
+import BackButton from "@/components/ui/BackButton";
 
 export default function EmailPage() {
   const [loading, setLoading] = useState(false);
@@ -74,7 +75,7 @@ export default function EmailPage() {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       toast.success('Email updated successfully');
       setFormData({
         currentEmail: '',
@@ -92,11 +93,14 @@ export default function EmailPage() {
   return (
     <div className="h-full flex flex-col">
       <ProfileNavbar title="Change Email" />
-      
+
       <div className="flex-1 w-full bg-white mt-0 md:mt-8 overflow-hidden">
         <div className="max-w-2xl mx-auto p-6">
           <Card className="border-none shadow-none">
             <CardHeader>
+            <div className="mb-6">
+              <BackButton variant="outlined" />
+            </div>
               <div className="flex items-center gap-3 mb-2">
                 <Mail className="h-6 w-6 text-primary" />
                 <CardTitle className="text-2xl">Change Email</CardTitle>
@@ -202,4 +206,4 @@ export default function EmailPage() {
       <div className="h-20" />
     </div>
   );
-} 
+}

@@ -5,16 +5,20 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Github, Twitter, Linkedin, Globe } from "lucide-react";
 import Image from "next/image";
+import BackButton from "@/components/ui/BackButton";
 
 const AboutPage = () => {
   return (
     <div className="h-full flex flex-col">
       <ProfileNavbar title="About" />
-      
+
       <div className="flex-1 w-full bg-white md:rounded-2xl mt-0 md:mt-8 overflow-hidden">
         <div className="max-w-4xl mx-auto p-6">
           <Card className="border-none shadow-none">
             <CardContent className="p-0">
+            <div className="mb-6">
+              <BackButton variant="outlined" />
+            </div>
               <div className="prose prose-blue max-w-none">
                 {/* Hero Section */}
                 <div className="text-center mb-12">
@@ -30,7 +34,7 @@ const AboutPage = () => {
                   </div>
                   <h1 className="text-3xl font-bold mb-4">About CRWD</h1>
                   <p className="text-gray-600 max-w-2xl mx-auto">
-                    CRWD is a platform dedicated to connecting people with causes they care about. 
+                    CRWD is a platform dedicated to connecting people with causes they care about.
                     We believe in the power of community and collective action to create positive change.
                   </p>
                 </div>
@@ -39,7 +43,7 @@ const AboutPage = () => {
                 <section className="mb-12">
                   <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
                   <p className="text-gray-600 mb-4">
-                    To empower individuals and communities to make a difference by providing a platform 
+                    To empower individuals and communities to make a difference by providing a platform
                     that facilitates meaningful connections, transparent donations, and impactful actions.
                   </p>
                 </section>
@@ -169,4 +173,4 @@ const AboutPage = () => {
   );
 };
 
-export default AboutPage; 
+export default AboutPage;

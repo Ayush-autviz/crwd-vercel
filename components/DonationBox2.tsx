@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { CROWDS, RECENTS, SUGGESTED } from "@/constants";
+import { Switch } from "@/components/ui/switch"
 
 // Define Organization type locally to avoid import issues
 type Organization = {
@@ -208,14 +209,22 @@ const DonationBox2 = ({
                             </Avatar>
                             <span className="text-sm font-medium text-gray-700">{org.name}</span>
                           </div>
-                          <Checkbox
+                          {/* <Checkbox
                             checked={selectedOrganizations.includes(org.id)}
                             onCheckedChange={() => toggleOrganization(org.id)}
                             className={cn(
                               "h-5 w-5 border-gray-300 rounded-full",
                               selectedOrganizations.includes(org.id) && "border-blue-500 bg-blue-500"
                             )}
-                          />
+                          /> */}
+                          <Switch
+                      checked={selectedOrganizations.includes(org.id)}
+                      onCheckedChange={() => toggleOrganization(org.id)}
+                      className={cn(
+                        "h-5 border-gray-300 rounded-full",
+                        selectedOrganizations.includes(org.id) && "border-blue-500 bg-blue-500"
+                      )}
+                    />
                         </div>
                       ))}
                     </div>
@@ -247,14 +256,22 @@ const DonationBox2 = ({
                             </Avatar>
                             <span className="text-sm font-medium text-gray-700">{org.name}</span>
                           </div>
-                          <Checkbox
+                          {/* <Checkbox
                             checked={selectedOrganizations.includes(org.id)}
                             onCheckedChange={() => toggleOrganization(org.id)}
                             className={cn(
                               "h-5 w-5 border-gray-300 rounded-full",
                               selectedOrganizations.includes(org.id) && "border-blue-500 bg-blue-500 "
                             )}
-                          />
+                          /> */}
+                          <Switch
+                      checked={selectedOrganizations.includes(org.id)}
+                      onCheckedChange={() => toggleOrganization(org.id)}
+                      className={cn(
+                        "h-5 border-gray-300 rounded-full",
+                        selectedOrganizations.includes(org.id) && "border-blue-500 bg-blue-500"
+                      )}
+                    />
                         </div>
                       ))}
                     </div>
@@ -280,7 +297,7 @@ const DonationBox2 = ({
               <Button
                 onClick={() => setStep(3)}
                 disabled={selectedOrgs.length === 0}
-                className="bg-green-500 hover:bg-green-600 text-white w-full py-6 rounded-lg font-medium transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-green-500 hover:bg-green-600 text-black w-full py-6 rounded-lg font-medium transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Confirm
               </Button>
