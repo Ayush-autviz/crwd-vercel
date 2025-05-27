@@ -21,7 +21,7 @@ interface BackButtonProps {
 }
 
 const BackButton: React.FC<BackButtonProps> = ({
-  text = "Back",
+  text = "",
   onClick,
   className,
   iconOnly = false,
@@ -43,7 +43,7 @@ const BackButton: React.FC<BackButtonProps> = ({
   const variantStyles = {
     default: "px-3 py-2 hover:bg-gray-100 text-gray-700 hover:text-gray-900",
     minimal: "p-2 hover:bg-gray-50 text-gray-600 hover:text-gray-800",
-    outlined: "px-3 py-2 border border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-gray-700 hover:text-gray-900 shadow-sm"
+    outlined: "p-2  bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-gray-900 shadow-sm rounded-3xl transition-colors"
   };
 
   return (
@@ -57,9 +57,9 @@ const BackButton: React.FC<BackButtonProps> = ({
         size={iconSize} 
         className="flex-shrink-0 transition-transform duration-200 group-hover:-translate-x-0.5" 
       />
-      {!iconOnly && (
+      {/* {!iconOnly && (
         <span className="font-medium text-sm">{text}</span>
-      )}
+      )} */}
     </button>
   );
 };

@@ -34,6 +34,19 @@ const tabs = [
 
 export default function StatisticsPage() {
   const [activeTab, setActiveTab] = useState("causes");
+  const [causesSearch, setCausesSearch] = useState("");
+  const [crwdsSearch, setCrwdsSearch] = useState("");
+
+  // Filter functions
+  const filteredCauses = causes.filter(cause =>
+    cause.name.toLowerCase().includes(causesSearch.toLowerCase()) ||
+    cause.impact.toLowerCase().includes(causesSearch.toLowerCase())
+  );
+
+  const filteredCrwds = crwds.filter(crwd =>
+    crwd.name.toLowerCase().includes(crwdsSearch.toLowerCase()) ||
+    crwd.role.toLowerCase().includes(crwdsSearch.toLowerCase())
+  );
 
   return (
     <main className="pb-16 md:pb-0">
@@ -54,23 +67,22 @@ export default function StatisticsPage() {
         </div>
         {/* Tab Content */}
         {activeTab === "causes" && (
-          <div className="space-y-4 px-4">
-            {causes.map((cause, i) => (
-              <div key={cause.name} className="flex items-center bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl shadow px-3 py-3 gap-4">
-                <Avatar className="w-12 h-12 ml-2">
-                  <AvatarImage src={cause.avatar} />
-                  <AvatarFallback>{cause.name[0]}</AvatarFallback>
-                </Avatar>
-                <div className="flex-1 pr-2">
-                  <div className="font-semibold text-lg text-blue-900 mb-1">{cause.name}</div>
-                  <div className="text-xs text-gray-600 mb-2">{cause.impact}</div>
-                  <div className="w-full bg-blue-200 rounded-full h-2 mr-10">
-                    <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${60 + i * 10}%` }} />
+          <>
+              {filteredCauses.map((cause) => (
+                <div key={cause.name} className="flex items-center justify-between py-3">
+                  <div className="flex items-center">
+                    <Avatar className="h-10 w-10 mr-3">
+                      <AvatarImage src={cause.avatar} alt={cause.name} />
+                      <AvatarFallback>{cause.name[0]}</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <p className="font-medium">{cause.name}</p>
+                      {/* <p className="text-sm text-muted-foreground">{cause.impact}</p> */}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+          </>
         )}
         {activeTab === "following" && (
           <MembersList members={following} />
@@ -79,23 +91,31 @@ export default function StatisticsPage() {
           <MembersList members={followers} />
         )}
         {activeTab === "crwds" && (
-          <div className="space-y-4 px-4">
-            {crwds.map((crwd) => (
-              <div key={crwd.name} className="flex items-center bg-white border border-blue-200 rounded-lg shadow-sm p-4">
-                <Avatar className="w-12 h-12 mr-4">
-                  <AvatarImage src={crwd.avatar} />
-                  <AvatarFallback>{crwd.name[0]}</AvatarFallback>
-                </Avatar>
-                <div className="flex-1">
-                  <div className="font-semibold text-base text-blue-900">{crwd.name}</div>
-                  <div className="text-xs text-blue-600 font-medium">{crwd.role}</div>
+          <>
+              {filteredCrwds.map((crwd) => (
+                <div key={crwd.name} className="flex items-center justify-between py-3">
+                  <div className="flex items-center">
+                    <Avatar className="h-10 w-10 mr-3">
+                      <AvatarImage src={crwd.avatar} alt={crwd.name} />
+                      <AvatarFallback>{crwd.name[0]}</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <p className="font-medium">{crwd.name}</p>
+                      <p className="text-sm text-muted-foreground">{crwd.role}</p>
+                    </div>
+                  </div>
+                  <Button
+                    variant="outline"
+                    className="border-0 text-sm mr-2 cursor-pointer hover:text-blue-500 bg-[#F0F2FB] text-[#4367FF]"
+                    size="sm"
+                  >
+                    View
+                  </Button>
                 </div>
-                <button className="ml-4 px-4 py-1 rounded bg-blue-100 text-blue-700 text-xs font-semibold hover:bg-blue-200 transition">View</button>
-              </div>
-            ))}
-          </div>
+              ))}
+          </>
         )}
       </div>
     </main>
   );
-} 
+}

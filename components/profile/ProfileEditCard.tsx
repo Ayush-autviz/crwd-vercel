@@ -117,9 +117,9 @@ const ProfileEditCard: React.FC<ProfileEditCardProps> = ({
     return (
       <div className={`flex ${isTextarea ? 'items-start' : 'items-center'} px-4 py-4`}>
         <div className="w-1/3 text-gray-700 font-medium">{label}</div>
-        <div className="w-2/3 flex items-center gap-2">
+        <div className="w-2/3 flex items-center gap-2 min-w-0">
           {isCurrentlyEditing ? (
-            <div className="flex-1 flex items-center gap-2">
+            <div className="flex-1 flex items-center gap-2 min-w-0">
               {isTextarea ? (
                 <Textarea
                   value={tempData[field as keyof typeof tempData]}
@@ -131,7 +131,7 @@ const ProfileEditCard: React.FC<ProfileEditCardProps> = ({
                       handleCancel();
                     }
                   }}
-                  className="flex-1 min-h-[80px] resize-none"
+                  className="flex-1 min-h-[80px] max-h-[200px] resize-none w-full overflow-y-auto break-words"
                   placeholder={`Enter ${label.toLowerCase()}...`}
                   autoFocus
                 />
@@ -146,7 +146,7 @@ const ProfileEditCard: React.FC<ProfileEditCardProps> = ({
                       handleCancel();
                     }
                   }}
-                  className="flex-1"
+                  className="flex-1 w-full min-w-0"
                   placeholder={`Enter ${label.toLowerCase()}...`}
                   autoFocus
                 />
@@ -171,8 +171,12 @@ const ProfileEditCard: React.FC<ProfileEditCardProps> = ({
               </div>
             </div>
           ) : (
-            <div className="flex-1 flex items-center justify-between">
-              <div className={`text-gray-900 font-normal ${isTextarea ? 'whitespace-pre-line' : ''}`}>
+            <div className="flex-1 flex items-center justify-between min-w-0">
+              <div className={`text-gray-900 font-normal flex-1 min-w-0 ${
+                isTextarea
+                  ? 'whitespace-pre-line break-words'
+                  : 'truncate'
+              }`}>
                 {value || `No ${label.toLowerCase()} set`}
               </div>
               <Button
@@ -191,7 +195,7 @@ const ProfileEditCard: React.FC<ProfileEditCardProps> = ({
   };
 
   return (
-    <div className="w-full mx-auto bg-white">
+    <div className="w-full max-w-full mx-auto bg-white overflow-hidden">
       {/* Hidden file input */}
       <input
         ref={fileInputRef}
@@ -202,7 +206,7 @@ const ProfileEditCard: React.FC<ProfileEditCardProps> = ({
       />
 
       {/* Avatar Section */}
-      <div className="flex flex-col items-center mb-6">
+      <div className="flex flex-col items-center mb-6 px-4">
         <div className="relative">
           <Avatar className="w-16 h-16 mb-2">
             <AvatarImage src={formData.avatarUrl} alt={formData.name} />

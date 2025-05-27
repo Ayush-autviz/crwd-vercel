@@ -12,10 +12,10 @@ import { IoArrowRedoOutline } from "react-icons/io5";
 export default function ProfileActivityCard({post,className}:{post:PostDetail,className?:string}) {
   return (
    
-    <Card key={post.id} className={cn("overflow-hidden border-0 shadow-sm ",className)}>
+    <Card key={post.id} className={cn("overflow-hidden border-0 shadow-sm lg:max-w-[600px] ",className)}>
           <CardContent className="">
           <Link href={`/posts/${post.id}`} className='w-full'>
-            <div className="flex gap-3">
+            <div className="flex gap-3 ">
               <Avatar className="h-10 w-10 flex-shrink-0">
                 <AvatarImage src={post.avatarUrl} alt={post.username} />
                 <AvatarFallback>{post.username.charAt(0)}</AvatarFallback>

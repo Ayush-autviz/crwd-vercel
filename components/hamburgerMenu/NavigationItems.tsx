@@ -21,7 +21,7 @@ export const menuItems = [
   { icon: <Archive size={20} />, label: 'Donation box', href: '/donation' },
   { icon: <Bell size={20} />, label: 'Notifications', href: '/notifications' },
   { icon: <Shuffle size={20} />, label: 'Transaction history', href: '/transaction-history' },
-  { icon: <Info size={20} />, label: 'About', href: '/about' },
+  { icon: <Info size={20} />, label: 'About', href: '/settings/about' },
   { icon: <HelpCircle size={20} />, label: 'Help', href: '/help' },
   { icon: <Settings size={20} />, label: "Settings", href: '/settings' }
 ];

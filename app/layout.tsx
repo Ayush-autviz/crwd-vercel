@@ -58,12 +58,14 @@ export default function RootLayout({
           {/* Desktop Sidebar - Only visible on md screens */}
           <div className="hidden md:flex md:fixed md:inset-y-0 md:left-0 md:z-50 md:w-72 md:flex-col md:border-r md:bg-card">
             <div className="flex h-16 items-center justify-center px-6 py-6 border-b">
+              <Link href="/">
               <Image
                 src="/logo3.png"
                 width={100}
                 height={100}
                 alt="Picture of the author"
               />
+              </Link>
             </div>
             {/* <ScrollArea className="flex-1 py-4"> */}
                 <DesktopNavigation />

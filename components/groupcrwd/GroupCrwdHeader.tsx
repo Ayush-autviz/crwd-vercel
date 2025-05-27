@@ -73,7 +73,7 @@ const GroupCrwdHeader: React.FC = () => (
     {/* Orgs Avatars */}
     <div className="flex items-center gap-1 mt-1">
       {orgAvatars.map((src, i) => (
-        <img key={i} src={src} alt="org" className="w-7 h-7 rounded-full border-2 border-white -ml-2 first:ml-0" />
+        <img key={i} src={src} alt="org" className="w-7 h-7 rounded-full border-2 border-white  first:ml-0" />
       ))}
     </div>
     {/* Supporting text */}

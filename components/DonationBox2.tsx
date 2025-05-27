@@ -127,7 +127,7 @@ const DonationBox2 = ({
               <Button
                 onClick={() => setStep(3)}
                 disabled={selectedOrgs.length === 0}
-                className="bg-green-500 hover:bg-green-600 text-white w-full py-6 rounded-lg font-medium transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-green-500 hover:bg-green-600 text-black w-full py-6 rounded-lg font-medium transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Confirm
               </Button>
