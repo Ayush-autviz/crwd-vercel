@@ -282,14 +282,14 @@ export default function CreatePostFlow() {
                 {/* Title/Content Input - Always shown for all post types */}
                 <div className="mb-6">
                   <div className="text-xl text-gray-400 font-light mb-3">
-                    {postType === 'link' ? 'Title' : postType === 'image' ? 'Title' : 'Event Name'}
+                    {/* {postType === 'link' ? 'Title' : postType === 'image' ? 'Title' : 'Event Name'} */}
                   </div>
                   <textarea
                     name="content"
                     value={form.content}
                     onChange={handleInputChange}
-                    placeholder={postType === 'link' ? "Add a title for your link..." :
-                                postType === 'image' ? "Add a title for your photo..." :
+                    placeholder={postType === 'link' ? "What's on your mind?" :
+                                postType === 'image' ? "What's on your mind?" :
                                 "What's the name of your event?"}
                     className="w-full min-h-[100px] p-0 border-0 bg-transparent text-lg focus:outline-none resize-none placeholder:text-gray-400"
                   />
@@ -319,7 +319,7 @@ export default function CreatePostFlow() {
                     {urlError && (
                       <div className="text-red-500 text-sm mt-2">{urlError}</div>
                     )}
-                    <div className="text-gray-500 text-sm mt-4">body text (optional)</div>
+                    {/* <div className="text-gray-500 text-sm mt-4">body text (optional)</div> */}
                   </div>
                 )}
 

@@ -22,7 +22,7 @@ const AboutPage = () => {
               <div className="prose prose-blue max-w-none">
                 {/* Hero Section */}
                 <div className="text-center mb-12">
-                  <div className="relative w-32 h-32 mx-auto mb-6">
+                  {/* <div className="relative w-32 h-32 mx-auto mb-6">
                     <Image
                       src="/logo3.png"
                       alt="CRWD Logo"
@@ -31,7 +31,7 @@ const AboutPage = () => {
                       className="object-contain"
                       priority
                     />
-                  </div>
+                  </div> */}
                   <h1 className="text-3xl font-bold mb-4">About CRWD</h1>
                   <p className="text-gray-600 max-w-2xl mx-auto">
                     CRWD is a platform dedicated to connecting people with causes they care about.
