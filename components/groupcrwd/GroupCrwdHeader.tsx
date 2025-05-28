@@ -33,7 +33,7 @@ const GroupCrwdHeader: React.FC = () => (
       <div className="flex items-center gap-3">
         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Feed the hungry" className="w-12 h-12 rounded-lg object-cover" />
         <div className="flex flex-col">
-          <span className="font-semibold text-base text-[#1a8cff]">Feed the hungry</span>
+          <span className="font-semibold text-base text-gray-700">Feed the hungry</span>
           {/* <span className="text-xs text-gray-500">supports</span> */}
         </div>
       </div>
