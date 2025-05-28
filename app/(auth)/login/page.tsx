@@ -2,23 +2,22 @@
 
 import type React from "react"
 import { useState } from "react"
-import { ArrowLeft, Eye, EyeOff, Check } from "lucide-react"
+import { ArrowLeft, Eye, EyeOff } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
+import { Checkbox } from "@/components/ui/checkbox"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
 
-const SignupPage: React.FC = () => {
+const LoginPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isGoogleLoading, setIsGoogleLoading] = useState(false)
-  const [focusedField, setFocusedField] = useState<string | null>(null)
+  const [rememberMe, setRememberMe] = useState(false)
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
     password: "",
   })
@@ -37,38 +36,29 @@ const SignupPage: React.FC = () => {
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 1500))
-      toast.success("Account created successfully!", {
-        description: "Welcome to our platform!",
+      toast.success("Welcome back!", {
+        description: "You have been signed in successfully.",
       })
     } catch (error) {
-      toast.error("Something went wrong", {
-        description: "Please try again later.",
+      toast.error("Invalid credentials", {
+        description: "Please check your email and password.",
       })
     } finally {
       setIsLoading(false)
     }
   }
 
-  const handleGoogleSignup = async () => {
+  const handleGoogleLogin = async () => {
     setIsGoogleLoading(true)
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000))
-      toast.success("Google signup successful!")
+      toast.success("Google login successful!")
     } catch (error) {
-      toast.error("Google signup failed")
+      toast.error("Google login failed")
     } finally {
       setIsGoogleLoading(false)
     }
   }
-
-  const getPasswordStrength = (password: string) => {
-    if (password.length === 0) return 0
-    if (password.length < 6) return 1
-    if (password.length < 10) return 2
-    return 3
-  }
-
-  const passwordStrength = getPasswordStrength(formData.password)
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -82,7 +72,7 @@ const SignupPage: React.FC = () => {
             <ArrowLeft className="h-5 w-5" />
           </Button>
         </Link>
-        <div className="font-medium text-gray-900">Create Account</div>
+        <div className="font-medium text-gray-900">Sign In</div>
         <div className="w-10" />
       </div> */}
 
@@ -100,24 +90,24 @@ const SignupPage: React.FC = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <h1 className="text-2xl font-semibold text-gray-900">Create your account</h1>
+                  <h1 className="text-2xl font-semibold text-gray-900">Welcome back</h1>
                   <p className="text-gray-600 text-sm">
-                    Already have an account?{" "}
+                    Don't have an account?{" "}
                     <Link
-                      href="/login"
+                      href="/signup"
                       className="text-gray-900 hover:text-gray-700 font-medium hover:underline transition-colors"
                     >
-                      Sign in
+                      Sign up
                     </Link>
                   </p>
                 </div>
               </div>
 
-              {/* Google Signup Button */}
+              {/* Google Login Button */}
               <Button
                 type="button"
                 variant="outline"
-                onClick={handleGoogleSignup}
+                onClick={handleGoogleLogin}
                 disabled={isGoogleLoading}
                 className="w-full h-11 border-gray-300 hover:bg-gray-50 transition-colors"
               >
@@ -158,93 +148,21 @@ const SignupPage: React.FC = () => {
 
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-2 gap-3">
-                  {/* First Name */}
-                  <div className="space-y-1">
-                    <label htmlFor="firstName" className="text-sm font-medium text-gray-700">
-                      First name
-                    </label>
-                    <div className="relative">
-                      <Input
-                        id="firstName"
-                        type="text"
-                        name="firstName"
-                        placeholder="John"
-                        value={formData.firstName}
-                        onChange={handleInputChange}
-                        onFocus={() => setFocusedField("firstName")}
-                        onBlur={() => setFocusedField(null)}
-                        className={cn(
-                          "h-10 border-gray-300 focus-visible:border-gray-900 focus-visible:ring-gray-900/10",
-                          "transition-colors duration-200",
-                        )}
-                        required
-                      />
-                      {formData.firstName && (
-                        <div className="absolute right-2 top-2 text-green-600">
-                          <Check className="h-4 w-4" />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Last Name */}
-                  <div className="space-y-1">
-                    <label htmlFor="lastName" className="text-sm font-medium text-gray-700">
-                      Last name
-                    </label>
-                    <div className="relative">
-                      <Input
-                        id="lastName"
-                        type="text"
-                        name="lastName"
-                        placeholder="Doe"
-                        value={formData.lastName}
-                        onChange={handleInputChange}
-                        onFocus={() => setFocusedField("lastName")}
-                        onBlur={() => setFocusedField(null)}
-                        className={cn(
-                          "h-10 border-gray-300 focus-visible:border-gray-900 focus-visible:ring-gray-900/10",
-                          "transition-colors duration-200",
-                        )}
-                        required
-                      />
-                      {formData.lastName && (
-                        <div className="absolute right-2 top-2 text-green-600">
-                          <Check className="h-4 w-4" />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
                 {/* Email */}
                 <div className="space-y-1">
                   <label htmlFor="email" className="text-sm font-medium text-gray-700">
                     Email address
                   </label>
-                  <div className="relative">
-                    <Input
-                      id="email"
-                      type="email"
-                      name="email"
-                      placeholder="john.doe@example.com"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      onFocus={() => setFocusedField("email")}
-                      onBlur={() => setFocusedField(null)}
-                      className={cn(
-                        "h-10 border-gray-300 focus-visible:border-gray-900 focus-visible:ring-gray-900/10",
-                        "transition-colors duration-200",
-                      )}
-                      required
-                    />
-                    {formData.email.includes("@") && (
-                      <div className="absolute right-2 top-2 text-green-600">
-                        <Check className="h-4 w-4" />
-                      </div>
-                    )}
-                  </div>
+                  <Input
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="john.doe@example.com"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="h-10 border-gray-300 focus-visible:border-gray-900 focus-visible:ring-gray-900/10 transition-colors duration-200"
+                    required
+                  />
                 </div>
 
                 {/* Password */}
@@ -260,12 +178,7 @@ const SignupPage: React.FC = () => {
                       placeholder="••••••••"
                       value={formData.password}
                       onChange={handleInputChange}
-                      onFocus={() => setFocusedField("password")}
-                      onBlur={() => setFocusedField(null)}
-                      className={cn(
-                        "h-10 border-gray-300 focus-visible:border-gray-900 focus-visible:ring-gray-900/10 pr-10",
-                        "transition-colors duration-200",
-                      )}
+                      className="h-10 border-gray-300 focus-visible:border-gray-900 focus-visible:ring-gray-900/10 pr-10 transition-colors duration-200"
                       required
                     />
                     <Button
@@ -282,35 +195,27 @@ const SignupPage: React.FC = () => {
                       )}
                     </Button>
                   </div>
+                </div>
 
-                  {/* Password Strength */}
-                  {formData.password && (
-                    <div className="mt-2">
-                      <div className="flex gap-1">
-                        {[1, 2, 3].map((level) => (
-                          <div
-                            key={level}
-                            className={cn(
-                              "h-1 flex-1 rounded-full transition-colors duration-300",
-                              passwordStrength >= level
-                                ? passwordStrength === 1
-                                  ? "bg-red-400"
-                                  : passwordStrength === 2
-                                    ? "bg-yellow-400"
-                                    : "bg-green-400"
-                                : "bg-gray-200",
-                            )}
-                          />
-                        ))}
-                      </div>
-                      <p className="text-xs text-gray-500 mt-1">
-                        {passwordStrength === 0 && "Enter a password"}
-                        {passwordStrength === 1 && "Weak password"}
-                        {passwordStrength === 2 && "Fair password"}
-                        {passwordStrength === 3 && "Strong password"}
-                      </p>
-                    </div>
-                  )}
+                {/* Remember Me & Forgot Password */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <Checkbox
+                      id="remember"
+                      checked={rememberMe}
+                      // onCheckedChange={setRememberMe}
+                      className="border-gray-300"
+                    />
+                    <label htmlFor="remember" className="text-sm text-gray-700">
+                      Remember me
+                    </label>
+                  </div>
+                  <Link
+                    href="/forgot-password"
+                    className="text-sm text-gray-700 hover:text-gray-900 hover:underline transition-colors"
+                  >
+                    Forgot password?
+                  </Link>
                 </div>
 
                 {/* Submit Button */}
@@ -327,27 +232,18 @@ const SignupPage: React.FC = () => {
                     {isLoading ? (
                       <div className="flex items-center gap-2">
                         <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        Creating account...
+                        Signing in...
                       </div>
                     ) : (
-                      "Create account"
+                      "Sign in"
                     )}
                   </Button>
                 </div>
               </form>
 
-              {/* Terms */}
+              {/* Security Notice */}
               <div className="text-center">
-                <p className="text-xs text-gray-500 leading-relaxed">
-                  By creating an account, you agree to our{" "}
-                  <Link href="/terms" className="text-gray-700 hover:text-gray-900 hover:underline">
-                    Terms of Service
-                  </Link>{" "}
-                  and{" "}
-                  <Link href="/privacy" className="text-gray-700 hover:text-gray-900 hover:underline">
-                    Privacy Policy
-                  </Link>
-                </p>
+                <p className="text-xs text-gray-500">Protected by industry-standard encryption</p>
               </div>
             </CardContent>
           </Card>
@@ -357,4 +253,4 @@ const SignupPage: React.FC = () => {
   )
 }
 
-export default SignupPage
+export default LoginPage

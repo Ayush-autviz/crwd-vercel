@@ -1,9 +1,9 @@
-import { ArrowRightLeft } from "lucide-react";
+import { ArrowRightLeft, Heart, MessageCircle, Trophy, Users, Calendar, DollarSign, AtSign } from "lucide-react";
 import React from "react";
 import Link from "next/link";
 
 interface NotificationItemProps {
-  type: "connect" | "donation" | "post" | "event";
+  type: "connect" | "donation" | "post" | "event" | "mention" | "follow" | "like" | "comment" | "achievement" | "crwd_activity" | "crwd_join" | "event_attend" | "community_post" | "community_event" | "community_donation" | "community_interest" | "community_join";
   avatarUrl?: string;
   username?: string;
   message: string;
@@ -13,8 +13,10 @@ interface NotificationItemProps {
   link?: string;
   eventDate?: string;
   eventTitle?: string;
+  postContent?: string;
+  organizationLogo?: string;
+  organizationName?: string;
   onAccept?: () => void;
-  onDecline?: () => void;
 }
 
 const NotificationItem: React.FC<NotificationItemProps> = ({
@@ -28,8 +30,10 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
   link,
   eventDate,
   eventTitle,
+  postContent,
+  organizationLogo,
+  organizationName,
   onAccept,
-  onDecline,
 }) => {
   return (
     <div className="w-full bg-white grid grid-cols-1 md:grid-cols-1 md:flex-row md:items-center  ">
@@ -95,14 +99,14 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
             {message && <span className="text-gray-700 text-[0.98rem]">{message}</span>}
             <div className="mt-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
               <div className="flex items-center gap-2 mb-2">
-                <Link href="/feed-hungry">
+                <Link href="/groupcrwd">
                   <img
                     src={groupAvatar}
                     alt={groupName}
                     className="w-8 h-8 rounded-full object-cover"
                   />
                 </Link>
-                <Link href="/feed-hungry">
+                <Link href="/groupcrwd">
                   <span className="font-medium text-gray-900 hover:underline cursor-pointer">
                     {groupName}
                   </span>
@@ -150,14 +154,14 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
             {message && <span className="text-gray-700 text-[0.98rem]">{message}</span>}
             <div className="mt-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
               <div className="flex items-center gap-2 mb-2">
-                <Link href="/feed-hungry">
+                <Link href="/groupcrwd">
                   <img
                     src={groupAvatar}
                     alt={groupName}
                     className="w-8 h-8 rounded-full object-cover"
                   />
                 </Link>
-                <Link href="/feed-hungry">
+                <Link href="/groupcrwd">
                   <span className="font-medium text-gray-900 hover:underline cursor-pointer">
                     {groupName}
                   </span>
@@ -173,6 +177,345 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
             </div>
           </div>
         </div>
+      )}
+
+      {/* Mention Notification */}
+      {type === "mention" && (
+        <Link href={`/profile`} className="block hover:bg-gray-50 transition-colors">
+          <div className="flex gap-3 border-t border-gray-200 py-5 px-4">
+            <div className="col-span-1 flex h-11 w-11 rounded-full justify-center items-center bg-blue-100">
+              <AtSign className="h-5 w-5 text-blue-600" />
+            </div>
+            <div className="col-span-11 flex-1 flex flex-col gap-1">
+              <div className="flex items-center gap-2">
+                <span className="font-semibold text-gray-900">@{username}</span>
+                <span className="text-xs text-gray-400">{time}</span>
+              </div>
+              <span className="text-gray-700 text-[0.98rem]">{message}</span>
+            </div>
+          </div>
+        </Link>
+      )}
+
+      {/* Follow Notification */}
+      {type === "follow" && (
+        <div className="flex gap-3 border-t border-gray-200 py-5 px-4 hover:bg-gray-50 transition-colors">
+          <Link href={`/profile/${username}`} className="col-span-1 flex h-11 w-11 rounded-full justify-center items-start">
+            <img
+              src={avatarUrl}
+              alt={username}
+              className="w-11 h-11 rounded-full object-cover border-2 border-gray-100"
+            />
+          </Link>
+          <div className="col-span-11 flex-1 flex flex-col gap-1">
+            <div className="flex items-center gap-2">
+              <Link href={`/profile/${username}`}>
+                <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
+              </Link>
+              <span className="text-xs text-gray-400">{time}</span>
+            </div>
+            <span className="text-gray-700 text-[0.98rem]">{message}</span>
+            <div className="flex gap-2 mt-2">
+              <button
+                className="bg-blue-600 text-white rounded-lg px-6 py-1.5 font-medium text-sm hover:bg-blue-700 transition"
+                onClick={onAccept}
+              >
+                Follow back
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Like Notification */}
+      {type === "like" && (
+        <Link href={`/posts/1`} className="block hover:bg-gray-50 transition-colors">
+          <div className="flex gap-3 border-t border-gray-200 py-5 px-4">
+            <Link href={`/profile/${username}`} className="col-span-1 flex h-11 w-11 rounded-full justify-center items-start">
+              <img
+                src={avatarUrl}
+                alt={username}
+                className="w-11 h-11 rounded-full object-cover border-2 border-gray-100"
+              />
+            </Link>
+            <div className="col-span-11 flex-1 flex flex-col gap-1">
+              <div className="flex items-center gap-2">
+                <Link href={`/profile/${username}`}>
+                  <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
+                </Link>
+                <Heart className="h-4 w-4 text-red-500 fill-current" />
+                <span className="text-xs text-gray-400">{time}</span>
+              </div>
+              <span className="text-gray-700 text-[0.98rem]">{message}</span>
+            </div>
+          </div>
+        </Link>
+      )}
+
+      {/* Comment Notification */}
+      {type === "comment" && (
+        <Link href={`/posts/1`} className="block hover:bg-gray-50 transition-colors">
+          <div className="flex gap-3 border-t border-gray-200 py-5 px-4">
+            <Link href={`/profile/${username}`} className="col-span-1 flex h-11 w-11 rounded-full justify-center items-start">
+              <img
+                src={avatarUrl}
+                alt={username}
+                className="w-11 h-11 rounded-full object-cover border-2 border-gray-100"
+              />
+            </Link>
+            <div className="col-span-11 flex-1 flex flex-col gap-1">
+              <div className="flex items-center gap-2">
+                <Link href={`/profile/${username}`}>
+                  <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
+                </Link>
+                <MessageCircle className="h-4 w-4 text-blue-500" />
+                <span className="text-xs text-gray-400">{time}</span>
+              </div>
+              <span className="text-gray-700 text-[0.98rem]">{message}</span>
+            </div>
+          </div>
+        </Link>
+      )}
+
+      {/* Achievement Notification */}
+      {type === "achievement" && (
+        <Link href="/transaction-history" className="block hover:bg-gray-50 transition-colors">
+          <div className="flex gap-3 border-t border-gray-200 py-5 px-4">
+            <div className="col-span-1 flex h-11 w-11 rounded-full justify-center items-center bg-yellow-100">
+              <Trophy className="h-5 w-5 text-yellow-600" />
+            </div>
+            <div className="col-span-11 flex-1 flex flex-col gap-1">
+              <div className="flex items-center gap-2">
+                <span className="font-semibold text-gray-900">Congratulations!</span>
+                <span className="text-xs text-gray-400">{time}</span>
+              </div>
+              <span className="text-gray-700 text-[0.98rem]">{message}</span>
+            </div>
+          </div>
+        </Link>
+      )}
+
+      {/* CRWD Activity Notification */}
+      {type === "crwd_activity" && (
+        <Link href="/groupcrwd" className="block hover:bg-gray-50 transition-colors">
+          <div className="flex gap-3 border-t border-gray-200 py-5 px-4">
+            <div className="col-span-1 flex h-11 w-11 rounded-full justify-center items-center bg-green-100">
+              <Trophy className="h-5 w-5 text-green-600" />
+            </div>
+            <div className="col-span-11 flex-1 flex flex-col gap-1">
+              <div className="flex items-center gap-2">
+                <span className="font-semibold text-gray-900">Congratulations!</span>
+                <span className="text-xs text-gray-400">{time}</span>
+              </div>
+              <span className="text-gray-700 text-[0.98rem]">{message}</span>
+            </div>
+          </div>
+        </Link>
+      )}
+
+      {/* CRWD Join Notification */}
+      {type === "crwd_join" && (
+        <Link href={`/groupcrwd`} className="block hover:bg-gray-50 transition-colors">
+          <div className="flex gap-3 border-t border-gray-200 py-5 px-4">
+            <Link href={`/profile/${username}`} className="col-span-1 flex h-11 w-11 rounded-full justify-center items-start">
+              <img
+                src={avatarUrl}
+                alt={username}
+                className="w-11 h-11 rounded-full object-cover border-2 border-gray-100"
+              />
+            </Link>
+            <div className="col-span-11 flex-1 flex flex-col gap-1">
+              <div className="flex items-center gap-2">
+                <Link href={`/profile`}>
+                  <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
+                </Link>
+                <span className="text-xs text-gray-400">{time}</span>
+              </div>
+              <span className="text-gray-700 text-[0.98rem]">{message}</span>
+            </div>
+          </div>
+        </Link>
+      )}
+
+      {/* Event Attend Notification */}
+      {type === "event_attend" && (
+        <Link href={`/profile`} className="block hover:bg-gray-50 transition-colors">
+          <div className="flex gap-3 border-t border-gray-200 py-5 px-4">
+            <Link href={`/profile/${username}`} className="col-span-1 flex h-11 w-11 rounded-full justify-center items-start">
+              <img
+                src={avatarUrl}
+                alt={username}
+                className="w-11 h-11 rounded-full object-cover border-2 border-gray-100"
+              />
+            </Link>
+            <div className="col-span-11 flex-1 flex flex-col gap-1">
+              <div className="flex items-center gap-2">
+                <Link href={`/profile/${username}`}>
+                  <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
+                </Link>
+                <Calendar className="h-4 w-4 text-blue-500" />
+                <span className="text-xs text-gray-400">{time}</span>
+              </div>
+              <span className="text-gray-700 text-[0.98rem]">{message}</span>
+            </div>
+          </div>
+        </Link>
+      )}
+
+      {/* Community Post Notification */}
+      {type === "community_post" && (
+        <Link href={`/groupcrwd`} className="block hover:bg-gray-50 transition-colors">
+          <div className="flex gap-3 border-t border-gray-200 py-5 px-4">
+            <Link href={`/profile/${username}`} className="col-span-1 flex h-11 w-11 rounded-full justify-center items-start">
+              <img
+                src={avatarUrl}
+                alt={username}
+                className="w-11 h-11 rounded-full object-cover border-2 border-gray-100"
+              />
+            </Link>
+            <div className="col-span-11 flex-1 flex flex-col gap-1">
+              <div className="flex items-center gap-2">
+                <Link href={`/profile/${username}`}>
+                  <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
+                </Link>
+                <span className="text-xs text-gray-400">{time}</span>
+              </div>
+              <span className="text-gray-700 text-[0.98rem]">{message}</span>
+              {postContent && (
+                <div className="mt-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                  <p className="text-sm text-gray-600">{postContent}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </Link>
+      )}
+
+      {/* Community Event Notification */}
+      {type === "community_event" && (
+        <Link href={`/profile`} className="block hover:bg-gray-50 transition-colors">
+          <div className="flex gap-3 border-t border-gray-200 py-5 px-4">
+            <Link href={`/profile/${username}`} className="col-span-1 flex h-11 w-11 rounded-full justify-center items-start">
+              <img
+                src={avatarUrl}
+                alt={username}
+                className="w-11 h-11 rounded-full object-cover border-2 border-gray-100"
+              />
+            </Link>
+            <div className="col-span-11 flex-1 flex flex-col gap-1">
+              <div className="flex items-center gap-2">
+                <Link href={`/profile/${username}`}>
+                  <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
+                </Link>
+                <Calendar className="h-4 w-4 text-blue-500" />
+                <span className="text-xs text-gray-400">{time}</span>
+              </div>
+              <span className="text-gray-700 text-[0.98rem]">{message}</span>
+              {eventTitle && (
+                <div className="mt-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                  <span className="font-semibold text-gray-900">{eventTitle}</span>
+                  {eventDate && <span className="text-sm text-gray-600 block">{eventDate}</span>}
+                </div>
+              )}
+            </div>
+          </div>
+        </Link>
+      )}
+
+      {/* Community Donation Notification */}
+      {type === "community_donation" && (
+        <Link href={`/profile`} className="block hover:bg-gray-50 transition-colors">
+          <div className="flex gap-3 border-t border-gray-200 py-5 px-4">
+            <Link href={`/profile/${username}`} className="col-span-1 flex h-11 w-11 rounded-full justify-center items-start">
+              <img
+                src={avatarUrl}
+                alt={username}
+                className="w-11 h-11 rounded-full object-cover border-2 border-gray-100"
+              />
+            </Link>
+            <div className="col-span-11 flex-1 flex flex-col gap-1">
+              <div className="flex items-center gap-2">
+                <Link href={`/profile/${username}`}>
+                  <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
+                </Link>
+                <DollarSign className="h-4 w-4 text-green-500" />
+                <span className="text-xs text-gray-400">{time}</span>
+              </div>
+              <span className="text-gray-700 text-[0.98rem]">{message}</span>
+              {organizationName && (
+                <div className="flex items-center gap-2 mt-2">
+                  {organizationLogo && (
+                    <img
+                      src={organizationLogo}
+                      alt={organizationName}
+                      className="w-6 h-6 rounded object-cover"
+                    />
+                  )}
+                  <span className="text-sm font-medium text-blue-600">{organizationName}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        </Link>
+      )}
+
+      {/* Community Interest Notification */}
+      {type === "community_interest" && (
+        <Link href={`/profile`} className="block hover:bg-gray-50 transition-colors">
+          <div className="flex gap-3 border-t border-gray-200 py-5 px-4">
+            <Link href={`/profile/${username}`} className="col-span-1 flex h-11 w-11 rounded-full justify-center items-start">
+              <img
+                src={avatarUrl}
+                alt={username}
+                className="w-11 h-11 rounded-full object-cover border-2 border-gray-100"
+              />
+            </Link>
+            <div className="col-span-11 flex-1 flex flex-col gap-1">
+              <div className="flex items-center gap-2">
+                <Link href={`/profile/${username}`}>
+                  <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
+                </Link>
+                <span className="text-xs text-gray-400">{time}</span>
+              </div>
+              <span className="text-gray-700 text-[0.98rem]">{message}</span>
+              {eventTitle && (
+                <div className="mt-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                  <span className="font-semibold text-gray-900">{eventTitle}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        </Link>
+      )}
+
+      {/* Community Join Notification */}
+      {type === "community_join" && (
+        <Link href={`/groupcrwd`} className="block hover:bg-gray-50 transition-colors">
+          <div className="flex gap-3 border-t border-gray-200 py-5 px-4">
+            <Link href={`/profile/${username}`} className="col-span-1 flex h-11 w-11 rounded-full justify-center items-start">
+              <img
+                src={avatarUrl}
+                alt={username}
+                className="w-11 h-11 rounded-full object-cover border-2 border-gray-100"
+              />
+            </Link>
+            <div className="col-span-11 flex-1 flex flex-col gap-1">
+              <div className="flex items-center gap-2">
+                <Link href={`/profile`}>
+                  <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
+                </Link>
+                <Users className="h-4 w-4 text-blue-500" />
+                <span className="text-xs text-gray-400">{time}</span>
+              </div>
+              <span className="text-gray-700 text-[0.98rem]">{message}</span>
+              {groupName && (
+                <Link href={`/groupcrwd`} className="text-blue-600 hover:underline font-medium text-sm mt-1 inline-block">
+                  {groupName}
+                </Link>
+              )}
+            </div>
+          </div>
+        </Link>
       )}
     </div>
   );

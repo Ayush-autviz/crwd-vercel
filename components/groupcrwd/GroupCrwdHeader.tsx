@@ -71,7 +71,7 @@ const GroupCrwdHeader: React.FC = () => (
     </div> */}
     <ProfileInterests interests={['Animal Welfare', 'Environment', 'Food Insecurity']} className='border-none' />
     {/* Orgs Avatars */}
-    <div className="flex items-center gap-1 mt-1">
+    <div className="flex items-center justify-between md:justify-start md:space-x-5 mt-1">
       {orgAvatars.map((src, i) => (
         <img key={i} src={src} alt="org" className="w-7 h-7 rounded-full border-2 border-white  first:ml-0" />
       ))}
