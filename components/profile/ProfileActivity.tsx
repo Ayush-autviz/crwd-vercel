@@ -16,7 +16,7 @@ const ProfileActivity: React.FC<ProfileActivityProps> = ({ posts,showLabel }) =>
     <div className="space-y-4">
       {posts.length > 0 && posts.map((post, idx) => (
         // <Link href={`/posts/${post.id}`}>
-       <ProfileActivityCard post={post}/>
+       <ProfileActivityCard key={idx} post={post}/>
         // </Link>
       ))}
     </div>

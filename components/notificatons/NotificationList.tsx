@@ -51,9 +51,9 @@ const notifications = [
     type: 'crwd_join' as const,
     avatarUrl: 'https://randomuser.me/api/portraits/women/1.jpg',
     username: 'Mandy',
-    message: 'Mandy joined MarchofDimes',
+    message: 'Mandy joined March of Dimes',
     time: '4h',
-    groupName: 'MarchofDimes',
+    groupName: 'March of Dimes',
   },
   {
     type: 'event_attend' as const,
@@ -91,7 +91,7 @@ const communityNotifications = [
     message: 'Conrad donated to The Red Cross',
     time: '8h',
     organizationName: 'The Red Cross',
-    organizationLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Red_Cross_logo.svg/200px-Red_Cross_logo.svg.png',
+    organizationLogo: '/redcross.png'
   },
   {
     type: 'community_interest' as const,

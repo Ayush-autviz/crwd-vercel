@@ -33,7 +33,7 @@ export default async function PostDetailPage({
         <div className="h-20" />
       </main>
       {/* Sticky Input Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t px-4 py-3 flex items-center gap-2 max-w-sm mx-auto w-full">
+      <div className="fixed bottom-0 right-0 bg-white border-t px-4 py-3 flex items-center gap-2 w-[calc(100%-288px)] mx-auto">
         <div className="flex items-center gap-2 flex-1 bg-gray-100 rounded-full px-4 py-2">
           <img src={post.avatarUrl} alt={post.username} className="w-5 h-5 rounded-full border" />
           <input

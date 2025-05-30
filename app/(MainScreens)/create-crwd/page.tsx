@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronRight, Plus, Minus, Bell } from "lucide-react";
+import { ChevronRight, Plus, Minus, Bell, MoreHorizontal } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import ProfileNavbar from "@/components/profile/ProfileNavbar";
@@ -29,129 +29,121 @@ export default function CreateCRWDPage() {
   const [amount, setAmount] = useState(5);
   const [selectedCause, setSelectedCause] = useState<string | null>(null);
   const router = useRouter();
+
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center pb-8">
+    <div className="min-h-screen bg-background flex flex-col items-center">
       {/* Header */}
       <ProfileNavbar title="Create a CRWD" />
-      <div className="w-full mx-auto md:px-4 md:pt-6 md:grid md:grid-cols-12 md:gap-5">
-        {/* Form Section */}
-        <div className="md:col-span-7 bg-white/90 rounded-2xl shadow-none md:shadow-md p-4 md:p-8">
-          <h1 className="text-3xl font-bold mb-2 md:hidden">Create a CRWD</h1>
-          <p className="text-muted-foreground mb-8 md:hidden">
-            Be the inspiration to your community. Choose a causes, invite friends, discuss and make an impact together
-          </p>
-          <div className="flex items-center gap-4 mb-6">
-            <Button variant="outline" className="rounded-xl w-16 h-16 flex flex-col items-center justify-center text-3xl text-[#a3a8c2]">
-              <Plus className="w-8 h-8" />
-            </Button>
-            <span className="text-[#a3a8c2] text-lg">Choose a photo</span>
+      
+      <div className="px-4 pt-2 pb-48 lg:max-w-[600px] gap-6 w-full">
+        <div className="bg-white rounded-xl shadow-sm p-4 flex flex-col gap-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="You" className="w-7 h-7 rounded-full object-cover" />
+              <span className="font-semibold text-sm">Create a CRWD</span>
+            </div>
+            <button className="text-gray-400"><MoreHorizontal size={18} /></button>
           </div>
-          <div className="mb-6">
-            <label className="block mb-2 text-[#a3a8c2]">Name your CRWD</label>
+
+          {/* CRWD Name */}
+          <div className="flex flex-col gap-2">
+            <label className="font-semibold text-sm text-gray-700">Name your CRWD</label>
             <input
-              className="bg-[#f3f5fb] w-full rounded-xl h-14 text-lg placeholder-[#a3a8c2] border-none p-4 mb-4"
+              className="bg-gray-50 w-full rounded-lg h-12 text-sm border border-gray-200 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="Choose a name"
               value={name}
               onChange={e => setName(e.target.value)}
             />
-            <label className="block mb-2 text-[#a3a8c2]">Describe your CRWD</label>
+          </div>
+
+          {/* Description */}
+          <div className="flex flex-col gap-2">
+            <label className="font-semibold text-sm text-gray-700">Describe your CRWD</label>
             <textarea
-              className="bg-[#f3f5fb] w-full h-24 rounded-xl p-4 text-lg placeholder-[#a3a8c2] border-none mb-4"
+              className="bg-gray-50 w-full h-20 rounded-lg p-3 text-sm border border-gray-200 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="What is the purpose of your CRWD"
               value={desc}
               onChange={e => setDesc(e.target.value)}
             />
-            <label className="block mb-2 text-[#a3a8c2]">Enter Suggested Amount</label>
-            <div className="bg-[#f3f5fb] rounded-xl flex items-center justify-between px-6 py-4 mb-4">
-              <span className=" text-[#a3a8c2] text-lg">Input amount over $5</span>
-              <div className="flex items-center gap-2 bg-[#e6eaff] rounded-xl px-4 py-2">
-                <Button variant="ghost" className="text-[#7b8cff] p-0" onClick={() => setAmount(a => Math.max(5, a - 1))}><Minus /></Button>
-                <span className="text-2xl text-[#7b8cff] font-bold">${amount}</span>
-                <Button variant="ghost" className="text-[#7b8cff] p-0" onClick={() => setAmount(a => a + 1)}><Plus /></Button>
+          </div>
+
+          {/* Suggested Amount */}
+          <div className="flex flex-col gap-2">
+            <label className="font-semibold text-sm text-gray-700">Suggested Amount</label>
+            <div className="bg-gray-50 rounded-lg flex items-center justify-between px-4 py-3 border border-gray-200">
+              <span className="text-sm text-gray-600">Minimum $5</span>
+              <div className="flex items-center gap-2 bg-blue-50 rounded-lg px-3 py-1">
+                <Button 
+                  variant="ghost" 
+                  className="text-blue-600 p-0 h-6 w-6 hover:bg-blue-100" 
+                  onClick={() => setAmount(a => Math.max(5, a - 1))}
+                >
+                  <Minus size={14} />
+                </Button>
+                <span className="text-lg text-blue-600 font-semibold min-w-[40px] text-center">${amount}</span>
+                <Button 
+                  variant="ghost" 
+                  className="text-blue-600 p-0 h-6 w-6 hover:bg-blue-100" 
+                  onClick={() => setAmount(a => a + 1)}
+                >
+                  <Plus size={14} />
+                </Button>
               </div>
             </div>
           </div>
-          <div className="mb-6">
-            <label className="block mb-2 text-[#a3a8c2]">Choose causes</label>
-            <Card className="bg-[#f3f5fb] border-none">
-              <div className="px-4">
-                <div className="font-semibold text-[#7b8cff] mb-2">Select from your Recents</div>
-                {recents.map(cause => (
-                  <div key={cause.name} className="flex items-center gap-3 py-2">
-                    <Avatar className="h-8 w-8">
-                      <img src={cause.image} alt={cause.name} className="object-cover rounded-full h-8 w-8" />
-                    </Avatar>
-                    <span className="flex-1 text-base">{cause.name}</span>
-                    <input
-                      type="radio"
-                      name="cause"
-                      checked={selectedCause === cause.name}
-                      onChange={() => setSelectedCause(cause.name)}
-                      className="accent-[#7b8cff] w-5 h-5"
-                    />
-                  </div>
-                ))}
-                <div className="font-semibold text-[#7b8cff] mt-4 mb-2">More Suggested</div>
-                {suggested.map(cause => (
-                  <div key={cause.name} className="flex items-center gap-3 py-2">
-                    <Avatar className="h-8 w-8">
-                      <img src={cause.image} alt={cause.name} className="object-cover rounded-full h-8 w-8" />
-                    </Avatar>
-                    <span className="flex-1 text-base">{cause.name}</span>
-                    <input
-                      type="radio"
-                      name="cause"
-                      checked={selectedCause === cause.name}
-                      onChange={() => setSelectedCause(cause.name)}
-                      className="accent-[#7b8cff] w-5 h-5"
-                    />
-                  </div>
-                ))}
-                <div className="flex justify-end mt-2">
-                  <Button variant="link" className="text-[#7b8cff] flex items-center">
-                    Discover more <ChevronRight className="h-4 w-4 ml-1" />
-                  </Button>
+
+          {/* Causes Selection */}
+          <div className="flex flex-col gap-2">
+            <label className="font-semibold text-sm text-gray-700">Choose causes</label>
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
+              <div className="font-semibold text-xs text-blue-600 mb-2">SELECT FROM YOUR RECENTS</div>
+              {recents.map(cause => (
+                <div key={cause.name} className="flex items-center gap-3 py-1.5">
+                  <img src={cause.image} alt={cause.name} className="w-6 h-6 rounded-full object-cover" />
+                  <span className="flex-1 text-sm text-gray-700">{cause.name}</span>
+                  <input
+                    type="radio"
+                    name="cause"
+                    checked={selectedCause === cause.name}
+                    onChange={() => setSelectedCause(cause.name)}
+                    className="accent-blue-600 w-4 h-4"
+                  />
                 </div>
-              </div>
-            </Card>
-          </div>
-          <Button className="w-full h-14 text-lg bg-[#4664e4] hover:bg-[#2b7fff] rounded-xl">Create</Button>
-        </div>
-        {/* Right Sidebar for md+ screens */}
-        <div className="hidden md:block md:col-span-5 space-y-6">
-
-
-          <Card>
-            <CardContent className="">
-              <div className="flex flex-col items-center">
-                {/* <Image src="/starbucks.jpg" width={120} height={120} alt="CRWD illustration" className="rounded-xl mb-4" /> */}
-                <h2 className="text-xl font-bold mb-2">Start Something Meaningful</h2>
-                <p className="text-muted-foreground text-center mb-4">
-                  Your CRWD can make a real difference in your community and beyond.
-                </p>
-                <Link href="/search" className="w-full">
-                  <Button variant="outline" className="w-full">
-                    Explore Causes
-                  </Button>
+              ))}
+              <div className="font-semibold text-xs text-blue-600 mt-3 mb-2">MORE SUGGESTED</div>
+              {suggested.map(cause => (
+                <div key={cause.name} className="flex items-center gap-3 py-1.5">
+                  <img src={cause.image} alt={cause.name} className="w-6 h-6 rounded-full object-cover" />
+                  <span className="flex-1 text-sm text-gray-700">{cause.name}</span>
+                  <input
+                    type="radio"
+                    name="cause"
+                    checked={selectedCause === cause.name}
+                    onChange={() => setSelectedCause(cause.name)}
+                    className="accent-blue-600 w-4 h-4"
+                  />
+                </div>
+              ))}
+              <div className="flex justify-end mt-2">
+                <Link href="/search" className="text-xs text-blue-600 flex items-center hover:underline">
+                  Discover more <ChevronRight className="h-3 w-3 ml-1" />
                 </Link>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
-          <Card>
-            <CardContent className="">
-              {/* <h2 className="text-xl font-bold mb-4">Tips for Creating a CRWD</h2> */}
-              <ul className="list-disc pl-5 text-muted-foreground space-y-2">
-                <li>Pick a clear, inspiring name and description.</li>
-                <li>Choose a cause that matters to you and your community.</li>
-                <li>Set a realistic suggested amount (minimum $5).</li>
-                <li>Invite friends and share your CRWD to grow support.</li>
-              </ul>
-            </CardContent>
-          </Card>
+          {/* Action Buttons */}
+          <div className="flex items-center justify-between gap-6 text-xs text-gray-500 pt-2">
+            <span className='flex items-center gap-6'>
+              <span className="flex items-center gap-1 text-gray-400">
+                <span className="text-sm">Ready to launch</span>
+              </span>
+            </span>
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg text-sm font-medium">
+              Create CRWD
+            </Button>
+          </div>
         </div>
-
-        <div className="h-20 md:hidden"/>
       </div>
     </div>
   );

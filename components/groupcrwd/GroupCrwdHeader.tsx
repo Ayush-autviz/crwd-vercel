@@ -1,7 +1,11 @@
+"use client"
+
 import React from 'react';
 import { Share2, Bookmark, UserPlus } from 'lucide-react';
 import ProfileInterests from '../profile/ProfileInterests';
 import { Button } from '../ui/button';
+import { useRouter } from 'next/navigation';
+
 
 const orgAvatars = [
   "adidas.jpg",
@@ -15,7 +19,9 @@ const orgAvatars = [
   "mclaren.jpg",
 ];
 
-const GroupCrwdHeader: React.FC = () => (
+const GroupCrwdHeader: React.FC = () => {
+  const router = useRouter();
+  return (
   <div className="bg-white  p-4 mx-2 mt-4 mb-4 flex flex-col gap-4">
      <div className="flex items-center gap-2 ml-auto">
         <Button  variant='outline'>
@@ -50,15 +56,15 @@ const GroupCrwdHeader: React.FC = () => (
     </div>
     {/* Stats */}
     <div className="grid grid-cols-3 text-center text-xs text-gray-700 font-semibold divide-x divide-gray-200 rounded-xl py-4">
-      <div className="flex-1 col-span-1">
+      <div onClick={() => router.push(`/members`)} className="cursor-pointer flex-1 col-span-1">
         <div className="text-base font-bold">10</div>
         <div className="text-xs text-gray-500">Causes Supported</div>
       </div>
-      <div className="flex-1 col-span-1  ">
+      <div  onClick={() => router.push(`/members`)} className="cursor-pointer flex-1 col-span-1  ">
         <div className="text-base font-bold">58</div>
         <div className="text-xs text-gray-500">Members</div>
       </div>
-      <div className="flex-1 col-span-1">
+      <div  onClick={() => router.push(`/members`)} className="cursor-pointer flex-1 col-span-1">
         <div className="text-base font-bold">102</div>
         <div className="text-xs text-gray-500">Impact Score</div>
       </div>
@@ -78,11 +84,12 @@ const GroupCrwdHeader: React.FC = () => (
     </div>
     {/* Supporting text */}
     <div className="text-xs text-gray-500 mt-1">
-      Currently supporting <span className="font-semibold">10 Non Profits</span>: Grocery Spot, Food for Thought, Meals on Wheels, American Red Cross, & Pizza Hut… <span className="text-blue-600 underline cursor-pointer">See More</span>
+      Currently supporting <span className="font-semibold">10 Non Profits</span>: Grocery Spot, Food for Thought, Meals on Wheels, American Red Cross, & Pizza Hut… <span  onClick={() => router.push(`/members`)} className="text-blue-600 underline cursor-pointer">See All</span>
     </div>
     {/* Donate Button */}
     {/* <button className="w-full bg-blue-600 text-white rounded-md py-4 font-semibold text-base mt-2 shadow-lg hover:bg-blue-700 transition">Donate</button> */}
   </div>
-);
+  );
+};
 
-export default GroupCrwdHeader; 
+export default GroupCrwdHeader;
