@@ -7,20 +7,20 @@ import Link from 'next/link';
 
 // Community Posts that will appear as full posts
 const communityPosts = [
-  {
-    id: 1,
-    avatarUrl: 'https://randomuser.me/api/portraits/men/15.jpg',
-    username: 'conrad',
-    time: '19h',
-    org: null,
-    text: '@conrad joined Healthiswealth',
-    imageUrl: null,
-    likes: 0,
-    comments: 0,
-    shares: 0,
-    isJoin: true,
-    groupName: 'Healthiswealth'
-  },
+  // {
+  //   id: 1,
+  //   avatarUrl: 'https://randomuser.me/api/portraits/men/15.jpg',
+  //   username: 'conrad',
+  //   time: '19h',
+  //   org: null,
+  //   text: '@conrad joined Healthiswealth',
+  //   imageUrl: null,
+  //   likes: 0,
+  //   comments: 0,
+  //   shares: 0,
+  //   isJoin: true,
+  //   groupName: 'Healthiswealth'
+  // },
   {
     id: 2,
     avatarUrl: 'https://randomuser.me/api/portraits/women/32.jpg',
@@ -39,12 +39,13 @@ const communityPosts = [
     username: 'conrad',
     time: '4h',
     org: null,
-    text: '@conrad donated to The Red Cross',
+    text: '@conrad donated to',
     imageUrl: null,
     likes: 0,
     comments: 0,
     shares: 0,
     isDonation: true,
+    donatedTo: 'The Red Cross',
     organizationName: 'The Red Cross',
     organizationLogo: '/redcross.png'
   },
@@ -94,7 +95,7 @@ const CommunityUpdates: React.FC = () => {
       <div className="space-y-0">
         {communityPosts.map((post) => (
           <Card key={post.id} className="overflow-hidden border-0 shadow-none rounded-none border-b border-gray-200 bg-white">
-            <CardContent className="p-4">
+            <CardContent className="">
               <Link href={`/posts/${post.id}`} className='w-full'>
                 <div className="flex gap-3">
                   <Avatar className="h-10 w-10 flex-shrink-0">
@@ -103,13 +104,17 @@ const CommunityUpdates: React.FC = () => {
                   </Avatar>
 
                   <div className="flex-1 min-w-0">
+                    { !post.isDonation && (
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1">
-                        <span className="font-semibold text-sm text-gray-900">{post.username}</span>
-                        <span className="text-xs text-gray-400">• {post.time}</span>
-                      </div>
-                      <EllipsisIcon className="h-4 w-4 text-muted-foreground cursor-pointer" />
+                    <div className="flex items-center gap-1">
+                      <span className="font-semibold text-sm text-gray-900">{post.username}</span>
+                      <span className="text-xs text-gray-400">• {post.time}</span>
                     </div>
+                    <EllipsisIcon className="h-4 w-4 text-muted-foreground cursor-pointer" />
+                  </div>
+                    )
+                    }
+
                     
                     {post.org && (
                       <Link href={`/groupcrwd`}>
@@ -119,20 +124,19 @@ const CommunityUpdates: React.FC = () => {
 
                     <div className="text-[0.98rem] mt-2 mb-3 text-gray-700 leading-snug">
                       {post.isDonation ? (
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1">
                           <span>{post.text}</span>
-                          {post.organizationLogo && (
-                            <img
-                              src={post.organizationLogo}
-                              alt={post.organizationName}
-                              className="w-4 h-4 rounded object-cover"
-                            />
+                          {post.donatedTo && (
+                            <>
+                            <span className="text-blue-500 font-semibold">{post.donatedTo}</span>
+                            <span className="text-xs text-gray-400">• {post.time}</span>
+                            </>
                           )}
                         </div>
                       ) : post.isJoin ? (
                         <div className="flex items-center gap-2">
                           <span>{post.text}</span>
-                          <span className="text-blue-600 font-semibold">{post.groupName}</span>
+                          <span className="text-blue-600 ">{post.groupName}</span>
                         </div>
                       ) : (
                         <div>

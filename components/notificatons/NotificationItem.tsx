@@ -73,7 +73,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
             </div>
             <div className="col-span-11 flex-1 flex flex-col gap-1 justify-center">
               <span className="text-gray-700 ">{message}</span>
-              <span className="text-xs text-gray-400">{time}</span>
+              {/* <span className="text-xs text-gray-400">• {time}</span> */}
             </div>
           </div>
         </Link>
@@ -94,7 +94,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                   @{username}
                 </span>
               </Link>
-              <span className="text-xs text-gray-400">{time}</span>
+              <span className="text-xs text-gray-400">• {time}</span>
             </div>
             {message && <span className="text-gray-700 text-[0.98rem]">{message}</span>}
             <div className="mt-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
@@ -149,7 +149,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                   @{username}
                 </span>
               </Link>
-              <span className="text-xs text-gray-400">{time}</span>
+              <span className="text-xs text-gray-400">• {time}</span>
             </div>
             {message && <span className="text-gray-700 text-[0.98rem]">{message}</span>}
             <div className="mt-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
@@ -216,7 +216,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
               <Link href={`/profile/${username}`}>
                 <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
               </Link>
-              <span className="text-xs text-gray-400">{time}</span>
+              <span className="text-xs text-gray-400">• {time}</span>
             </div>
             <span className="text-gray-700 text-[0.98rem]">{message}</span>
             <div className="flex gap-2 mt-2">
@@ -247,7 +247,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                 <Link href={`/profile/${username}`}>
                   <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
                 </Link>
-                <span className="text-xs text-gray-400">{time}</span>
+                <span className="text-xs text-gray-400">• {time}</span>
               </div>
               <span className="text-gray-700 text-[0.98rem]">{message}</span>
             </div>
@@ -271,7 +271,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                 <Link href={`/profile/${username}`}>
                   <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
                 </Link>
-                <span className="text-xs text-gray-400">{time}</span>
+                <span className="text-xs text-gray-400">• {time}</span>
               </div>
               <span className="text-gray-700 text-[0.98rem]">{message}</span>
             </div>
@@ -283,13 +283,13 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
       {type === "achievement" && (
         <Link href="/donation" className="block hover:bg-gray-50 transition-colors">
           <div className="flex gap-3 border-t border-gray-200 py-5 px-4">
-            <div className="col-span-1 flex h-11 w-11 rounded-full justify-center items-center bg-yellow-100">
-              <Trophy className="h-5 w-5 text-yellow-600" />
+            <div className="col-span-1 flex h-11 w-11 rounded-full justify-center items-center ">
+              <Trophy className="h-5 w-5 text-black" />
             </div>
             <div className="col-span-11 flex-1 flex flex-col gap-1">
               <div className="flex items-center gap-2">
                 <span className="font-semibold text-gray-900">Congratulations!</span>
-                <span className="text-xs text-gray-400">{time}</span>
+                <span className="text-xs text-gray-400">• {time}</span>
               </div>
               <span className="text-gray-700 text-[0.98rem]">{message}</span>
             </div>
@@ -301,13 +301,13 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
       {type === "crwd_activity" && (
         <Link href="/members" className="block hover:bg-gray-50 transition-colors">
           <div className="flex gap-3 border-t border-gray-200 py-5 px-4">
-            <div className="col-span-1 flex h-11 w-11 rounded-full justify-center items-center bg-green-100">
-              <Trophy className="h-5 w-5 text-green-600" />
+            <div className="col-span-1 flex h-11 w-11 rounded-full justify-center items-center ">
+              <Trophy className="h-5 w-5 text-black" />
             </div>
             <div className="col-span-11 flex-1 flex flex-col gap-1">
               <div className="flex items-center gap-2">
                 <span className="font-semibold text-gray-900">Congratulations!</span>
-                <span className="text-xs text-gray-400">{time}</span>
+                <span className="text-xs text-gray-400">• {time}</span>
               </div>
               <span className="text-gray-700 text-[0.98rem]">{message}</span>
             </div>
@@ -331,16 +331,11 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                 <Link href={`/profile`}>
                   <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
                 </Link>
-                <span className="text-xs text-gray-400">{time}</span>
+                <span className="text-xs text-gray-400">• {time}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-gray-700 text-[0.98rem]">joined</span>
+              <div className="flex items-center gap-1">
+                <span className="text-gray-700 text-[0.98rem]">{username} joined</span>
                 <div className="flex items-center gap-2">
-                  <img
-                    src="/crwd.svg"
-                    alt="CRWD logo"
-                    className="w-5 h-5"
-                  />
                   <Link href="/groupcrwd">
                     <span className="text-blue-600 font-semibold hover:underline cursor-pointer text-[0.98rem]">
                       {groupName}
@@ -369,7 +364,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                 <Link href={`/profile/${username}`}>
                   <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
                 </Link>
-                <span className="text-xs text-gray-400">{time}</span>
+                <span className="text-xs text-gray-400">• {time}</span>
               </div>
               <span className="text-gray-700 text-[0.98rem]">{message}</span>
             </div>
@@ -393,7 +388,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                 <Link href={`/profile/${username}`}>
                   <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
                 </Link>
-                <span className="text-xs text-gray-400">{time}</span>
+                <span className="text-xs text-gray-400">• {time}</span>
               </div>
               <div className='flex items-center gap-2'>
                 <span className="text-gray-700 text-[0.98rem]">{message.substring(0, 20)}</span>
@@ -430,7 +425,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                 <Link href={`/profile/${username}`}>
                   <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
                 </Link>
-                <span className="text-xs text-gray-400">{time}</span>
+                <span className="text-xs text-gray-400">• {time}</span>
               </div>
               <span className="text-gray-700 text-[0.98rem]">{message}</span>
               {eventTitle && (
@@ -460,7 +455,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                 <Link href={`/profile/${username}`}>
                   <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
                 </Link>
-                <span className="text-xs text-gray-400">{time}</span>
+                <span className="text-xs text-gray-400">• {time}</span>
               </div>
               <span className="text-gray-700 text-[0.98rem]">{message}</span>
               {organizationName && (
@@ -496,7 +491,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                 <Link href={`/profile/${username}`}>
                   <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
                 </Link>
-                <span className="text-xs text-gray-400">{time}</span>
+                <span className="text-xs text-gray-400">• {time}</span>
               </div>
               <span className="text-gray-700 text-[0.98rem]">{message}</span>
               {eventTitle && (
@@ -526,7 +521,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                   <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
                 </Link>
                 <Users className="h-4 w-4 text-blue-500" />
-                <span className="text-xs text-gray-400">{time}</span>
+                <span className="text-xs text-gray-400">• {time}</span>
               </div>
               <span className="text-gray-700 text-[0.98rem]">{message}</span>
               {groupName && (

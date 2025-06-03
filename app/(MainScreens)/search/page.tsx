@@ -66,7 +66,7 @@ export default function SearchPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <ProfileNavbar title="Search" />
 
       <div className="md:grid md:grid-cols-12 md:gap-4  ">
@@ -74,11 +74,11 @@ export default function SearchPage() {
         <div className="px-4 py-6 md:pl-4 md:col-span-8 ">
           {/* Search Bar */}
           <div className="mb-8">
-            <div className="relative group">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-gray-600 transition-colors" />
+            <div className="relative group ">
+              <Search className="absolute left-4  top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-gray-600 transition-colors" />
               <Input
                 placeholder="Search for non-profits, organizations, or causes..."
-                className="bg-white rounded-[10px] px-12 py-4 text-base border-2 border-gray-200 focus-visible:ring-2 focus-visible:ring-gray-400/20 focus-visible:border-gray-400 shadow-sm hover:shadow-md transition-all duration-200 placeholder:text-gray-400"
+                className="bg-gray-100 rounded-[10px] border-none px-12 py-4 text-base  placeholder:text-gray-400"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -96,7 +96,7 @@ export default function SearchPage() {
           </div>
 
           {/* Trending Topics */}
-          <div className="mb-8">
+          {/* <div className="mb-8">
             <div className="flex items-center gap-2 mb-4">
               <TrendingUp className="w-5 h-5 text-gray-600" />
               <h2 className="text-lg font-semibold text-gray-800">Trending Topics</h2>
@@ -112,30 +112,30 @@ export default function SearchPage() {
                 </Badge>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Recent Searches */}
           {recentSearchesList.length > 0 && (
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                  <History className="w-5 h-5 text-gray-500" />
-                  <h2 className="text-lg font-semibold text-gray-800">Recent Searches</h2>
+                  <History className="w-5 h-5 text-white" />
+                  <h2 className="text-md font-semibold text-gray-500">Recent Searches</h2>
                 </div>
-                <Button
+                {/* <Button
                   variant="ghost"
                   size="sm"
                   onClick={clearAllRecent}
                   className="text-gray-500 hover:text-gray-700 text-sm"
                 >
                   Clear all
-                </Button>
+                </Button> */}
               </div>
-              <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
+              <div className="bg-white rounded-xl  overflow-hidden ">
                 {recentSearchesList.map((searchTerm, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 group cursor-pointer"
+                    className="flex items-center justify-between py-4  transition-colors border-b border-gray-100 last:border-b-0 group cursor-pointer"
                   >
                     <div className="flex items-center gap-3 flex-1">
                       <div className="p-2 bg-gray-100 rounded-full group-hover:bg-gray-200 transition-colors">
@@ -150,7 +150,7 @@ export default function SearchPage() {
                         e.stopPropagation()
                         removeRecentSearch(index)
                       }}
-                      className="opacity-0 group-hover:opacity-100 transition-opacity h-8 w-8 p-0 hover:bg-gray-100 rounded-full"
+                      className=" transition-opacity h-8 w-8 p-0 hover:bg-gray-100 rounded-full"
                     >
                       <X className="w-4 h-4" />
                     </Button>
@@ -164,14 +164,14 @@ export default function SearchPage() {
           {popularSearchesList.length > 0 && (
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Zap className="w-5 h-5 text-gray-600" />
-                <h2 className="text-lg font-semibold text-gray-800">Popular Searches</h2>
+                <Zap className="w-5 h-5 text-white" />
+                <h2 className="text-md font-semibold text-gray-500">Popular Searches</h2>
               </div>
-              <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
+              <div className="bg-white rounded-xl  overflow-hidden ">
                 {popularSearchesList.map((searchTerm, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 group cursor-pointer"
+                    className="flex items-center justify-between py-4  transition-colors border-b border-gray-100 last:border-b-0 group cursor-pointer"
                   >
                     <div className="flex items-center gap-3 flex-1">
                       <div className="p-2 bg-gray-100 rounded-full group-hover:bg-gray-200 transition-colors">
@@ -186,7 +186,7 @@ export default function SearchPage() {
                         e.stopPropagation()
                         removePopularSearch(index)
                       }}
-                      className="opacity-0 group-hover:opacity-100 transition-opacity h-8 w-8 p-0 hover:bg-gray-100 rounded-full"
+                      className="  transition-opacity h-8 w-8 p-0 hover:bg-gray-100 rounded-full"
                     >
                       <X className="w-4 h-4" />
                     </Button>
