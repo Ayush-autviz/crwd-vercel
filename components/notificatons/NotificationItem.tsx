@@ -1,4 +1,4 @@
-import { ArrowRightLeft, Heart, MessageCircle, Trophy, Users, Calendar, DollarSign, AtSign } from "lucide-react";
+import { ArrowRightLeft, Trophy, Users, AtSign } from "lucide-react";
 import React from "react";
 import Link from "next/link";
 
@@ -49,9 +49,9 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
           <div className="col-span-11  flex-1 flex flex-col gap-1">
             <div className="flex items-center gap-2">
               <span className="font-semibold text-gray-900">
-                @{`${username} .`}
+                @{username}
               </span>
-              <span className="text-xs text-gray-400 ">{time}</span>
+              <span className="text-xs text-gray-400 ">• {time}</span>
             </div>
             <span className="text-gray-700 text-[0.98rem]">{message}</span>
             <div className="flex gap-2 mt-2">
@@ -183,13 +183,17 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
       {type === "mention" && (
         <Link href={`/profile`} className="block hover:bg-gray-50 transition-colors">
           <div className="flex gap-3 border-t border-gray-200 py-5 px-4">
-            <div className="col-span-1 flex h-11 w-11 rounded-full justify-center items-center bg-blue-100">
-              <AtSign className="h-5 w-5 text-blue-600" />
+            <div className="col-span-1 flex h-11 w-11 rounded-full justify-center items-start">
+              <img
+                src={avatarUrl}
+                alt={username}
+                className="w-11 h-11 rounded-full object-cover border-2 border-gray-100"
+              />
             </div>
             <div className="col-span-11 flex-1 flex flex-col gap-1">
               <div className="flex items-center gap-2">
                 <span className="font-semibold text-gray-900">@{username}</span>
-                <span className="text-xs text-gray-400">{time}</span>
+                <span className="text-xs text-gray-400">• {time}</span>
               </div>
               <span className="text-gray-700 text-[0.98rem]">{message}</span>
             </div>
@@ -243,7 +247,6 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                 <Link href={`/profile/${username}`}>
                   <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
                 </Link>
-                <Heart className="h-4 w-4 text-red-500 fill-current" />
                 <span className="text-xs text-gray-400">{time}</span>
               </div>
               <span className="text-gray-700 text-[0.98rem]">{message}</span>
@@ -268,7 +271,6 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                 <Link href={`/profile/${username}`}>
                   <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
                 </Link>
-                <MessageCircle className="h-4 w-4 text-blue-500" />
                 <span className="text-xs text-gray-400">{time}</span>
               </div>
               <span className="text-gray-700 text-[0.98rem]">{message}</span>
@@ -367,7 +369,6 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                 <Link href={`/profile/${username}`}>
                   <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
                 </Link>
-                <Calendar className="h-4 w-4 text-blue-500" />
                 <span className="text-xs text-gray-400">{time}</span>
               </div>
               <span className="text-gray-700 text-[0.98rem]">{message}</span>
@@ -402,8 +403,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                     className="w-5 h-5"
                   />
                   <span className="text-blue-600 font-[600] hover:underline cursor-pointer"> March of Dimes</span>
-                
-              </div>
+                </div>
               {postContent && (
                 <div className="mt-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
                   <p className="text-sm text-gray-600">{postContent}</p>
@@ -430,7 +430,6 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                 <Link href={`/profile/${username}`}>
                   <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
                 </Link>
-                <Calendar className="h-4 w-4 text-blue-500" />
                 <span className="text-xs text-gray-400">{time}</span>
               </div>
               <span className="text-gray-700 text-[0.98rem]">{message}</span>
@@ -461,7 +460,6 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                 <Link href={`/profile/${username}`}>
                   <span className="font-semibold text-gray-900 hover:underline cursor-pointer">@{username}</span>
                 </Link>
-                <DollarSign className="h-4 w-4 text-green-500" />
                 <span className="text-xs text-gray-400">{time}</span>
               </div>
               <span className="text-gray-700 text-[0.98rem]">{message}</span>
