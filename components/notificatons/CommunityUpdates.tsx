@@ -93,7 +93,7 @@ const CommunityUpdates: React.FC = () => {
     <div className="w-full flex flex-col">
       {/* Community Posts */}
       <div className="space-y-0">
-        {communityPosts.map((post) => (
+        {communityPosts.map((post:any) => (
           <Card key={post.id} className="overflow-hidden border-0 shadow-none rounded-none border-b border-gray-200 bg-white">
             <CardContent className="">
               <Link href={`/posts/${post.id}`} className='w-full'>
