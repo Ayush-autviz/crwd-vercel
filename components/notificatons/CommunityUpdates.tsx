@@ -39,7 +39,7 @@ const communityPosts = [
     username: 'conrad',
     time: '4h',
     org: null,
-    text: '@conrad donated to',
+    text: 'donated to',
     imageUrl: null,
     likes: 0,
     comments: 0,
@@ -125,6 +125,7 @@ const CommunityUpdates: React.FC = () => {
                     <div className="text-[0.98rem] mt-2 mb-3 text-gray-700 leading-snug">
                       {post.isDonation ? (
                         <div className="flex items-center gap-1">
+                          <span className=" font-semibold  text-gray-900">@{post.username}</span>
                           <span>{post.text}</span>
                           {post.donatedTo && (
                             <>
