@@ -66,7 +66,11 @@ const DonationBox = () => {
   return (
     <div className="w-full h-full bg-white flex flex-col">
       {checkout ? (
-        <Checkout onBack={() => setCheckout(false)} />
+        <Checkout 
+          onBack={() => setCheckout(false)} 
+          selectedOrganizations={selectedOrganizations}
+          donationAmount={donationAmount}
+        />
       ) : (
         <>
           {/* Header with title and back/close button */}

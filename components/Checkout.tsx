@@ -6,90 +6,63 @@ import { Badge } from "@/components/ui/badge";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from "next/link";
 import ManageDonationBox from "./ManageDonationBox";
+import { CROWDS, RECENTS, SUGGESTED } from "@/constants";
+
+// Define Organization type locally to avoid import issues
+type Organization = {
+  id: string;
+  name: string;
+  imageUrl: string;
+  color?: string;
+  shortDesc?: string;
+  description?: string;
+  via?: string;
+};
 
 interface DonationOverviewProps {
   donationAmount?: number;
   onBack?: () => void;
+  selectedOrganizations: string[];
 }
-
-const organizations = [
-  {
-    id: "101",
-    name: "Red Cross",
-    imageUrl: "/redcross.png",
-    description:
-      "This is a non-profit mission statement that summarizes the company's goals and...",
-    via: "betterdaze",
-  },
-  {
-    id: "102",
-    name: "Green Thumb",
-    imageUrl: "",
-    color: "#2A9D8F",
-    description:
-      "This is a non-profit mission statement that summarizes the company's goals",
-  },
-  {
-    id: "103",
-    name: "Hands on Deck",
-    imageUrl: "",
-    color: "#457B9D",
-    description:
-      "This is a non-profit mission statement that summarizes the company's goals",
-  },
-  {
-    id: "104",
-    name: "Robin Hood",
-    imageUrl: "",
-    color: "#E63946",
-    description:
-      "This is a non-profit mission statement that summarizes the company's goals",
-  },
-  {
-    id: "105",
-    name: "Food 4 All",
-    imageUrl: "",
-    color: "#F4A261",
-    description:
-      "This is a non-profit mission statement that summarizes the company's goals",
-  },
-];
-
-const crowds = [
-  {
-    id: "1",
-    name: "Making a difference",
-    imageUrl: "",
-    color: "#E16AFF",
-  },
-  {
-    id: "2",
-    name: "Better Days",
-    imageUrl: "",
-    color: "#5A8CFF",
-  },
-  {
-    id: "3",
-    name: "Get Power",
-    imageUrl: "/lovable-uploads/d5634324-fc91-416b-a5f3-d21fec2bded2.png",
-    color: "#F9C74F",
-  },
-];
 
 export const Checkout = ({
   donationAmount = 25,
-
   onBack = () => {},
+  selectedOrganizations: selectedOrgIds,
 }: DonationOverviewProps) => {
   const [isMonthly] = useState(true);
   const isMobile = useIsMobile();
   const [showManageDonationBox, setShowManageDonationBox] = useState(false);
+  const [localSelectedOrgs, setLocalSelectedOrgs] = useState(selectedOrgIds);
+  
+  // Get organizations from CROWDS, RECENTS, SUGGESTED based on selectedOrganizations
+  const getOrganizationById = (orgId: string): Organization | undefined => {
+    return [...CROWDS, ...RECENTS, ...SUGGESTED].find(
+      (org) => org.id === orgId
+    );
+  };
+
+  const selectedOrganizations = localSelectedOrgs
+    .map(id => getOrganizationById(id))
+    .filter((org): org is Organization => !!org);
+
+  const handleRemoveOrganization = (id: string) => {
+    setLocalSelectedOrgs(prev => prev.filter(orgId => orgId !== id));
+  };
+
   // Calculate equal distribution percentage
   const distributionPercentage =
-    organizations.length > 0 ? Math.floor(100 / organizations.length) : 0;
+    selectedOrganizations.length > 0 ? Math.floor(100 / selectedOrganizations.length) : 0;
 
   if (showManageDonationBox) {
-    return <ManageDonationBox amount={donationAmount} causes={organizations} onBack={() => setShowManageDonationBox(false)} />;
+    return (
+      <ManageDonationBox 
+        amount={donationAmount} 
+        causes={selectedOrganizations} 
+        onBack={() => setShowManageDonationBox(false)}
+        onRemove={handleRemoveOrganization}
+      />
+    );
   }
 
   return (
@@ -113,11 +86,11 @@ export const Checkout = ({
         </div>
         <div className="flex mt-8 mb-2 divide-x divide-white/20">
           <div className="flex-1 text-center">
-            <div className="text-2xl font-bold">{organizations.length}</div>
+            <div className="text-2xl font-bold">{selectedOrganizations.length}</div>
             <div className="text-sm">Causes</div>
           </div>
           <div className="flex-1 text-center">
-            <div className="text-2xl font-bold">{crowds.length}</div>
+            <div className="text-2xl font-bold">{CROWDS.length}</div>
             <div className="text-sm">CRWDS</div>
           </div>
           <div className="flex-1 flex justify-end items-center pl-4">
@@ -153,7 +126,7 @@ export const Checkout = ({
           <HelpCircle size={16} className="ml-2 text-gray-500" />
         </div>
         <div className="flex gap-4 mb-8 ">
-          {crowds.map((crowd) => (
+          {CROWDS.map((crowd) => (
             <div
               key={crowd.id}
               className="w-14 h-14 rounded-xl flex items-center justify-center shadow-sm"
@@ -180,7 +153,7 @@ export const Checkout = ({
           CAUSES
         </h2>
         <div className="space-y-2 ">
-          {organizations.map((org) => (
+          {selectedOrganizations.map((org) => (
             <div key={org.id} className="flex gap-4 items-center bg-white  px-8 py-4 border-b border-gray-200    ">
               <div className="w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden shadow">
                 {org.imageUrl ? (
@@ -203,7 +176,7 @@ export const Checkout = ({
                   <div className="flex items-center gap-2">
                     <h3 className="font-semibold text-gray-900 text-base">{org.name}</h3>
                     <span className="text-xs text-gray-500">
-                      @{org.name.replace(/\s+/g, "").toLowerCase()}
+                      {org.name.replace(/\s+/g, "").toLowerCase()}
                     </span>
                   </div>
                   <Badge className="bg-gray-100 text-gray-600 font-normal hover:bg-gray-100 rounded-full px-3 py-1 text-xs">
@@ -221,9 +194,9 @@ export const Checkout = ({
             Add up to 45 more causes to this box
           </p>
           <div className="pt-2 pb-2 text-left px-10">
-            <button className="flex items-center gap-1 text-sm text-gray-700  font-semibold">
+            <Link href="/search" className="flex items-center gap-1 text-sm text-gray-700  font-semibold">
               Discover <ArrowRight size={16} />
-            </button>
+            </Link>
           </div>
           <div className="h-full flex justify-center items-center ">
             <Link href="/create-crwd">
