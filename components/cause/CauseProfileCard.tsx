@@ -2,6 +2,7 @@ import React from 'react';
 import { CheckCircle, Users, Heart, Bookmark, Upload, Award, ShieldCheck, ChevronDown } from 'lucide-react';
 import ProfileInterests from '../profile/ProfileInterests';
 import ClaimCauseDialog from './ClaimCauseDialog';
+import Link from 'next/link';
 
 interface CauseProfileCardProps {
   onLearnMoreClick?: () => void;
@@ -16,7 +17,9 @@ const CauseProfileCard: React.FC<CauseProfileCardProps> = ({ onLearnMoreClick })
       <div className="flex-grow" />
       <button className="bg-gray-100 text-gray-500 text-xs px-4 py-1 h-8 rounded-lg font-semibold"><Upload className='w-4 h-4' /></button>
       <button className="bg-gray-100 text-gray-500 text-xs px-4 py-1 h-8 rounded-lg font-semibold"><Bookmark className='w-4 h-4' /></button>
-      <button className="border text-blue-500 text-xs px-4 py-1 h-8 rounded-lg font-semibold">Follow</button>
+      <Link href="/donation">
+      <button className="border text-blue-500 cursor-pointer text-xs px-4 py-1 h-8 rounded-lg font-semibold">Donate</button>
+      </Link>
     </div>
     {/* Profile */}
     <div className="flex items-center gap-4">

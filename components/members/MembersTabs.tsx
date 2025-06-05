@@ -115,13 +115,13 @@ const MembersTabs: React.FC = () => {
                 </Link>
               ))}
             </div>
-            <div className="flex justify-end mt-4">
+            {/* <div className="flex justify-end mt-4">
               <Link href="/search">
                 <Button variant="link" className="text-primary flex items-center">
                   Discover More <ChevronRight className="h-4 w-4 ml-1" />
                 </Button>
               </Link>
-            </div>
+            </div> */}
           </div>
           )}
           {activeTab === 'Members' && <MembersList members={members} />}
@@ -215,13 +215,13 @@ const MembersTabs: React.FC = () => {
                         </Link>
                       ))}
                     </div>
-                    <div className="flex justify-end mt-4">
+                    {/* <div className="flex justify-end mt-4">
                       <Link href="/search">
                         <Button variant="link" className="text-primary flex items-center">
                           Discover More <ChevronRight className="h-4 w-4 ml-1" />
                         </Button>
                       </Link>
-                    </div>
+                    </div> */}
                   </div>
                 )}
                 {activeTab === 'Members' && <MembersList members={members} />}

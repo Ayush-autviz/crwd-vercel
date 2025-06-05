@@ -122,7 +122,7 @@ const DonationBoxWrapper = ({
             </div>
             <p className="text-xs text-gray-500">
               Your donation is protected and guaranteed.{" "}
-              <Link href="/about" className="text-blue-500">Learn More</Link>
+              <Link href="settings/about" className="text-blue-500">Learn More</Link>
             </p>
           </div>
         </div>
