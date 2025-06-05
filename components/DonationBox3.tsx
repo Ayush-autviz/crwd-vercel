@@ -191,7 +191,7 @@ export const DonationBox3 = ({
             </div>
             <p className="text-sm text-gray-600">
               Your donation is protected and guaranteed.{" "}
-              <Link href="#" className="text-blue-600 font-medium">
+              <Link href="/about" className="text-blue-600 font-medium">
                 Learn More
               </Link>
             </p>

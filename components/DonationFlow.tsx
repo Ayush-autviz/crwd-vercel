@@ -3,6 +3,7 @@
 import { useState } from "react";
 import DonationBox2 from "./DonationBox2";
 import { Minus, Plus, X } from "lucide-react";
+import Link from "next/link";
 
 const DonationFlow = () => {
   const [step, setStep] = useState<"initial" | "selectCauses">("initial");
@@ -121,7 +122,7 @@ const DonationBoxWrapper = ({
             </div>
             <p className="text-xs text-gray-500">
               Your donation is protected and guaranteed.{" "}
-              <span className="text-blue-500">Learn More</span>
+              <Link href="/about" className="text-blue-500">Learn More</Link>
             </p>
           </div>
         </div>
