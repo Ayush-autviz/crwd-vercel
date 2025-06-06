@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, Suspense } from "react"
 import { ArrowLeft, Mail, RefreshCw } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
@@ -11,7 +11,33 @@ import { toast } from "sonner"
 import { cn } from "@/lib/utils"
 import { useRouter, useSearchParams } from "next/navigation"
 
-const VerifyCodePage: React.FC = () => {
+// Loading component for Suspense fallback
+const LoadingFallback: React.FC = () => (
+  <div className="min-h-screen bg-gray-50">
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.02)_1px,transparent_0)] [background-size:20px_20px]"></div>
+    <div className="relative z-10 flex items-center justify-center p-4 md:p-8 min-h-screen">
+      <div className="w-full max-w-md">
+        <Card className="border border-gray-200 shadow-sm bg-white">
+          <CardContent className="p-8 space-y-6">
+            <div className="text-center space-y-4">
+              <div className="flex justify-center">
+                <Image src="/logo3.png" width={80} height={80} alt="CRWD Logo" className="drop-shadow-sm" />
+              </div>
+              <div className="space-y-2">
+                <h1 className="text-2xl font-semibold text-gray-900">Loading...</h1>
+                <div className="flex items-center justify-center">
+                  <div className="w-4 h-4 border-2 border-gray-300 border-t-gray-900 rounded-full animate-spin"></div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  </div>
+)
+
+const VerifyCodeContent: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [isResending, setIsResending] = useState(false)
   const [code, setCode] = useState(["", "", "", "", "", ""])
@@ -257,6 +283,14 @@ const VerifyCodePage: React.FC = () => {
         </div>
       </div>
     </div>
+  )
+}
+
+const VerifyCodePage: React.FC = () => {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <VerifyCodeContent />
+    </Suspense>
   )
 }
 
