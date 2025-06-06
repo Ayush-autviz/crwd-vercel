@@ -131,10 +131,10 @@ export default function OneTimeDonation({
                 ))}
 
                 <div className="text-sm text-blue-600 rounded-lg">
-                  <p className="font-medium text-blue-500">You can add up to 10 more causes to this donation</p>
-                  <Link href="/search" className="flex items-center mt-1 text-sm text-black">
-                    <span>See More</span>
-                    <ChevronRight size={16} className="ml-1" />
+                  <p className="font-medium text-blue-600">You can add up to 10 more causes to this donation</p>
+                  <Link href="/search" className="flex items-center mt-1 text-sm text-blue-600">
+                    <span>Discover More</span>
+                    <ChevronRight className="h-4 w-4 ml-1" />
                   </Link>
                 </div>
               </div>

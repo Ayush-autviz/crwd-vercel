@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, Minus, Plus, CreditCard, Calendar, DollarSign, Trash2, Badge, ArrowRight } from "lucide-react";
+import { ArrowLeft, Minus, Plus, CreditCard, Calendar, DollarSign, Trash2, Badge, ArrowRight, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -147,9 +147,9 @@ const ManageDonationBox: React.FC<ManageDonationBoxProps> = ({ amount, causes, o
                   <div className="flex justify-between items-start">
                     <div className="flex items-center gap-2">
                       <h3 className="font-semibold text-gray-900 text-base">{org.name}</h3>
-                      <span className="text-xs text-gray-500">
+                      {/* <span className="text-xs text-gray-500">
                         @{org.name.replace(/\s+/g, "").toLowerCase()}
-                      </span>
+                      </span> */}
                     </div>
                   </div>
                   {org.description && (
@@ -174,8 +174,8 @@ const ManageDonationBox: React.FC<ManageDonationBoxProps> = ({ amount, causes, o
             Add up to 45 more causes to this box
           </p>
           <div className="pt-2 pb-2 text-left">
-            <Link href="/search" className="flex items-center gap-1 text-sm text-gray-700 font-semibold">
-              Discover <ArrowRight size={16} />
+            <Link href="/search" className="flex items-center gap-1 text-sm text-blue-500 font-semibold">
+              Discover more <ChevronRight size={16} />
             </Link>
           </div>
         </div>

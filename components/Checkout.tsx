@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, HelpCircle, Menu, Search } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronRight, HelpCircle, Menu, Search } from "lucide-react";
 import { useState } from "react";
 // import { Organization } from "../types/Organization";
 import { Button } from "@/components/ui/button";
@@ -175,9 +175,9 @@ export const Checkout = ({
                 <div className="flex justify-between items-start mb-1">
                   <div className="flex items-center gap-2">
                     <h3 className="font-semibold text-gray-900 text-base">{org.name}</h3>
-                    <span className="text-xs text-gray-500">
+                    {/* <span className="text-xs text-gray-500">
                       {org.name.replace(/\s+/g, "").toLowerCase()}
-                    </span>
+                    </span> */}
                   </div>
                   <Badge className="bg-gray-100 text-gray-600 font-normal hover:bg-gray-100 rounded-full px-3 py-1 text-xs">
                     {distributionPercentage}% distribution
@@ -194,8 +194,8 @@ export const Checkout = ({
             Add up to 45 more causes to this box
           </p>
           <div className="pt-2 pb-2 text-left px-10">
-            <Link href="/search" className="flex items-center gap-1 text-sm text-gray-700  font-semibold">
-              Discover <ArrowRight size={16} />
+            <Link href="/search" className="flex items-center gap-1 text-sm text-blue-500  font-semibold">
+              Discover more <ChevronRight size={16} />
             </Link>
           </div>
           <div className="h-full flex justify-center items-center ">

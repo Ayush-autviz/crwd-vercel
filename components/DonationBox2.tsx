@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight, ChevronRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Avatar } from "@/components/ui/avatar";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -285,7 +285,7 @@ const DonationBox2 = ({
                   href="/search"
                   className="text-blue-500 text-sm flex items-center justify-end"
                 >
-                  Discover more <ArrowRight size={16} className="ml-1" />
+                  Discover more <ChevronRight className="h-4 w-4 ml-1" />
                 </Link>
               </div>
 

@@ -5,7 +5,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Edit2, Check, X, Camera, Trash2 } from 'lucide-react';
+import { Edit2, Check, X, Camera, Trash2, ChevronRight } from 'lucide-react';
 import ProfileNavbar from "@/components/profile/ProfileNavbar";
 import { toast } from 'sonner';
 import Link from "next/link";
@@ -277,7 +277,7 @@ export default function EditCrwdPage() {
           
             <div className="flex justify-end mt-4">
               <Link href="/search" className="text-xs text-blue-600 font-medium flex items-center gap-1 hover:underline">
-                Discover more <span className="ml-1">→</span>
+                Discover more <ChevronRight className="h-4 w-4 ml-1" />
               </Link>
             </div>
           </div>
@@ -320,7 +320,7 @@ export default function EditCrwdPage() {
               </div>
               <div className="flex justify-end mt-4">
               <Link href="/search" className="text-xs text-blue-600 font-medium flex items-center gap-1 hover:underline">
-                Discover more <span className="ml-1">→</span>
+                Discover more <ChevronRight className="h-4 w-4 ml-1" />
               </Link>
             </div>
             </div>

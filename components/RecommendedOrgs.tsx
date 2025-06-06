@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { Avatar } from "./ui/avatar";
 import Link from "next/link";
@@ -71,7 +71,7 @@ const RecommendedOrgs = () => {
       <div className="flex justify-end mt-4">
         <Link href="/search">
           <Button variant="link" className="text-primary flex items-center p-0 h-auto">
-            Discover More <ArrowRight className="ml-1 h-4 w-4" />
+            Discover More <ChevronRight className="h-4 w-4 ml-1" />
           </Button>
         </Link>
       </div>
