@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '../ui/button'
 import Image from 'next/image'
-import { Archive, Bell } from 'lucide-react'
+import { Archive, Bell, Plus } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import HamburgerMenu from '../hamburgerMenu/HamburgerMenu'
 import { cn } from '@/lib/utils'
@@ -19,8 +19,9 @@ export default function ProfileNavbar({showMobileMenu=true,showDesktopMenu=true,
       </div>
       {/* Archive icon and Hamburger Menu at right */}
       <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
-        <Link href="/donation">
-            <Archive strokeWidth={2} className="h-5 w-5 text-gray-700" />
+        <Link href="/create-post">
+            {/* <Archive strokeWidth={2} className="h-5 w-5 text-gray-700" /> */}
+            <Plus strokeWidth={2} className="h-5 w-5 text-gray-700" />
         </Link>
         <HamburgerMenu />
       </div>

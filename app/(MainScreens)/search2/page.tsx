@@ -34,16 +34,19 @@ const orgs = [
 const suggestedCauses = [
   {
     name: "The Red Cross",
+    type: "Cause",
     description: "An health organization that...",
     image: "/redcross.png",
   },
   {
     name: "St. Judes",
+    type: "CRWD",
     description: "The leading children's hea...",
     image: "/grocery.jpg",
   },
   {
     name: "Women's Healthcare of At...",
+    type: "Cause",
     description: "We are Atlanta's #1 healthca...",
     image: "/redcross.png",
   },
@@ -117,10 +120,10 @@ export default function Search2Page() {
 
           {/* Suggested Causes Section */}
           <div className="mt-4 px-4">
-            <h2 className="text-lg font-semibold mb-4">Suggested causes</h2>
+            {/* <h2 className="text-lg font-semibold mb-4">Suggested causes</h2> */}
             <div className="space-y-3">
               {suggestedCauses.map((cause, index) => (
-                <Link href="/cause" key={index} className="block">
+                <Link href={cause.type === "Cause" ? "/cause" : "/groupcrwd"} key={index} className="block">
                   <div
                     className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card"
                   >
@@ -138,6 +141,9 @@ export default function Search2Page() {
                         <h3 className="font-medium text-sm truncate">
                           {cause.name}
                         </h3>
+                        <p className="text-xs text-muted-foreground truncate mb-1">
+                          {cause.type}
+                        </p>
                         <p className="text-xs text-muted-foreground truncate">
                           {cause.description}
                         </p>

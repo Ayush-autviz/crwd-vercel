@@ -20,6 +20,7 @@ import {
   ArrowRight,
 } from "lucide-react"
 import ProfileNavbar from "@/components/profile/ProfileNavbar"
+import Link from "next/link"
 
 const recentSearches = ["Atlanta animal shelters", "Gaza support efforts", "Marine wildlife charities"]
 
@@ -95,6 +96,16 @@ export default function SearchPage() {
             </div>
           </div>
 
+
+          <div className="mb-8 bg-gray-100 rounded-xl text-center p-4">
+            {/* <div className="flex items-center justify-center gap-2 mb-4"> */}
+              <p className="text-black  text-sm font-[500] mb-10">We couldn't find any result for <i className="text-gray-500 font-normal">Kids for Change Austin</i></p>
+              <p className="text-black font-[500] text-sm mb-5">Can't Find What You're Looking For?</p>
+            {/* </div> */}
+            <p className="text-gray-500 text-[12px] mb-5">You can submit causes you're interested in <Link href="/create-cause" className="text-primary underline">here</Link></p>
+            
+          </div>
+
           {/* Trending Topics */}
           {/* <div className="mb-8">
             <div className="flex items-center gap-2 mb-4">
@@ -141,7 +152,7 @@ export default function SearchPage() {
                       <div className="p-2 bg-gray-100 rounded-full group-hover:bg-gray-200 transition-colors">
                         <Clock className="w-4 h-4 text-gray-500" />
                       </div>
-                      <span className="text-gray-900 font-medium group-hover:text-gray-700">{searchTerm}</span>
+                      <Link href="/search2" className="text-gray-900 font-medium group-hover:text-gray-700">{searchTerm}</Link>
                     </div>
                     <Button
                       variant="ghost"
@@ -177,7 +188,7 @@ export default function SearchPage() {
                       <div className="p-2 bg-gray-100 rounded-full group-hover:bg-gray-200 transition-colors">
                         <TrendingUp className="w-4 h-4 text-gray-600" />
                       </div>
-                      <span className="text-gray-900 font-medium group-hover:text-gray-700">{searchTerm}</span>
+                      <Link href="/search2" className="text-gray-900 font-medium group-hover:text-gray-700">{searchTerm}</Link>
                     </div>
                     <Button
                       variant="ghost"

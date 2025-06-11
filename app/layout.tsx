@@ -30,6 +30,7 @@ import {
   ArrowRightLeft,
   Heart,
   Plus,
+  Archive,
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -184,7 +185,7 @@ export default function RootLayout({
 
           {/* Mobile Bottom Navigation - Only show if NOT on auth pages */}
           {!isAuthPage && (
-            <nav className="fixed bottom-0 left-0 right-0 bg-card border-t flex justify-around py-3 mx-auto z-10 md:hidden">
+            <nav className="fixed bottom-0 left-0 right-0 bg-card border-t flex justify-around py-3 mx-auto z-10 md:hidden bg-gray-50">
               <Link
                 className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground"
                 href={"/"}
@@ -211,14 +212,15 @@ export default function RootLayout({
               </Link>
               <Link
                 className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground"
-                href={"/create-post"}
+                href={"/donation"}
               >
                 <Button
                   variant="ghost"
                   className="flex flex-col items-center h-auto py-2 px-0 flex-1 text-muted-foreground"
                 >
-                  <Plus className="h-5 w-5" />
-                  <span className="text-xs ">Post</span>
+                  {/* <Plus className="h-5 w-5" /> */}
+                  <Archive className="h-5 w-5" />
+                  <span className="text-xs ">Donation</span>
                 </Button>
               </Link>
               <Link

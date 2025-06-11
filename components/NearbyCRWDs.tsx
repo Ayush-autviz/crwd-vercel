@@ -36,7 +36,7 @@ const NearbyCRWDs = () => {
   return (
     <div className="bg-card p-4 md:p-5 rounded-lg border shadow-sm">
       <h2 className="text-lg font-semibold mb-4">
-        Causes and CRWD's near you
+      Local Causes and CRWDs
       </h2>
       <div className="space-y-3">
         {nearbyCRWDs.map((crwd) => (

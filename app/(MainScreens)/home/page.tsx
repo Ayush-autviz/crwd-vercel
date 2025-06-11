@@ -30,21 +30,39 @@ export default function HomePage() {
       posts: 156,
       avatars: ["8", "9", "10", "11"],
     },
-    {
-      id: "4",
-      name: "National Parks",
-      posts: 176,
-      avatars: ["12", "13", "14"],
-    },
-    {
-      id: "5",
-      name: "Columbia",
-      posts: 76,
-      avatars: ["15", "16", "17", "18"],
-    },
+    // {
+    //   id: "4",
+    //   name: "National Parks",
+    //   posts: 176,
+    //   avatars: ["12", "13", "14"],
+    // },
+    // {
+    //   id: "5",
+    //   name: "Columbia",
+    //   posts: 76,
+    //   avatars: ["15", "16", "17", "18"],
+    // },
   ];
   // Sample data for suggested CRWDs
   const suggestedCRWDs = [
+    {
+      name: "Grocery Spot",
+      members: "303 Members",
+      description: "Community lunches every Saturday",
+      image: "/grocery.jpg",
+    },
+    {
+      name: "Food for Thought",
+      members: "78 Members",
+      description: "Solving world hunger. One meal at a time.",
+      image: "/grocery.jpg",
+    },
+    {
+      name: "Food for Thought",
+      members: "78 Members",
+      description: "Solving world hunger. One meal at a time.",
+      image: "/grocery.jpg",
+    },
     {
       name: "Grocery Spot",
       members: "303 Members",
@@ -101,16 +119,19 @@ export default function HomePage() {
   const nearbyCauses = [
     {
       name: "The Red Cross",
+      type: "Cause",
       description: "An health organization that...",
       image: "/redcross.png",
     },
     {
       name: "St. Judes",
+      type: "CRWD",
       description: "The leading children's hea...",
       image: "/grocery.jpg",
     },
     {
       name: "Women's Healthcare of At...",
+      type: "Cause",
       description: "We are Atlanta's #1 healthca...",
       image: "/redcross.png",
     },
@@ -185,8 +206,57 @@ export default function HomePage() {
             <TopicsList topics={topi} />
           </div>
 
+          {/* Causes and CRWDs near you Section */}
+          <div className="px-4 mt-8 md:px-0 md:mt-8">
+            <h2 className="text-lg font-semibold mb-4">
+            Local Causes and CRWDs
+            </h2>
+            <div className="space-y-3">
+              {nearbyCauses.map((cause, index) => (
+                <Link href={cause.type === "Cause" ? "/cause" : "/groupcrwd"} key={index} className="block">
+                  <div
+                    className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card"
+                  >
+                    <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
+                      <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
+                        {cause.image && (
+                          <img
+                            src={cause.image}
+                            alt={cause.name}
+                            className="object-cover"
+                          />
+                        )}
+                      </Avatar>
+                      <div className="min-w-0">
+                        <h3 className="font-medium text-sm truncate">
+                          {cause.name}
+                        </h3>
+                        <p className="text-xs text-muted-foreground truncate mb-1">
+                          {cause.type}
+                        </p>
+                        <p className="text-xs text-muted-foreground truncate">
+                          {cause.description}
+                        </p>
+                      </div>
+                    </div>
+                    <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0 cursor-pointer">
+                      Visit
+                    </Button>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="flex justify-end mt-4">
+              <Link href="/search">
+                <Button variant="link" className="text-primary flex items-center">
+                  Discover More <ChevronRight className="h-4 w-4 ml-1" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+
           {/* Suggested CRWDs Section */}
-          <div className="px-4 mt-8 md:px-0 md:mt-10">
+          {/* <div className="px-4 mt-8 md:px-0 md:mt-10">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-semibold">Suggested CRWD's</h2>
               <Link href="/create-crwd">
@@ -196,11 +266,11 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="overflow-x-auto pb-2">
-              <div className="flex space-x-4 min-w-max">
+              <div className="grid grid-rows-2 grid-flow-col gap-4 w-max">
                 {suggestedCRWDs.map((crwd, index) => (
-                  <Link href="/groupcrwd" key={index} className="block w-[340px] flex-shrink-0">
+                  <Link href="/groupcrwd" key={index} className="block w-[340px]">
                     <div
-                      className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card"
+                      className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/100 cursor-pointer transition-colors bg-muted/50"
                     >
                       <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
                         <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
@@ -232,7 +302,7 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Categories Section */}
           <div className="px-4 mt-8 md:px-0 md:mt-10">
@@ -247,6 +317,55 @@ export default function HomePage() {
                     >
                       {category}
                     </Badge>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Suggested CRWDs Section */}
+          <div className="px-4 mt-8 md:px-0 md:mt-10">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-semibold">Suggested CRWD's</h2>
+              <Link href="/create-crwd">
+                <Button variant="link" className="text-primary p-0 h-auto">
+                  Create a CRWD
+                </Button>
+              </Link>
+            </div>
+            <div className="overflow-x-auto pb-2">
+              <div className="grid grid-rows-2 grid-flow-col gap-4 w-max">
+                {suggestedCRWDs.map((crwd, index) => (
+                  <Link href="/groupcrwd" key={index} className="block w-[340px]">
+                    <div
+                      className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/100 cursor-pointer transition-colors bg-muted/50"
+                    >
+                      <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0 mr-2">
+                        <Avatar className="h-10 w-10 md:h-12 md:w-12 rounded-full flex-shrink-0">
+                          {crwd.image && (
+                            <img
+                              src={crwd.image}
+                              alt={crwd.name}
+                              className="object-cover"
+                            />
+                          )}
+                        </Avatar>
+                        <div className="min-w-0">
+                          <h3 className="font-medium text-sm truncate">
+                            {crwd.name}
+                          </h3>
+                          <p className="text-xs text-muted-foreground truncate">
+                            {crwd.members}
+                          </p>
+                          <p className="text-xs text-muted-foreground truncate">
+                            {crwd.description}
+                          </p>
+                        </div>
+                      </div>
+                      <Button className="bg-primary text-white text-xs h-8 px-4 md:px-6 flex-shrink-0 cursor-pointer">
+                        Visit
+                      </Button>
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -298,13 +417,13 @@ export default function HomePage() {
           </div>
 
           {/* Causes and CRWDs near you Section */}
-          <div className="px-4 mt-8 pb-8 md:px-0 md:mt-4">
+          {/* <div className="px-4 mt-8 pb-8 md:px-0 md:mt-4">
             <h2 className="text-lg font-semibold mb-4">
-              Causes and CRWD's near you
+            Local Causes and CRWDs
             </h2>
             <div className="space-y-3">
               {nearbyCauses.map((cause, index) => (
-                <Link href="/cause" key={index} className="block">
+                <Link href={cause.type === "Cause" ? "/cause" : "/groupcrwd"} key={index} className="block">
                   <div
                     className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors bg-card"
                   >
@@ -322,6 +441,9 @@ export default function HomePage() {
                         <h3 className="font-medium text-sm truncate">
                           {cause.name}
                         </h3>
+                        <p className="text-xs text-muted-foreground truncate mb-1">
+                          {cause.type}
+                        </p>
                         <p className="text-xs text-muted-foreground truncate">
                           {cause.description}
                         </p>
@@ -334,7 +456,16 @@ export default function HomePage() {
                 </Link>
               ))}
             </div>
-          </div>
+            <div className="flex justify-end mt-4">
+              <Link href="/search">
+                <Button variant="link" className="text-primary flex items-center">
+                  Discover More <ChevronRight className="h-4 w-4 ml-1" />
+                </Button>
+              </Link>
+            </div>
+          </div> */}
+
+
           <div className="mr-auto  ">
         <PopularPosts />
       </div>
