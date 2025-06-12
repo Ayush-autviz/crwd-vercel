@@ -7,9 +7,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card } from "@/components/ui/card";
 import Image from "next/image";
-import { CreditCard, Lock } from "lucide-react";
 
 interface PaymentSectionProps {
   /** Amount in USD */
@@ -29,118 +27,77 @@ const PaymentSection: React.FC<PaymentSectionProps> = ({ amount }) => {
     setCard((prev) => ({ ...prev, [field]: value }));
 
   return (
-    <div className="px-8 py-6 bg-gray-50">
-      <Card className="p-6 shadow-lg border-0">
-        {/* Section Title */}
-        <div className="mb-8 text-center">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-2">Payment Details</h2>
-          <p className="text-gray-500 text-sm">Choose your preferred payment method</p>
-        </div>
+    <div className="px-8 py-8 bg-white  space-y-8">
+      {/* Apple Pay / Google Pay mock button */}
+      <div className="space-y-3">
+        <Button
+          className="w-full h-12 bg-black hover:bg-black/90 rounded-lg flex items-center justify-center gap-3"
+        >
+          <Image
+            src="/apple-logo.svg"
+            alt="Apple Pay"
+            width={18}
+            height={18}
+            className=""
+          />
+          <span className="text-lg font-semibold text-white">Pay</span>
+        </Button>
+      </div>
 
-        {/* Express Checkout */}
-        <div className="space-y-4 mb-8">
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-sm font-medium text-gray-700">Express Checkout</span>
-            <div className="flex items-center gap-2">
-              <Lock size={14} className="text-gray-400" />
-              <span className="text-xs text-gray-400">Secure payment</span>
-            </div>
-          </div>
-          
-          <Button
-            className="w-full h-14 bg-black hover:bg-black/90 rounded-xl flex items-center justify-center gap-3 shadow-sm transition-all duration-200 hover:shadow-md"
-          >
-            <Image
-              src="/apple-logo.svg"
-              alt="Apple Pay"
-              width={20}
-              height={20}
-              className="opacity-90"
+      {/* Divider */}
+      <div className="flex items-center gap-3">
+        <div className="flex-1 h-px bg-gray-200" />
+        <span className="text-xs text-gray-500 uppercase tracking-wider">
+          Or pay with card
+        </span>
+        <div className="flex-1 h-px bg-gray-200" />
+      </div>
+
+      {/* Card form */}
+      <form className="space-y-4">
+        <div className="space-y-2">
+          <Label htmlFor="card-number">Card Number</Label>
+          <Input
+            id="card-number"
+            placeholder="1234 5678 9012 3456"
+            value={card.number}
+            onChange={(e) => handleChange("number", e.target.value)}
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="card-name">Name on Card</Label>
+          <Input
+            id="card-name"
+            placeholder="John Doe"
+            value={card.name}
+            onChange={(e) => handleChange("name", e.target.value)}
+          />
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="card-expiry">Expiry Date</Label>
+            <Input
+              id="card-expiry"
+              placeholder="MM/YY"
+              value={card.expiry}
+              onChange={(e) => handleChange("expiry", e.target.value)}
             />
-            <span className="text-base font-medium text-white">Pay with Apple Pay</span>
-          </Button>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="card-cvc">CVC</Label>
+            <Input
+              id="card-cvc"
+              placeholder="123"
+              value={card.cvc}
+              onChange={(e) => handleChange("cvc", e.target.value)}
+            />
+          </div>
         </div>
 
-        {/* Divider */}
-        <div className="flex items-center gap-3 my-8">
-          <div className="flex-1 h-px bg-gray-200" />
-          <span className="text-xs font-medium text-gray-400">OR PAY WITH CARD</span>
-          <div className="flex-1 h-px bg-gray-200" />
-        </div>
-
-        {/* Card Details Form */}
-        <form className="space-y-6">
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="card-number" className="text-gray-700">
-                Card Number
-              </Label>
-              <div className="relative">
-                <Input
-                  id="card-number"
-                  placeholder="1234 5678 9012 3456"
-                  value={card.number}
-                  onChange={(e) => handleChange("number", e.target.value)}
-                  className="pl-11 h-12 bg-white border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-100 focus:border-blue-400"
-                />
-                <CreditCard className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="card-name" className="text-gray-700">
-                Cardholder Name
-              </Label>
-              <Input
-                id="card-name"
-                placeholder="Name on card"
-                value={card.name}
-                onChange={(e) => handleChange("name", e.target.value)}
-                className="h-12 bg-white border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-100 focus:border-blue-400"
-              />
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="card-expiry" className="text-gray-700">
-                  Expiry Date
-                </Label>
-                <Input
-                  id="card-expiry"
-                  placeholder="MM/YY"
-                  value={card.expiry}
-                  onChange={(e) => handleChange("expiry", e.target.value)}
-                  className="h-12 bg-white border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-100 focus:border-blue-400"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="card-cvc" className="text-gray-700">
-                  Security Code
-                </Label>
-                <Input
-                  id="card-cvc"
-                  placeholder="CVC"
-                  value={card.cvc}
-                  onChange={(e) => handleChange("cvc", e.target.value)}
-                  className="h-12 bg-white border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-100 focus:border-blue-400"
-                />
-              </div>
-            </div>
-          </div>
-
-          <Button className="w-full bg-green-500 hover:bg-green-600 text-white font-medium h-14 rounded-xl shadow-sm transition-all duration-200 hover:shadow-md mt-6">
-            Donate ${amount}
-          </Button>
-
-          {/* Security Badge */}
-          <div className="flex items-center justify-center gap-2 mt-4">
-            <Lock size={14} className="text-gray-400" />
-            <span className="text-xs text-gray-400">
-              Your payment info is securely encrypted
-            </span>
-          </div>
-        </form>
-      </Card>
+        <Button className="w-full bg-green-600 hover:bg-green-700 text-black font-medium h-12">
+          Donate ${amount}
+        </Button>
+      </form>
     </div>
   );
 };
