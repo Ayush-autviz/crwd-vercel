@@ -7,6 +7,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import Link from "next/link";
 import ManageDonationBox from "./ManageDonationBox";
 import { CROWDS, RECENTS, SUGGESTED } from "@/constants";
+import PaymentSection from "./PaymentSection";
 
 // Define Organization type locally to avoid import issues
 type Organization = {
@@ -205,6 +206,10 @@ export const Checkout = ({
           </div>
         </div>
       </div>
+
+      {/* Payment Section */}
+      <PaymentSection amount={donationAmount} />
+
       <div className="h-30 md:hidden"/>
     </div>
   );
