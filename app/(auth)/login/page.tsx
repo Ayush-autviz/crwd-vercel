@@ -36,13 +36,13 @@ const LoginPage: React.FC = () => {
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 1500))
-      toast.success("Welcome back!", {
-        description: "You have been signed in successfully.",
-      })
+      // toast.success("Welcome back!", {
+      //   description: "You have been signed in successfully.",
+      // })
     } catch (error) {
-      toast.error("Invalid credentials", {
-        description: "Please check your email and password.",
-      })
+      // toast.error("Invalid credentials", {
+      //   description: "Please check your email and password.",
+      // })
     } finally {
       setIsLoading(false)
     }
@@ -52,9 +52,9 @@ const LoginPage: React.FC = () => {
     setIsGoogleLoading(true)
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000))
-      toast.success("Google login successful!")
+      // toast.success("Google login successful!")
     } catch (error) {
-      toast.error("Google login failed")
+      // toast.error("Google login failed")
     } finally {
       setIsGoogleLoading(false)
     }

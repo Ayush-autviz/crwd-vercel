@@ -25,16 +25,16 @@ const ForgotPasswordPage: React.FC = () => {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500))
       
-      toast.success("Verification code sent!", {
-        description: "Check your email for the verification code.",
-      })
+      // toast.success("Verification code sent!", {
+      //   description: "Check your email for the verification code.",
+      // })
       
       // Navigate to verification screen with email in query params
       router.push(`/forgot-password/verify?email=${encodeURIComponent(email)}`)
     } catch (error) {
-      toast.error("Something went wrong", {
-        description: "Please try again later.",
-      })
+      // toast.error("Something went wrong", {
+      //   description: "Please try again later.",
+      // })
     } finally {
       setIsLoading(false)
     }

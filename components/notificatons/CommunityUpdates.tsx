@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent } from '../ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Heart, MessageCircle, EllipsisIcon } from 'lucide-react';
 import { IoArrowRedoOutline } from "react-icons/io5";
 import Link from 'next/link';
+import { AuthModal } from '../auth/AuthModal';
 
 // Community Posts that will appear as full posts
 const communityPosts = [
@@ -89,14 +90,22 @@ const communityPosts = [
 ];
 
 const CommunityUpdates: React.FC = () => {
+
+  const [open, setOpen] = useState(false);
+
+
   return (
     <div className="w-full flex flex-col">
+
+      {/* Auth Modal */}
+      <AuthModal open={open} onOpenChange={setOpen} />
+
       {/* Community Posts */}
       <div className="space-y-0">
         {communityPosts.map((post:any) => (
           <Card key={post.id} className="overflow-hidden border-0 shadow-none rounded-none border-b border-gray-200 bg-white">
             <CardContent className="">
-              <Link href={`/posts/${post.id}`} className='w-full'>
+              {/* <Link href={`/posts/${post.id}`} className='w-full'> */}
                 <div className="flex gap-3">
                   <Avatar className="h-10 w-10 flex-shrink-0">
                     <AvatarImage src={post.avatarUrl} alt={post.username} />
@@ -197,7 +206,7 @@ const CommunityUpdates: React.FC = () => {
 
                     <div className="flex items-center gap-4 text-muted-foreground mt-2">
                       <button className="flex items-center gap-1 hover:text-red-500 transition-colors">
-                        <Heart className="w-4 h-4" />
+                        <Heart className="w-4 h-4" onClick={() => setOpen(true)} />
                         <span className="text-xs">{post.likes}</span>
                       </button>
                       <button className="flex items-center gap-1 hover:text-blue-500 transition-colors">
@@ -211,7 +220,7 @@ const CommunityUpdates: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              </Link>
+              {/* </Link> */}
             </CardContent>
           </Card>
         ))}

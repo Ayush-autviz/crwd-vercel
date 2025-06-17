@@ -11,7 +11,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
 
-const SignupPage: React.FC = () => {
+const SignupPopUp: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isGoogleLoading, setIsGoogleLoading] = useState(false)
@@ -37,13 +37,13 @@ const SignupPage: React.FC = () => {
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 1500))
-      // toast.success("Account created successfully!", {
-      //   description: "Welcome to our platform!",
-      // })
+      toast.success("Account created successfully!", {
+        description: "Welcome to our platform!",
+      })
     } catch (error) {
-      // toast.error("Something went wrong", {
-      //   description: "Please try again later.",
-      // })
+      toast.error("Something went wrong", {
+        description: "Please try again later.",
+      })
     } finally {
       setIsLoading(false)
     }
@@ -53,9 +53,9 @@ const SignupPage: React.FC = () => {
     setIsGoogleLoading(true)
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000))
-      // toast.success("Google signup successful!")
+      toast.success("Google signup successful!")
     } catch (error) {
-      // toast.error("Google signup failed")
+      toast.error("Google signup failed")
     } finally {
       setIsGoogleLoading(false)
     }
@@ -71,9 +71,9 @@ const SignupPage: React.FC = () => {
   const passwordStrength = getPasswordStrength(formData.password)
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="">
       {/* Subtle Background Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.02)_1px,transparent_0)] [background-size:20px_20px]"></div>
+      {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.02)_1px,transparent_0)] [background-size:20px_20px]"></div> */}
 
       {/* Mobile Header */}
       {/* <div className="md:hidden flex items-center justify-between p-4 bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
@@ -87,10 +87,10 @@ const SignupPage: React.FC = () => {
       </div> */}
 
       {/* Main Content */}
-      <div className="relative z-10 flex items-center justify-center p-4 md:p-8 min-h-screen">
+      <div className="relative z-10 flex items-center justify-center  ">
         <div className="w-full max-w-md">
-          <Card className="border border-gray-200 shadow-sm bg-white">
-            <CardContent className="p-8 space-y-6">
+          <Card className="border-0 shadow-none">
+            <CardContent className="space-y-6">
               {/* Logo and Header */}
               <div className="text-center space-y-4">
                 <div className="flex justify-center">
@@ -357,4 +357,4 @@ const SignupPage: React.FC = () => {
   )
 }
 
-export default SignupPage
+export default SignupPopUp

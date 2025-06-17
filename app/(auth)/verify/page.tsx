@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
 import { useRouter, useSearchParams } from "next/navigation"
+import VerifyCodePage from "../forgot-password/verify/page"
 
 // Loading component for Suspense fallback
 const LoadingFallback: React.FC = () => (
@@ -103,7 +104,7 @@ const VerifyCodeContent: React.FC = () => {
     const verificationCode = code.join("")
     
     if (verificationCode.length !== 6) {
-      // toast.error("Please enter the complete verification code")
+    //   toast.error("Please enter the complete verification code")
       return
     }
 
@@ -113,16 +114,17 @@ const VerifyCodeContent: React.FC = () => {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500))
       
-      // toast.success("Code verified successfully!", {
-      //   description: "You can now reset your password.",
-      // })
+    //   toast.success("Code verified successfully!", {
+    //     description: "You can now reset your password.",
+    //   })
       
       // Navigate to reset password screen
-      router.push(`/forgot-password/reset?email=${encodeURIComponent(email)}&code=${verificationCode}`)
+    //   router.push(`/forgot-password/reset?email=${encodeURIComponent(email)}&code=${verificationCode}`)
+    router.push("/interests")
     } catch (error) {
-      // toast.error("Invalid verification code", {
-      //   description: "Please check your code and try again.",
-      // })
+      toast.error("Invalid verification code", {
+        description: "Please check your code and try again.",
+      })
     } finally {
       setIsLoading(false)
     }
@@ -135,17 +137,17 @@ const VerifyCodeContent: React.FC = () => {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000))
       
-      // toast.success("New code sent!", {
-      //   description: "Check your email for the new verification code.",
-      // })
+    //   toast.success("New code sent!", {
+    //     description: "Check your email for the new verification code.",
+    //   })
       
       setTimeLeft(300) // Reset timer
       setCode(["", "", "", "", "", ""]) // Clear current code
       inputRefs.current[0]?.focus()
     } catch (error) {
-      // toast.error("Failed to resend code", {
-      //   description: "Please try again later.",
-      // })
+    //   toast.error("Failed to resend code", {
+    //     description: "Please try again later.",
+    //   })
     } finally {
       setIsResending(false)
     }
@@ -286,7 +288,7 @@ const VerifyCodeContent: React.FC = () => {
   )
 }
 
-const VerifyCodePage: React.FC = () => {
+const VerifyPage: React.FC = () => {
   return (
     <Suspense fallback={<LoadingFallback />}>
       <VerifyCodeContent />
@@ -294,4 +296,4 @@ const VerifyCodePage: React.FC = () => {
   )
 }
 
-export default VerifyCodePage 
+export default VerifyPage 

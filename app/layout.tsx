@@ -48,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname()
-  const isAuthPage = pathname?.startsWith('/signup') || pathname?.startsWith('/login') || pathname?.startsWith('/forgot-password')
+  const isAuthPage = pathname?.startsWith('/signup') || pathname?.startsWith('/login') || pathname?.startsWith('/forgot-password') || pathname?.startsWith('/interests') || pathname?.startsWith('/verify')
 
   return (
     <html lang="en">
