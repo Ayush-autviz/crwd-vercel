@@ -53,7 +53,7 @@ const ManageDonationBox: React.FC<ManageDonationBoxProps> = ({ amount, causes, o
   return (
     <div className="w-full min-h-screen bg-white flex flex-col">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 p-4 flex items-center justify-between">
+      <div className="bg-white border-b border-gray-200 h-16 p-4 flex items-center justify-between">
         <button onClick={onBack} className="p-2 rounded-full hover:bg-gray-100 transition text-gray-600">
           <ArrowLeft size={20} />
         </button>

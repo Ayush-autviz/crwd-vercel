@@ -7,6 +7,7 @@ import { AvatarFallback } from "@/components/ui/avatar";
 import { CROWDS, RECENTS, SUGGESTED } from "@/constants";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import PaymentSection from "./PaymentSection";
 
 // Define Organization type locally
 type Organization = {
@@ -197,23 +198,16 @@ export const DonationBox3 = ({
             </p>
           </div>
 
-          {/* Action buttons */}
-          <div className="space-y-3">
-            <Button
-              onClick={() => setCheckout(true)}
-              disabled={selectedOrganizations.length === 0}
-              className="bg-green-500 hover:bg-green-600 text-black w-full py-6 rounded-lg font-medium transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Proceed to Checkout
-            </Button>
+          {/* Payment Section */}
+          <PaymentSection setCheckout={setCheckout} amount={7} />
 
-            <button
-              onClick={() => setStep(2)}
-              className="w-full text-blue-600 hover:text-blue-700 text-sm font-medium py-2"
-            >
-              ← Back to edit causes
-            </button>
-          </div>
+          {/* Back button */}
+          <button
+            onClick={() => setStep(2)}
+            className="w-full text-blue-600 hover:text-blue-700 text-sm font-medium py-2"
+          >
+            ← Back to edit causes
+          </button>
         </div>
       </div>
       <div className="h-20 md:hidden"></div>

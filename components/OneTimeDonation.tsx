@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { CROWDS, RECENTS, SUGGESTED } from "@/constants";
 import { useState } from "react";
+import PaymentSection from "./PaymentSection";
 
 // Define Organization type locally to avoid import issues
 type Organization = {
@@ -213,14 +214,15 @@ export default function OneTimeDonation({
           </div>
 
           {/* Checkout button */}
-          <div className="py-4 w-full">
+          {/* <div className="py-4 w-full">
             <Button
               onClick={() => setCheckout(true)}
               className="bg-green-500 hover:bg-green-600 text-black w-full py-6 md:py-6 rounded-lg font-medium transition-colors flex items-center justify-center"
             >
               Complete Donation
             </Button>
-          </div>
+          </div> */}
+          <PaymentSection setCheckout={setCheckout} amount={7}/>
           <div className="h-10"></div>
         </div>
       </div>
