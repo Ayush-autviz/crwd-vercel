@@ -10,8 +10,10 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { toast } from "sonner"
 import { cn } from "@/lib/utils"
+import { useRouter } from "next/navigation"
 
 const SignupPage: React.FC = () => {
+  const router = useRouter()
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isGoogleLoading, setIsGoogleLoading] = useState(false)
@@ -323,6 +325,7 @@ const SignupPage: React.FC = () => {
                       "transition-colors duration-200",
                       isLoading && "opacity-50 cursor-not-allowed",
                     )}
+                    onClick={() => router.push("/verify")}
                   >
                     {isLoading ? (
                       <div className="flex items-center gap-2">
