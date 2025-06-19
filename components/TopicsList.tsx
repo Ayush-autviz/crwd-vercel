@@ -40,7 +40,7 @@ const TopicsList = ({ topics, showTitle = true }: TopicsListProps) => {
             className="flex justify-between items-center hover:bg-muted/50 py-3 px-2 rounded-md cursor-pointer transition-colors"
           >
             <div className="flex items-center min-w-0">
-              <div className="flex -space-x-2 mr-3 flex-shrink-0">
+              {/* <div className="flex -space-x-2 mr-3 flex-shrink-0">
                 {topic.avatars.map((avatar, index) => {
                   // Pick a random image for each avatar
                   const imgIdx = Math.floor(Math.random() * avatarImages.length);
@@ -55,13 +55,13 @@ const TopicsList = ({ topics, showTitle = true }: TopicsListProps) => {
                       </AvatarFallback>
                     </Avatar>
                   );
-                })}
+                })} */}
                 {/* {topic.avatars.length > 3 && (
                   <div className="w-6 h-6 rounded-full bg-muted border-2 border-background flex items-center justify-center text-xs">
                     +{topic.avatars.length - 3}
                   </div>
                 )} */}
-              </div>
+              {/* </div> */}
               <span className="text-sm font-medium truncate">{topic.name}</span>
             </div>
 

@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const GroupCrwdEvent: React.FC = () => (
   <Link href="/posts/1">
-  <div className="px-4 pt-2 pb-48 lg:max-w-[630px] gap-6">
+  <div className="px-4 pt-2  lg:max-w-[630px] gap-6">
     <div className="bg-white rounded-xl shadow-sm p-6 flex flex-col gap-2">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">

@@ -16,7 +16,7 @@ export default function page() {
     <>
       <ProfileNavbar title='Group Crwd' />
     
-    <div className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div className="py-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-6">
 
       {/* <ProfileNavbar title='Group Crwd' /> */}
@@ -24,13 +24,13 @@ export default function page() {
       <GroupCrwdSuggested />
       <GroupCrwdUpdates />
       <GroupCrwdEvent />
-      <GroupCrwdBottomBar />
+      {/* <GroupCrwdBottomBar /> */}
       </div>
 
-      <div className="lg:col-span-1 space-y-6">
+      <div className="lg:col-span-1 space-y-6 px-4 pb-35">
         {/* Donation Card */}
-        <Card>
-          <CardContent className="">
+        <Card className='hidden md:block'>
+          <CardContent>
             <h2 className="text-xl font-bold mb-4 text-center">
               Support this cause
             </h2>
@@ -43,7 +43,7 @@ export default function page() {
                 className="w-full py-6 text-lg bg-[#4367FF] hover:bg-[#4367FF] hover:opacity-85"
                 size="lg"
               >
-                Donate
+                Join
               </Button>
             </Link>
             <div className="text-center text-sm text-muted-foreground mt-4">
@@ -53,7 +53,7 @@ export default function page() {
         </Card>
 
         {/* Related Causes */}
-        <Card>
+        <Card className='hidden md:block'>
           <CardContent className="p-6">
             <h2 className="text-xl font-bold mb-4">Related Causes</h2>
             <div className="space-y-3">
@@ -91,7 +91,7 @@ export default function page() {
         </Card>
 
         {/* Recent Activity */}
-        <Card>
+        <Card className='hidden md:block'> 
           <CardContent className="">
             <h2 className="text-xl font-bold mb-4">Recent Activity</h2>
             <div className="space-y-4">

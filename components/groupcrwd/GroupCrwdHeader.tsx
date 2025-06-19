@@ -22,7 +22,7 @@ const orgAvatars = [
 const GroupCrwdHeader: React.FC = () => {
   const router = useRouter();
   return (
-  <div className="bg-white  p-4 mx-2 mt-4 mb-4 flex flex-col gap-4">
+  <div className="bg-white  p-4 mx-2   mb-4 flex flex-col gap-4">
      <div className="flex items-center gap-2 ml-auto">
         <Button  variant='outline'>
         <Share2 size={20} />
@@ -30,7 +30,7 @@ const GroupCrwdHeader: React.FC = () => {
         <Button  variant='outline'>
         <Bookmark size={20} />
         </Button>
-        <Button  variant='default'>
+        <Button  className='cursor-pointer' onClick={() => router.push(`/donation`)} variant='default'>
         Join
         </Button>
       </div>

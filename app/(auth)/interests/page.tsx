@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { ArrowRightIcon, ChevronRight } from "lucide-react";
 
 // Define categories and their interests
 const CATEGORIES = [
@@ -57,6 +58,11 @@ const InterestsPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-muted px-2">
       <div className="w-full max-w-md bg-background rounded-2xl shadow-lg p-8">
+        <div className="flex justify-end items-center cursor-pointer" onClick={() => router.push("/")}>
+        <p className="text-sm text-right text-gray-500 font-semibold">Skip</p>
+        <ChevronRight className="w-4 h-4 text-gray-500" />
+        </div>
+
         <div className="mb-6 text-center">
             <Image src="/logo3.png" width={80} height={80} alt="CRWD Logo" className="drop-shadow-sm mx-auto mb-3" />
           <h1 className="text-2xl font-bold mb-2">What are you passionate about?</h1>
@@ -89,13 +95,18 @@ const InterestsPage = () => {
             </div>
           ))}
         </div>
+        {selected.length === 0 && 
+        <p className="text-sm text-center  text-red-500">Please select at least one interest</p>
+        }
+        {selected.length > 0 && 
         <Button
           className="w-full bg-black text-white hover:bg-black/80 p-5"
-          disabled={selected.length === 0}
+          // disabled={selected.length === 0}
           onClick={handleContinue} // Implement navigation or API call here
         >
           Continue
         </Button>
+        }
       </div>
     </div>
   );
