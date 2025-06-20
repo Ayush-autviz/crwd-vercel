@@ -24,7 +24,7 @@ export default function page() {
       <GroupCrwdSuggested />
       <GroupCrwdUpdates />
       <GroupCrwdEvent />
-      {/* <GroupCrwdBottomBar /> */}
+      <GroupCrwdBottomBar />
       </div>
 
       <div className="lg:col-span-1 space-y-6 px-4 pb-35">
