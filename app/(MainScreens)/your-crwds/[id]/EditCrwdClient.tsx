@@ -199,7 +199,7 @@ export default function EditCrwdClient({ params }: { params: { id: string } }) {
           />
 
           {/* Header Section */}
-          <div className="relative bg-blue-50 p-4 border-b border-gray-200">
+          <div className="relative  p-4 border-b border-gray-200">
             <div className="flex flex-col items-center">
               <div className="relative">
                 <Avatar className="h-32 w-32 mb-4">
@@ -299,6 +299,7 @@ export default function EditCrwdClient({ params }: { params: { id: string } }) {
           </div>
         </div>
       </div>
+      <div className="h-30 md:hidden"/>
     </div>
   );
 } 
