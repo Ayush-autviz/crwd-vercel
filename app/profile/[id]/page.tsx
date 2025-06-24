@@ -5,6 +5,17 @@ import ProfileEditCard from '../../../components/profile/ProfileEditCard';
 import ProfileNavbar from '@/components/profile/ProfileNavbar';
 import { toast } from 'sonner';
 
+// Generate static params for profile IDs
+export async function generateStaticParams() {
+  // You can add your actual profile IDs here
+  // For now, I'll add some sample IDs
+  const profileIds = ['1', '2', '3', '4', '5'];
+  
+  return profileIds.map((id) => ({
+    id: id,
+  }));
+}
+
 export default function Page() {
   const [profileData, setProfileData] = useState({
     avatarUrl: "https://randomuser.me/api/portraits/women/44.jpg",

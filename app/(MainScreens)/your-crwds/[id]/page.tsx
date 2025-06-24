@@ -10,6 +10,16 @@ import ProfileNavbar from "@/components/profile/ProfileNavbar";
 import { toast } from 'sonner';
 import Link from "next/link";
 
+// Generate static params for CRWD IDs
+export async function generateStaticParams() {
+  // You can add your actual CRWD IDs here
+  // For now, I'll add some sample IDs
+  const crwdIds = ['1', '2', '3', '4', '5'];
+  
+  return crwdIds.map((id) => ({
+    id: id,
+  }));
+}
 
 const mockCrwd = {
   name: "Feed The Hungry",

@@ -2,6 +2,16 @@ import React from 'react';
 import PostDetailHeader from '@/components/post/PostDetailHeader';
 import { popularPosts, profileActivity } from '@/lib/profile/profileActivity';
 import ProfileActivityCard from '@/components/profile/ProfileActivityCard';
+
+// Generate static params for all post IDs
+export async function generateStaticParams() {
+  const allPosts = [...popularPosts, ...profileActivity];
+  
+  return allPosts.map((post) => ({
+    id: post.id.toString(),
+  }));
+}
+
 export default async function PostDetailPage({
     params,
 }: {

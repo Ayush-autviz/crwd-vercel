@@ -5,6 +5,17 @@ import MembersList from "@/components/members/MembersList";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 
+// Generate static params for profile statistics IDs
+export async function generateStaticParams() {
+  // You can add your actual profile IDs here
+  // For now, I'll add some sample IDs
+  const profileIds = ['1', '2', '3', '4', '5'];
+  
+  return profileIds.map((id) => ({
+    id: id,
+  }));
+}
+
 const causes = [
   { name: "Red Cross", avatar: "https://randomuser.me/api/portraits/men/32.jpg", impact: "Donated $500" },
   { name: "Food for All", avatar: "https://randomuser.me/api/portraits/women/44.jpg", impact: "Volunteered 20h" },
